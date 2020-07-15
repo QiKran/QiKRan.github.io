@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Redis在服务上的配置与安装 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Redis在Aliyun Linux2上配置与安装 安装 1234$ wget http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-6.0.5.tar.gz$ tar xzf redis-6.0.5.tar.gz$ cd redis-6.0.5$ make  运行 1src&#x2F;redis-server  无法make的问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis在服务上的配置与安装">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/Redis%E5%9C%A8%E6%9C%8D%E5%8A%A1%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="Redis在Aliyun Linux2上配置与安装 安装 1234$ wget http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-6.0.5.tar.gz$ tar xzf redis-6.0.5.tar.gz$ cd redis-6.0.5$ make  运行 1src&#x2F;redis-server  无法make的问题">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:13:48.418Z">
+<meta property="article:modified_time" content="2020-06-22T13:59:59.120Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Redis在服务上的配置与安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis%E5%9C%A8%E6%9C%8D%E5%8A%A1%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.418Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis在服务上的配置与安装
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h4 id="在Aliyun-Linux2上配置与安装"><a href="#在Aliyun-Linux2上配置与安装" class="headerlink" title="在Aliyun Linux2上配置与安装"></a>在Aliyun Linux2上配置与安装</h4><ol>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-6.0.5.tar.gz</span><br><span class="line">$ tar xzf redis-6.0.5.tar.gz</span><br><span class="line">$ cd redis-6.0.5</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src&#x2F;redis-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无法make的问题</p>
+<p>在redis6.0的make过程中，会遇到无法安装服务的问题，需要升级GCC</p>
+</li>
+<li><p>开启YUM仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 先开启YUM仓库支持</span><br><span class="line">sudo yum install -y alinux-release-experimentals</span><br><span class="line"># 安装普通试验性软件包，其中&lt;packageName&gt;为您预期安装的软件包名称</span><br><span class="line">sudo yum install -y &lt;packageName&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装GCC插件开发工具包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 先安装scl-utils</span><br><span class="line">sudo yum install -y scl-utils</span><br><span class="line"># 打开YUM仓库支持</span><br><span class="line">sudo yum install -y alinux-release-experimentals</span><br><span class="line"># 从YUM源安装您需要的软件包，以下示例命令同时安装了SCL插件方式支持的所有开发工具包</span><br><span class="line">sudo yum install -y devtoolset-7-gcc devtoolset-7-gdb devtoolset-7-binutils devtoolset-7-make</span><br><span class="line">sudo yum install -y devtoolset-8-gcc devtoolset-8-gdb devtoolset-8-binutils devtoolset-8-make</span><br><span class="line">sudo yum install -y devtoolset-9-gcc devtoolset-9-gdb devtoolset-9-binutils devtoolset-9-make</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用GCC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 先查看现有的SCL，需要指定库名，本示例代码中，库名为devtoolset-7</span><br><span class="line">scl -l devtoolset-7</span><br><span class="line"># 运行相关的SCL软件(临时启用)</span><br><span class="line">#如果要永久配置则需要</span><br><span class="line">#echo &quot;source &#x2F;opt&#x2F;rh&#x2F;devtoolset-9&#x2F;enable&quot; &gt;&gt;&#x2F;etc&#x2F;profile</span><br><span class="line">scl enable devtoolset-7 bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看当前GCC版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h4 id="配置conf"><a href="#配置conf" class="headerlink" title="配置conf"></a>配置conf</h4><p>daemonize yes  是启动守护进程即后台运行</p>
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>reids-server /home/redis-6.0.5/redis.conf<br>#启动Redis 通过 /usr/local/bin下面的redis.conf 作为配置文件</p>
+<p><em># 启动redis客户端 端口是6379 如果有密码可以添加密码-a password</em><br>redis-cli -p 6379 </p>
+<p><em>注意：需要配置环境变量</em></p>
+<p><em>vim /etc/profile</em></p>
+<p><em>文件中插入redis目录</em></p>
+<p><em>PATH中引用它的目录到src下</em></p>
+<p>进入后 输入ping返回pong即成功</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis%E5%9C%A8%E6%9C%8D%E5%8A%A1%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/" data-id="ckcmov5zv000iy0hca1rw09uj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/%E7%BB%84%E5%90%88%E4%B8%8E%E8%81%9A%E5%90%88%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          组合与聚合的区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Redis数据类型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

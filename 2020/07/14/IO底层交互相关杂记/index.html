@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>IO底层交互相关杂记 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IO底层交互IO 是通过  操作系统对 IO硬件设备进行交互如果未用  Buffer   那么 每次用IO流  进行交互那么每次 读取 都会对IO硬件设备  进行一次交互这样  大大降低了性能那么如果用了 Buffer  则会把读取到的数据暂存到BUFFer中  然后再判断 是否还要进行读取 最后对IO设备进行交互 （内存&lt;–&gt;IO设备） fill（）一定会对IO设备进行交互但 rea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IO底层交互相关杂记">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/IO%E5%BA%95%E5%B1%82%E4%BA%A4%E4%BA%92%E7%9B%B8%E5%85%B3%E6%9D%82%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="IO底层交互IO 是通过  操作系统对 IO硬件设备进行交互如果未用  Buffer   那么 每次用IO流  进行交互那么每次 读取 都会对IO硬件设备  进行一次交互这样  大大降低了性能那么如果用了 Buffer  则会把读取到的数据暂存到BUFFer中  然后再判断 是否还要进行读取 最后对IO设备进行交互 （内存&lt;–&gt;IO设备） fill（）一定会对IO设备进行交互但 rea">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:16:02.653Z">
+<meta property="article:modified_time" content="2020-05-30T06:46:56.270Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-IO底层交互相关杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/IO%E5%BA%95%E5%B1%82%E4%BA%A4%E4%BA%92%E7%9B%B8%E5%85%B3%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.653Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IO底层交互相关杂记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="IO底层交互"><a href="#IO底层交互" class="headerlink" title="IO底层交互"></a>IO底层交互</h2><p>IO 是通过  操作系统对 IO硬件设备进行交互<br>如果未用  Buffer   那么 每次用IO流  进行交互<br>那么每次 读取 都会对IO硬件设备  进行一次交互<br>这样  大大降低了性能<br>那么如果用了 Buffer  则会把读取到的数据暂存到BUFFer中<br>  然后再判断 是否还要进行读取 最后对IO设备进行交互</p>
+<p>（内存&lt;–&gt;IO设备）</p>
+<p>fill（）一定会对IO设备进行交互<br>但 read不一定</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/IO%E5%BA%95%E5%B1%82%E4%BA%A4%E4%BA%92%E7%9B%B8%E5%85%B3%E6%9D%82%E8%AE%B0/" data-id="ckcmov5y90000y0hc6nb4gz9z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/LocalDateTimes%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%A7%A3%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LocalDateTimes时间格式化解析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/HTML%E6%9D%82%E8%AE%B0%20Emmet%E8%AF%AD%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTML杂记 Emmet语法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

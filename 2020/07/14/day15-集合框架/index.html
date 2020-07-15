@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>day15-集合框架 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="集合框架 [JCF]Java Collection Framework, 它是由一组API组成，主要是针对容器的封装，底层有不同的实现，比如：有基于数组的实现，也有链表、哈希算法、二叉树的实现。 在JAVA中，数据的容器有两种  基于值的存储， 有：List, Set 基于键、值对的存储, 有 Map  基于值的存储 123456789java.util.Collection			\- List">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day15-集合框架">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/day15-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="集合框架 [JCF]Java Collection Framework, 它是由一组API组成，主要是针对容器的封装，底层有不同的实现，比如：有基于数组的实现，也有链表、哈希算法、二叉树的实现。 在JAVA中，数据的容器有两种  基于值的存储， 有：List, Set 基于键、值对的存储, 有 Map  基于值的存储 123456789java.util.Collection			\- List">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:16:02.550Z">
+<meta property="article:modified_time" content="2020-07-14T09:08:19.552Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-day15-集合框架" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day15-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.550Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      day15-集合框架
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="集合框架-JCF"><a href="#集合框架-JCF" class="headerlink" title="集合框架 [JCF]"></a>集合框架 [JCF]</h2><p>Java Collection Framework, 它是由一组API组成，主要是针对容器的封装，底层有不同的实现，比如：有基于数组的实现，也有链表、哈希算法、二叉树的实现。</p>
+<p>在JAVA中，数据的容器有两种</p>
+<ol>
+<li>基于值的存储， 有：List, Set</li>
+<li>基于键、值对的存储, 有 Map</li>
+</ol>
+<p>基于值的存储</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">java.util.Collection</span><br><span class="line">			\- List  有序、可排序、可重复</span><br><span class="line">				\- ArrayList    基于数组的实现</span><br><span class="line">				\- LinkedList	基于链表的实现</span><br><span class="line">				\- Vector       同ArrayList, 它是多线程安全的，它的所有方法都是同步方法</span><br><span class="line">			\- set   无序、不可排序，不可重复</span><br><span class="line">				\- HashSet      使用哈希算法实现的</span><br><span class="line">				\- SortedSet	是Set的一子接口，它是可排序的，当然，也不能重复</span><br><span class="line">					\- TreeSet  使用二叉树实现的。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：由于在JAVA中，数组容器在操作上有诸多不便，所以，API提供了JCF供我们使用。如此多的类型，它们各自的特点是不同的。</p>
+</blockquote>
+<p>针对 List 来说，它的特点是元素有序、可排序，而且可重复，提供了基于数组和双向链表的两种不同的实现，我们在选择时，可以根据实际的情况进行选择。</p>
+<p>Iterable 接口</p>
+<ul>
+<li>Iterator iterator() ;    返回当前集合的迭代器</li>
+</ul>
+<p>Collection的操作方法</p>
+<ul>
+<li>boolean add(T  element)     往容器中添加一个新元素</li>
+<li>boolean addAll(Collection allElement)  往容器中添加指定容器中的所有元素</li>
+<li>boolean remove(T element)  从容器中移除指定的对象</li>
+<li>boolean removeAll(Collection elements)  从当前集合中删除指定集合中的所有元素</li>
+<li>void clear()   清空容器</li>
+<li>boolean contains(T element)   判断当前容器是否包含指定的元素</li>
+<li>boolean containsAll(Collection elements) </li>
+<li>int size();  获取当前集合有效元素的个数</li>
+<li>toArray();  把集合转换成数组</li>
+<li>Iterator iterator();   返回指向当前集合的迭代器</li>
+</ul>
+<p>Iterator 接口</p>
+<ul>
+<li>boolean hasNext()  判断迭代器中是否有下一个可使用的元素</li>
+<li>T next()    取出迭代器指向的元素，并把指针向下移动一次。</li>
+</ul>
+<hr>
+<p>List 【有序、不可重复】</p>
+<ul>
+<li>T get(int index)    根据下标来访问元素</li>
+<li>void set(int index, T element)   把元素Element放到指定的位置</li>
+<li>List subList(int start, int end)    求子集，含start位置，不含end位置,  返回的是新的集合</li>
+<li>boolean isEmpty() ;  </li>
+</ul>
+<p>List的实现类</p>
+<ul>
+<li>ArrayList<ul>
+<li>public ArrayList()</li>
+<li>public ArrayList(int size);   </li>
+<li>public ArrayList(Collection c)</li>
+</ul>
+</li>
+<li>LinkedList<ul>
+<li>public LinkedList();</li>
+<li>public LinkedList(Collection c)</li>
+</ul>
+</li>
+</ul>
+<h4 id="栈的特点-Stack"><a href="#栈的特点-Stack" class="headerlink" title="栈的特点  Stack"></a>栈的特点  Stack</h4><blockquote>
+<p>先进后出，FILO[First In, Last Out], 一般只提供针对栈顶的操作，包含：进栈，出栈，判断栈是否为空，以及栈中的元素个数</p>
+</blockquote>
+<h4 id="队列的特点-Queue"><a href="#队列的特点-Queue" class="headerlink" title="队列的特点  Queue"></a>队列的特点  Queue</h4><blockquote>
+<p>先进先出， First In, First Out[ FIFO ], 一般提从队头的操作【增、删、查】, 包含入队、出列操作</p>
+<p>在JCF的API中，有提供这个接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java.util.Queue  [接口]</span><br><span class="line">  			\- java.util.Deque  【接口】</span><br></pre></td></tr></table></figure>
+
+<p>它的方法主要有如下6个，集中在3个功能上，如下 ：</p>
+<p><strong>添加操作</strong></p>
+<ul>
+<li>add(E element)   如果队列容量不够，抛出异常</li>
+<li>offer(E element)   如果队列容量不够，则执行失败返回false</li>
+</ul>
+<p><strong>删除操作</strong></p>
+<ul>
+<li><h2 id="remove-如果队列为空，则抛出异常"><a href="#remove-如果队列为空，则抛出异常" class="headerlink" title="remove()  如果队列为空，则抛出异常"></a>remove()  如果队列为空，则抛出异常</h2></li>
+<li>poll()  如果队列为空，则返回null</li>
+</ul>
+<p><strong>查询操作</strong></p>
+<ul>
+<li>element()   如果队列为空，则抛出异常</li>
+<li>peek()      如果队列为空，则返回null</li>
+</ul>
+<h5 id="Deque"><a href="#Deque" class="headerlink" title="Deque"></a>Deque</h5><blockquote>
+<p>double end Queue, 简称 Deque， 它支持两端进行操作。它是 Queue的子接口。</p>
+</blockquote>
+<p>同样，由于它是双端的操作，所以，它的核心方法比 Queue多一倍，也是集中在3个功能。</p>
+<p>添加操作、删除操作、查询操作</p>
+<h3 id="Collection集合的结构类图"><a href="#Collection集合的结构类图" class="headerlink" title="Collection集合的结构类图"></a>Collection集合的结构类图</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">java.lang.Iterable</span><br><span class="line">		\- java.util.Collection</span><br><span class="line">				\- java.util.List</span><br><span class="line">						\- ArrayList</span><br><span class="line">						\- Vector</span><br><span class="line">						\- LinkedList</span><br><span class="line">				\- java.util.Set</span><br><span class="line">						\- HashSet</span><br><span class="line">						\- java.util.SortedSet</span><br><span class="line">								\- TreeSet</span><br><span class="line">				\- java.util.Queue</span><br><span class="line">						\- PriorityQueue</span><br><span class="line">						\- java.util.Deque</span><br><span class="line">								\- ArrayDeque</span><br><span class="line"><span class="comment">//注： 以上带包的都是 接口，不带包的都是 实现类</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Set-操作"><a href="#Set-操作" class="headerlink" title="Set 操作"></a>Set 操作</h3><blockquote>
+<p>几乎与Collection一样。</p>
+<p>它的特点是：无序、不可重复</p>
+</blockquote>
+<p><strong>实现类：HashSet</strong></p>
+<blockquote>
+<p>它是如何做到 无序以及不可重复的呢？</p>
+</blockquote>
+<p>首先，当我们把一个对象添加到 HashSet时，这个容器会调用对象的 hashcode()方法，得到一个整数。根据这个整数来计算出此对象应该存放的位置。</p>
+<p>其次，当我们再次添加一个对象时，同样会调用此对象的hashcode()方法，得到一个整数，算出它该存储的位置，此时，如果这个位置已经被占用了，则会调用它的 equals()方法，如果返回true, 说明此对象与之前的对象相等，则放弃存入。 如果返回false, 则表示对象不相等，则利用红黑树来存储进行纵向扩展。</p>
+<p>注：</p>
+<p>上面我们所讲的原理，其实是HashMap的原则，而HashSet中，只是组合了 HashMap，并且只是利用了它的 Key， 而Value永远是同 一个 Object.</p>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li>把上节课布置的模排诗改成竖排诗的作业利用集合重新来实现一下。</li>
+<li>利用循环，随机生成10W个1-100之间的整数，请利用集合来统计出每个整数出现的次数</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day15-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" data-id="ckcmov60b0010y0hc9436g3am" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/day16-%E9%9B%86%E5%90%882%E3%80%81%E6%B3%9B%E5%9E%8B%E3%80%81%E6%9E%9A%E4%B8%BE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          day16-集合2、泛型、枚举
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/day14-%E4%BD%9C%E4%B8%9A/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">day14-作业</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

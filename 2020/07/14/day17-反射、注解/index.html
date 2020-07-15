@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>day17-反射、注解 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java反射和注解反射 Reflection 提供了一套给程序员用来窥探字节码内部结构的机制。在JDK5开始引入的。 通过反射，我们可以把字节码反编译成源文件。  所以，反射的程序都是从 字节码开始的。 字节码 就 是由  javac 编译 .java源文件后形成的文件， 以 .class 为扩展名。 那么 JVM 是如何去管理这个 字节码文件的。  当.class文件被JVM加载进入内存后，这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day17-反射、注解">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="Java反射和注解反射 Reflection 提供了一套给程序员用来窥探字节码内部结构的机制。在JDK5开始引入的。 通过反射，我们可以把字节码反编译成源文件。  所以，反射的程序都是从 字节码开始的。 字节码 就 是由  javac 编译 .java源文件后形成的文件， 以 .class 为扩展名。 那么 JVM 是如何去管理这个 字节码文件的。  当.class文件被JVM加载进入内存后，这个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:16:02.575Z">
+<meta property="article:modified_time" content="2020-03-31T12:29:27.616Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-day17-反射、注解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.575Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      day17-反射、注解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java反射和注解"><a href="#Java反射和注解" class="headerlink" title="Java反射和注解"></a>Java反射和注解</h1><h2 id="反射-Reflection"><a href="#反射-Reflection" class="headerlink" title="反射 Reflection"></a>反射 Reflection</h2><blockquote>
+<p>提供了一套给程序员用来窥探字节码内部结构的机制。在JDK5开始引入的。</p>
+<p>通过反射，我们可以把字节码反编译成源文件。</p>
+</blockquote>
+<p>所以，反射的程序都是从 字节码开始的。</p>
+<h3 id="字节码"><a href="#字节码" class="headerlink" title="字节码"></a>字节码</h3><blockquote>
+<p>就 是由  javac 编译 .java源文件后形成的文件， 以 .class 为扩展名。</p>
+<p>那么 JVM 是如何去管理这个 字节码文件的。</p>
+</blockquote>
+<p>当.class文件被JVM加载进入内存后，这个字节码就会由JVM进行管理，而JVM中，需要一个类型来表达字节码，这个类型就是 <code>java.lang.Class</code></p>
+<h3 id="java-lang-Class"><a href="#java-lang-Class" class="headerlink" title="java.lang.Class"></a>java.lang.Class</h3><blockquote>
+<p>它就是一种JAVA数据类型，同 Scanner, LocalDate 等一样。</p>
+<p>它的实例是用来表达字节码本身的一种对象。每个JAVA类型在被JVM加载进入内存后，JVM都会创建此类唯一的 Class实例。</p>
+</blockquote>
+<p>比如：JVM加载了Computer类进来，则JVM中就会创建一个 Computer的Class 实例。以此类推，加载了 LocalDate, Scanner, System, String等等，则在JVM就会对应创建 LocalDate的Class实例、Scanner的Class实例、System的Class实例、String的Class实例。</p>
+<h3 id="如何获取-Class-实例？"><a href="#如何获取-Class-实例？" class="headerlink" title="如何获取 Class 实例？"></a>如何获取 Class 实例？</h3><p><strong>有三种方式可以获取</strong>:</p>
+<ol>
+<li>通过 <strong>Class.forName(String qualifiedName)</strong> 来获取， 程序员需要指定目标类型的全限定名【包名. 类名】</li>
+<li>通过 <strong>类名.class</strong>  来获取</li>
+<li>通过 <strong>对象.getClass()</strong> 来获取</li>
+</ol>
+<p>以上三种方式，对于同一个类型来说，得到的结果是一样的【JVM中，同一个类的Class实例是唯一的】</p>
+<h3 id="通过类的Class实例，我们可以获取什么？"><a href="#通过类的Class实例，我们可以获取什么？" class="headerlink" title="通过类的Class实例，我们可以获取什么？"></a>通过类的Class实例，我们可以获取什么？</h3><ul>
+<li>获取此类的包结构      —&gt;   getPackage  =&gt;  java.lang.Package </li>
+<li>获取此类导入的类型     –&gt;  </li>
+<li>类的修饰符                   –&gt;  getModifiers()   =&gt;  int</li>
+<li>实现了哪些接口           –&gt;   getInterfaces()   =&gt;   Class&lt;?&gt;[]<ul>
+<li>本身又是 Class 实例</li>
+</ul>
+</li>
+<li>继承的父类                   –&gt;   getSuperclass()    =&gt;  Class&lt;? super T&gt;<ul>
+<li>本身又是 Class 实例</li>
+</ul>
+</li>
+<li>泛型信息                        –&gt;   getTypeParameters()    =&gt;  TypeVariable[]<ul>
+<li>。。。</li>
+</ul>
+</li>
+<li>属性信息                       –&gt;  getFields()   =&gt;   Field[]<ul>
+<li>属性修饰符            –&gt;  getDeclaredFields()   =&gt; Field[]</li>
+<li>属性类型               –&gt;  getField(String fieldName)    =&gt;  Field</li>
+<li>属性名</li>
+</ul>
+</li>
+<li>构造方法信息                 –&gt;  getConstructors()     =&gt;  Constructor[]<ul>
+<li>修饰符                     –&gt;  getDeclaredConstructors()  =&gt; Constructor[]</li>
+<li>参数列表                  </li>
+</ul>
+</li>
+<li>方法信息                           –&gt;  getMethods()     =&gt;  Method[]<ul>
+<li>方法修饰符                 –&gt;  getDeclaredMethods()   =&gt;  Method[]</li>
+<li>方法的返回类型        –&gt;   getDeclaredMethod(String mName, Class… params)   =&gt; Method</li>
+<li>方法名</li>
+<li>方法的参数列表</li>
+<li>方法申明抛出的异常列表</li>
+</ul>
+</li>
+</ul>
+<h3 id="反射API"><a href="#反射API" class="headerlink" title="反射API"></a>反射API</h3><blockquote>
+<p>java.lang.reflect 包</p>
+</blockquote>
+<h3 id="为什么要用反射？"><a href="#为什么要用反射？" class="headerlink" title="为什么要用反射？"></a>为什么要用反射？</h3><blockquote>
+<p>希望写出更通用的代码。</p>
+<p>动态地给目标类添加新的功能，而不需要改变源码【代理 Proxy】</p>
+</blockquote>
+<h2 id="注解-Annotation-也叫标注"><a href="#注解-Annotation-也叫标注" class="headerlink" title="注解 Annotation [也叫标注]"></a>注解 Annotation [也叫标注]</h2><blockquote>
+<p>用来提供代码的辅助信息，比如配置信息，以及一些需要编译器进行检查的信息</p>
+<p>语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> 注解名 &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="JDK内置的注解"><a href="#JDK内置的注解" class="headerlink" title="JDK内置的注解"></a>JDK内置的注解</h3><ul>
+<li><p>在 java.lang中有3个</p>
+<ul>
+<li>@Override    用来告诉JVM的编译器去检查方法是否符合重写的规范</li>
+<li>@Deprecated   用来告诉JVM的编译器，这个类或方法已经过时了</li>
+<li>@SuppressWarnings  用来告诉JVM的编译器，对所指定的一些警告信息保持静默. 它包含：<ul>
+<li>“serial”   针对实现了Serializable接口的类型，没有给出versionUID时的警告 保持静默</li>
+<li>“unused”  针对定义了变量，但是这个变量从未使用过的警告保持静默</li>
+<li>“unchecked” 针对一些未检查的警告保持静默</li>
+<li>…</li>
+<li>“all”   所有警告保持静默</li>
+</ul>
+</li>
+</ul>
+<p>JDK7和8中，又添加了2个</p>
+<ul>
+<li>@SafeVarargs</li>
+<li>@FunctionalInterface  把某个接口标注为函数式接口。</li>
+</ul>
+</li>
+<li><p>在java.lang.annotation中有4个, 这4个也叫 元注解[meta annotation, 就是用来标注其它注解的注解]</p>
+<ul>
+<li><p>@Documented     – 表示被此元注解修饰的注解可以进入到 javadoc的文档中</p>
+</li>
+<li><p>@Inherited    – 被此注解修饰过的注解使用类，如果这个类有子类的话，则子类将可以继承父类中的注解</p>
+</li>
+<li><p>@Retention    – 表示规定注解可以保留在什么层面上，有3个层面可以选择：</p>
+<ul>
+<li>SOURCE  – 表示注解只保留在编译期间，在字节码层面看不到这个注解。</li>
+<li>CLASS  – 表示注解不止在编译期间，在字节码层面也存在，但是，JVM不能读取。</li>
+<li>RUNTIME  – 表示注解不止在编译期间，在字节码层面也存在，而且JVM可以读取。</li>
+</ul>
+<p>注：如果我们开发注解，没有指定 @Retention 的话，则默认是 CLASS</p>
+</li>
+<li><p>@Target  – 表示注解可以修饰的类型是什么， 它同样有一个枚举来指定，包含如下值：</p>
+<ul>
+<li>TYPE</li>
+<li>ANNOTATION_TYPE</li>
+<li>METHOD</li>
+<li>CONSTRUCTOR</li>
+<li>FIELD</li>
+<li>…</li>
+</ul>
+<p>注：如果我们开发注解，没有指定@Target的话，则默认是 所有地方都可以使有。</p>
+<p><strong>一般来说，我们开发注解的话，最少应该要使用 @Retention 和  @Target</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="注解的特点"><a href="#注解的特点" class="headerlink" title="注解的特点"></a>注解的特点</h3><blockquote>
+<p><strong>与枚举一样，它也是一种类型，而且所有的注解都会自动实现 java.lang.annotation.Annotation 接口</strong></p>
+<p>所以，可以这么说，我们开发的每一个注解，都是 <strong>Annotation</strong> 接口的实现类。</p>
+</blockquote>
+<h3 id="Annotation-接口"><a href="#Annotation-接口" class="headerlink" title="Annotation 接口"></a>Annotation 接口</h3><blockquote>
+<p>详见API</p>
+</blockquote>
+<h3 id="使用注解的语法"><a href="#使用注解的语法" class="headerlink" title="使用注解的语法"></a>使用注解的语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@注解名</span><br><span class="line">如果这个注解有参数的话，则给相应的参数</span><br><span class="line">@注解名(参数名=值,参数名=值)</span><br><span class="line">    </span><br><span class="line"><span class="comment">//如：</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(value=&#123;<span class="string">"serial"</span>,<span class="string">"unused"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ma</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="注解有什么用？"><a href="#注解有什么用？" class="headerlink" title="注解有什么用？"></a>注解有什么用？</h3><ol>
+<li>JDK自带的注解，JVM会对它进行解析，并给出相应的意义。</li>
+<li>我们自已开发的注解，就需要程序员自己编写 解析代码，并指定相应的意义。</li>
+</ol>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li><p>设计一个产品类[Product]，包含如下属性：id, 产品名，产品分类，单价，上架时间 ，其中，产品分类是一个枚举。</p>
+</li>
+<li><p>设计 产品分类 枚举，包含如下常量： 家用电器，办公用品，运动户外，食品饮料，母婴玩具，服装鞋子</p>
+</li>
+<li><p>写一个程序，随机模拟1000个产品，利用List进行存储，然后写一个方法来完成如下任务</p>
+<ol>
+<li>统计出每种产品分类下的产品数量</li>
+<li>按产品分类进归整，按价格高低列出每个产品分类下面的所有产品名称和单价。 大概的显示如下：</li>
+</ol>
+<p>家用电器分类</p>
+<p>​    海尔冰箱          ￥10089.5</p>
+<p>​    西门子洗衣机   ￥9988.5</p>
+<p>​    。。。</p>
+<p>运动户外分类</p>
+<p>​    xxxx        $1145.5</p>
+<p>​    …</p>
+<p>….</p>
+<p>​        …</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/" data-id="ckcmov60e0012y0hc7vqo0f3u" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/day18-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E6%9E%90%E3%80%81%E4%BB%A3%E7%90%86%E3%80%81NIO/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          day18-注解解析、代理、NIO
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/day16-%E9%9B%86%E5%90%882%E3%80%81%E6%B3%9B%E5%9E%8B%E3%80%81%E6%9E%9A%E4%B8%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">day16-集合2、泛型、枚举</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

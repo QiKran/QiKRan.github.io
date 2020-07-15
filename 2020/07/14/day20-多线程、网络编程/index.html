@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>day20-多线程、网络编程 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="多线程什么是进程 正在运行的程序，现代的操作系统都是多任务【多进程】、多用户的 JVM就 是一个进程【process】， 当我们启动JVM时，就是启动了一个进程  什么是线程 运行在进程内部的一种资源，同样也是由OS负责调度， 一个进程中的所有线程都会共享此进程的资源，也有线程所独享的资源。 理论上来说，进程中可以启动很多个线程。 可以这么说，现代的软件都是基于线程的。  一个软件程序可以有多个进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day20-多线程、网络编程">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/day20-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="多线程什么是进程 正在运行的程序，现代的操作系统都是多任务【多进程】、多用户的 JVM就 是一个进程【process】， 当我们启动JVM时，就是启动了一个进程  什么是线程 运行在进程内部的一种资源，同样也是由OS负责调度， 一个进程中的所有线程都会共享此进程的资源，也有线程所独享的资源。 理论上来说，进程中可以启动很多个线程。 可以这么说，现代的软件都是基于线程的。  一个软件程序可以有多个进">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:16:02.618Z">
+<meta property="article:modified_time" content="2020-04-04T02:48:23.690Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-day20-多线程、网络编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day20-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.618Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      day20-多线程、网络编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程"></a>什么是进程</h2><blockquote>
+<p>正在运行的程序，现代的操作系统都是多任务【多进程】、多用户的</p>
+<p>JVM就 是一个进程【process】， 当我们启动JVM时，就是启动了一个进程</p>
+</blockquote>
+<h2 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h2><blockquote>
+<p>运行在进程内部的一种资源，同样也是由OS负责调度， 一个进程中的所有线程都会共享此进程的资源，也有线程所独享的资源。</p>
+<p>理论上来说，进程中可以启动很多个线程。</p>
+<p>可以这么说，现代的软件都是基于线程的。</p>
+</blockquote>
+<p><strong>一个软件程序可以有多个进程，每一个进程又可以包含多个线程</strong></p>
+<p>注：不管是进程，还是线程，都是操作系统级别的资源。</p>
+<p>所以，线程和进程执行时，都需要OS的调度，所谓调度，就是给进程或线程所要执行的环境，这个环境就包含两个东西：</p>
+<ol>
+<li>CPU时间片， 把CPU的执行时间拆分成一个一个的小时间段。</li>
+<li>内存，因为硬盘的运行整度跟不上CPU，而CPU的存储空间又不可能做到很大。</li>
+</ol>
+<h2 id="在JAVA中，如何去开发一个线程类"><a href="#在JAVA中，如何去开发一个线程类" class="headerlink" title="在JAVA中，如何去开发一个线程类"></a>在JAVA中，如何去开发一个线程类</h2><h3 id="方式一，直接继承-java-lang-Thread-类"><a href="#方式一，直接继承-java-lang-Thread-类" class="headerlink" title="方式一，直接继承 java.lang.Thread 类"></a>方式一，直接继承 java.lang.Thread 类</h3><ol>
+<li>public Thread()    </li>
+<li>public Thread(Runnable r)</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//.....</span></span><br><span class="line">        <span class="comment">//就是此线程被OS调度后要执行的代码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建线程对象，启动线程</span></span><br><span class="line">Thread t = <span class="keyword">new</span> MyThread();</span><br><span class="line">t.start(); <span class="comment">//启动线程</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>注： 当我们启动线程时，不是调用run方法，而是调用 start 方法。</p>
+<p>start() 表示，JVM告诉OS, 我这里有一个线程对象，需要你的调度。</p>
+<p>一个线程一旦调用了start方法，表示进入了 “可运行态”，只有当OS分配了CPU时间片后，才会真正执行，也就是进入了“运行态”。</p>
+<h3 id="方式二，实现-java-lang-Runnable-接口，并以这个接口的实例做为参数来构造-Thread对象"><a href="#方式二，实现-java-lang-Runnable-接口，并以这个接口的实例做为参数来构造-Thread对象" class="headerlink" title="方式二，实现 java.lang.Runnable 接口，并以这个接口的实例做为参数来构造 Thread对象"></a>方式二，实现 java.lang.Runnable 接口，并以这个接口的实例做为参数来构造 Thread对象</h3><ol>
+<li>首先，开发一个类来实现 Runnable 接口，如下：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRun</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="comment">//..</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>其次，创建一个Thread对象，并以 MyRun的对象做为参数，如下：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">Thread t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> MyRun());</span><br><span class="line">t.start(); <span class="comment">//启动线程， 不是调用 run 方法</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Thread中的常用方法"><a href="#Thread中的常用方法" class="headerlink" title="Thread中的常用方法"></a>Thread中的常用方法</h3><ol>
+<li>join() 方法，当前线程如果调用另一个线程的join方法，表示当前线程进入阻塞，直到被调用了join方法的线程运行结束。</li>
+<li>yield() 方法，当前线程调用了yield方法后，表示当前线程立即从运行态回到可运行态，再次等待CPU的调度。</li>
+<li>sleep() 方法，当前线程调用了此方法，则当前线程进入阻塞。</li>
+<li>interrupt() 方法，中断方法，也就给目标线程发送<strong>中断</strong>信号.  目标线程即使处在阻塞状态，也能接收中断信号，一旦接收到中断信息，立刻打破阻塞。</li>
+</ol>
+<h3 id="JVM进程中的线程"><a href="#JVM进程中的线程" class="headerlink" title="JVM进程中的线程"></a>JVM进程中的线程</h3><ol>
+<li>当JVM进程启动后，就会启动2个线程，其中</li>
+</ol>
+<ul>
+<li>主线程，也叫main线程，它负责调用你的程序中的main方法</li>
+<li>垃圾回收线程，也叫GC线程，它是一个后台守护线程，也叫Daemon线程。</li>
+</ul>
+<p>当JVM进程中，所有的非守护线程都结束后，JVM进程就结束。</p>
+<p>所以，在我们之前所开发的所有案例中，当main方法执行结束，JVM进程就结束了。</p>
+<h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><ol>
+<li>初始态, 创建了一个线程对象，没有调用start之前的状态</li>
+<li>可运行态【Runnable】，调用了start()方法之后</li>
+<li>运行态【Running】, 正在执行中的线程</li>
+<li>终止态【Terminate】, 线程执行结束</li>
+<li>阻塞态【Blocking】,  又分成如下3种情况<ol>
+<li>普通阻塞，比如：调用了 sleep()方法，join()方法， 等待用户的输入。</li>
+<li>锁池阻塞，当一个线程拿不到目标资源的互斥锁时，就会进入到目标资源[对象]的锁池中阻塞</li>
+<li>等待队列，当多个线程进行通信息，当前线程调用了目标资源[对象]wait()方法，则当前线程进入等待队列阻塞，直到其它线程调用了目标资源的notify或 notifyAll方法。</li>
+</ol>
+</li>
+</ol>
+<h3 id="锁资源"><a href="#锁资源" class="headerlink" title="锁资源"></a>锁资源</h3><blockquote>
+<p>如果我们的代码使用了同步关键字[synchronized], 则就需要使用临界资源对象来达到互斥的目的，如果每线程都拥有各自的一份临界资源，则这个临界资对象就不能在线程间才互斥。</p>
+<p><strong>锁 同一种互斥资源，它是对象所拥有的</strong></p>
+</blockquote>
+<h3 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h3><blockquote>
+<p>用来做代码的同步的，有两种语法：</p>
+<ol>
+<li>直接加在方法的修饰符位置。这表示采用<strong>当前对象</strong>做为临界资源对象。</li>
+<li>使用 <strong>synchronized(对象)</strong> 方式，这种方式可以自己指定临界资源对象。 【*****】</li>
+</ol>
+</blockquote>
+<h2 id="线程间的通信"><a href="#线程间的通信" class="headerlink" title="线程间的通信"></a>线程间的通信</h2><p>前提：</p>
+<ol>
+<li>一要要有同步</li>
+<li>要有临界资源的抢占</li>
+</ol>
+<p>使用wait()和notify()或notifyAll() 来完成</p>
+<h2 id="死锁-【deadLock】"><a href="#死锁-【deadLock】" class="headerlink" title="死锁 【deadLock】"></a>死锁 【deadLock】</h2><blockquote>
+<p>多个线程之间互相申请对方的互斥锁资源时，就会产生死锁。</p>
+<p>写多线程代码时，要尽可能地避免。</p>
+<p>如果有多个临界资源时，每个线程在申请临界资源的锁时，尽量保持顺序一致。</p>
+</blockquote>
+<h2 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h2><blockquote>
+<p>java.net 包, 主要包含如下类型</p>
+<ol>
+<li>ServerSocket   开发基于TCP协议的服务端应用程序</li>
+<li>Socket               开发基于TCP协议的客户端应用程序</li>
+<li>DataGramSocket   开发基于UDP协议的应用程序</li>
+</ol>
+</blockquote>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><blockquote>
+<p>是网络通信协议中的一种，处于TCP/IP网模型中的传输层。全称是：Transfer Controll Protocol, 传输控制协议， 它是一种面向连接的网络协议，是安全的。它的建立需要经过三次握手，以保证连接的可靠性。</p>
+<p>对于JAVA的网络API而言，程序员是不需要理解底层的网络机制，JDK的API都帮我们封装好了。这个封装好的类型就是 <strong>Socket和ServerSocket</strong></p>
+</blockquote>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><blockquote>
+<p>也是网络通信协议的一种，而且也是处于TCP/IP网络模型中的传输层，与TCP是一样。所不同的是，UDP是非面向连接的，而且不保证数据传输的可靠性【有可能会丢包】，适合做 视频会议、网络课堂等 应用。</p>
+</blockquote>
+<h3 id="开发服务端"><a href="#开发服务端" class="headerlink" title="开发服务端"></a>开发服务端</h3><ol>
+<li>创建ServerSocket对象</li>
+<li>进行监听，等待客户端的连接，调用 accept(), 连接成功，就会返回 Socket</li>
+<li>创建一个线程为客户端进行服务，并以 Socket  做为参数</li>
+</ol>
+<h3 id="开发客户端"><a href="#开发客户端" class="headerlink" title="开发客户端"></a>开发客户端</h3><ol>
+<li>创建 Socket  对象， 要指定你要连接的服务端的IP地址和端口</li>
+<li>通过Socket来获取输入/输出流或者 通道[Channel]</li>
+<li>读、写 数据</li>
+</ol>
+<h3 id="端口是什么-？"><a href="#端口是什么-？" class="headerlink" title="端口是什么 ？"></a>端口是什么 ？</h3><blockquote>
+<p>每个需要网络通信的进程都需要唯一的端口，系统会自动为这些进程分配端口，最多可以分配出 65536个。</p>
+<p>有些常用的网络协议，会固定占用一些端口，在OS中，1024以下的端口都是被系统预先征用的，我们的应用程序的端口最好超过这个大小。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day20-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" data-id="ckcmov60j0018y0hc3ikjawyx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/execution(%20transfer(..))java/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          execution( transfer(..))java
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/day19-NIO%E3%80%81Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">day19-NIO、Lambda表达式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

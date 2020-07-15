@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>day18-注解解析、代理、NIO | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="注解解析程序 Annotation Process&#x2F;Parse Tool, APT, 它是我们利用反射API进行注解处理的一种程序。 注解是通过代码的方式进行程序辅助的，JDK中提供了一些注解，包含元注解  @Override @SuppressWarnings @Deprecated @SafeVarargs    JDK7加入 @FunctionalInterface  JDK8加入 @Doc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day18-注解解析、代理、NIO">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/day18-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E6%9E%90%E3%80%81%E4%BB%A3%E7%90%86%E3%80%81NIO/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="注解解析程序 Annotation Process&#x2F;Parse Tool, APT, 它是我们利用反射API进行注解处理的一种程序。 注解是通过代码的方式进行程序辅助的，JDK中提供了一些注解，包含元注解  @Override @SuppressWarnings @Deprecated @SafeVarargs    JDK7加入 @FunctionalInterface  JDK8加入 @Doc">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:16:02.592Z">
+<meta property="article:modified_time" content="2020-04-01T15:36:11.411Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-day18-注解解析、代理、NIO" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day18-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E6%9E%90%E3%80%81%E4%BB%A3%E7%90%86%E3%80%81NIO/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.592Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      day18-注解解析、代理、NIO
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="注解解析程序"><a href="#注解解析程序" class="headerlink" title="注解解析程序"></a>注解解析程序</h1><blockquote>
+<p>Annotation Process/Parse Tool, APT, 它是我们利用反射API进行注解处理的一种程序。</p>
+<p>注解是通过代码的方式进行程序辅助的，JDK中提供了一些注解，包含元注解</p>
+<ul>
+<li>@Override</li>
+<li>@SuppressWarnings</li>
+<li>@Deprecated</li>
+<li>@SafeVarargs    JDK7加入</li>
+<li>@FunctionalInterface  JDK8加入</li>
+<li>@Documented</li>
+<li>@Inherited</li>
+<li>@Retention(value=RetentionPolicy.XXX)<ul>
+<li>Retention.SOURCE</li>
+<li>Retention.CLASS</li>
+<li>Retention.RUNTIME</li>
+</ul>
+</li>
+<li>@Target(value={ElelmentType.XXX, XXXX,XXXX})<ul>
+<li>ElementType.METHOD</li>
+<li>ElementType.TYPE</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p><strong>注：元注解是用来修饰其它注解的注解</strong></p>
+</blockquote>
+<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用元注解修饰</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> 注解名&#123;</span><br><span class="line">    <span class="comment">//参数的定义</span></span><br><span class="line">    类型 参数名() [<span class="keyword">default</span> 默认值]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注解中参数的类型有以下几种：</p>
+<ul>
+<li><p>基本类型</p>
+</li>
+<li><p>String</p>
+</li>
+<li><p>枚举</p>
+</li>
+<li><p>Class</p>
+</li>
+<li><p>注解</p>
+</li>
+<li><p>以上类型的数组</p>
+</li>
+</ul>
+<h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><blockquote>
+<p>可以在不改变原有对象源代码的基础上，添加新的功能。</p>
+<p>它的机制：</p>
+<ul>
+<li>代理对象与被代理对象会实现同一个接口</li>
+<li>利用JDK中提供的 Proxy和InvocationHandler 接口来实现。</li>
+</ul>
+</blockquote>
+<h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><blockquote>
+<p>使用组合模式来实现</p>
+</blockquote>
+<p>案例：</p>
+<p>//先定义一个接口 <strong>Movable</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Movable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">move</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//创建一个实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">implements</span> <span class="title">Movable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">"汽车在移动...."</span>);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//调用者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseMove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建对象</span></span><br><span class="line">        Movable m = <span class="keyword">new</span> Car();</span><br><span class="line">        m.move();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//要求：在不改变 Car类的实现方法move()的情况下, 如何给这个car的move()添加新的操作?</p>
+<h3 id="解决思路1，采用静态代理来做"><a href="#解决思路1，采用静态代理来做" class="headerlink" title="解决思路1，采用静态代理来做"></a>解决思路1，采用静态代理来做</h3><ol>
+<li>开发一个<strong>代理类</strong>，这个代理类同样要实现 <strong>Movable</strong> 接口</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MoveProxy</span> <span class="keyword">implements</span> <span class="title">Movable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Movable target;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MoveProxy</span><span class="params">(Movable target)</span> </span>&#123; <span class="keyword">this</span>.target = target; &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        System.out.println(<span class="string">"汽车在启动之前的检查操作"</span>);</span><br><span class="line">          </span><br><span class="line">       	<span class="comment">//调用被代理对象的真正业务</span></span><br><span class="line">        target.move();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//。。。</span></span><br><span class="line">        System.out.println(<span class="string">"汽车移动完成之后的操作"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//现在，调用者代码变成： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseMove</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建对象</span></span><br><span class="line">        Movable m = <span class="keyword">new</span> MoveProxy(<span class="keyword">new</span> Car());</span><br><span class="line">        m.move();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：在调用者这端，拿到的是 Car的代理对象</p>
+<blockquote>
+<p>注：<strong>静态代理可以达到我们的目的，但是，它的通用性和扩展不够，当接口中多出1个方法或再多实现一个接口时，不光被代理对象要进行修改，我们的静态代理类也要修改</strong>。</p>
+</blockquote>
+<h3 id="解决思路2，采用动态代理"><a href="#解决思路2，采用动态代理" class="headerlink" title="解决思路2，采用动态代理"></a>解决思路2，采用动态代理</h3><blockquote>
+<p>利用JDK中自带的 <code>Proxy</code>和<code>InvocationHandler</code> 两个类型来完成。</p>
+<p>要求：</p>
+<p><strong>目标对象一定要有实现的接口，没有实现接口的目标对象，JDK自带的Proxy，没有能力为它生成代理对象。</strong></p>
+</blockquote>
+<h4 id="java-lang-reflect-Proxy"><a href="#java-lang-reflect-Proxy" class="headerlink" title="java.lang.reflect.Proxy"></a>java.lang.reflect.Proxy</h4><p>常用方法</p>
+<ul>
+<li><p>Object newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces, InvocationHandler handler);</p>
+<p>其中</p>
+<ul>
+<li>ClassLoader 表示目标对象的类加载器</li>
+<li>Class&lt;?&gt;[]  表示目标对象所实现的接口类型，可以有多个，所以才是数组</li>
+<li>InvocationHandler  表示创建出来的代理对象要执行的代码，由程序员填入。</li>
+</ul>
+</li>
+</ul>
+<h4 id="java-lang-reflect-InvocationHandler"><a href="#java-lang-reflect-InvocationHandler" class="headerlink" title="java.lang.reflect.InvocationHandler"></a>java.lang.reflect.InvocationHandler</h4><p>常用方法</p>
+<ul>
+<li><p>Object invoke(Object proxy, Method m, Object[] args);</p>
+<p>其中</p>
+<ul>
+<li>proxy  代理对象</li>
+<li>Method  就是目标方法</li>
+<li>args  就是目标方法的参数</li>
+</ul>
+</li>
+</ul>
+<h2 id="JAVA-NIO"><a href="#JAVA-NIO" class="headerlink" title="JAVA NIO"></a>JAVA NIO</h2><blockquote>
+<p>JDK1.4推出的，提供一套全新的IO操作API，并没有完全否定老的API，因为在老的API中，提供了可以转换为NIO的操作。</p>
+<p>NIO相比老的IO，可以从两个方面去理解它</p>
+<ul>
+<li>New IO</li>
+<li>Non Blocking IO, 非阻塞的IO</li>
+</ul>
+</blockquote>
+<p>在NIO中，主要有三个类型</p>
+<ol>
+<li><p><strong>Channel</strong></p>
+<p>​    \- FileChannel            文件通道</p>
+<p>​     \- DatagramChannel </p>
+<p>​      \-  SocketChannel</p>
+<p>​      \- ServerSocketChannel</p>
+<p>注：它与IO中的Stream [流 ]是同一级别的。不同点在于 Channel是双向的【即可以读，也可以写】，它本身并不缓存数据，必需通过 Buffer, 也就是 Channel和Channel之间都是通过 Buffer 来交换数据的。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p><strong>Buffer</strong></p>
+<p>​     \- ByteBuffer</p>
+<p>​     \- IntBuffer</p>
+<p>​      \- …</p>
+<blockquote>
+<p>Buffer一旦创建，它的长度是固定的，利用 allocate(int capacity)  方法来分配，这个 capacity一旦确定，不可改变。</p>
+</blockquote>
+</li>
+<li><p><strong>Selector</strong></p>
+</li>
+</ol>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li><p>开发一个版权申明的注解@Copyright, 添加如下参数 </p>
+<ul>
+<li>公司名  字符串类型</li>
+<li>开始年份 整型</li>
+<li>结束年份 整型</li>
+<li>描述  字符串</li>
+</ul>
+<p>要求：此注解可以添加类上面和方法上面</p>
+</li>
+<li><p>开发一个类，来解析添加了这个注解的类型，并把注解中的信息读取出来，打印出来即可</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day18-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E6%9E%90%E3%80%81%E4%BB%A3%E7%90%86%E3%80%81NIO/" data-id="ckcmov60h0015y0hcdw652bwd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/day19-NIO%E3%80%81Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          day19-NIO、Lambda表达式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">day17-反射、注解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

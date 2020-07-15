@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>day13-IO流 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IO流 是用来操作文件内容的。而文件的内容可以分成两个类别：  二进制文件，【所有除文本文件之外的文件，比如：音频、视频、图片、word, ppt, excel, …】 文本文件， 能够使用记事本打开的，使用者可以直接读懂的文件。比如：【.txt, .java, .md, …】   注： 不管二进制文件，还是文本文件，其本质都是010101的存储，不同在于它们的编码方式不同。 文本文件 是以字符集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day13-IO流">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/day13-IO%E6%B5%81/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="IO流 是用来操作文件内容的。而文件的内容可以分成两个类别：  二进制文件，【所有除文本文件之外的文件，比如：音频、视频、图片、word, ppt, excel, …】 文本文件， 能够使用记事本打开的，使用者可以直接读懂的文件。比如：【.txt, .java, .md, …】   注： 不管二进制文件，还是文本文件，其本质都是010101的存储，不同在于它们的编码方式不同。 文本文件 是以字符集">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:16:02.523Z">
+<meta property="article:modified_time" content="2020-03-25T11:41:27.216Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-day13-IO流" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day13-IO%E6%B5%81/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.523Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      day13-IO流
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h1><blockquote>
+<p>是用来操作文件内容的。而文件的内容可以分成两个类别：</p>
+<ul>
+<li>二进制文件，【所有除文本文件之外的文件，比如：音频、视频、图片、word, ppt, excel, …】</li>
+<li>文本文件， 能够使用记事本打开的，使用者可以直接读懂的文件。比如：【.txt, .java, .md, …】</li>
+</ul>
+</blockquote>
+<p>注：</p>
+<p><strong>不管二进制文件，还是文本文件，其本质都是010101的存储，不同在于它们的编码方式不同。</strong></p>
+<h2 id="文本文件"><a href="#文本文件" class="headerlink" title="文本文件"></a>文本文件</h2><blockquote>
+<p>是以字符集进行编码的，而字符集是由不同的国家和地区根据自己的情况制定的，并且得到国际上的认可。比如：中国地区的字符集编码就是 GBK,   西区地区的字符集是  ISO-8859-1,  国际编码字符集是 UTF-8， …</p>
+<p>每个国家的字符集都是公开的</p>
+</blockquote>
+<h2 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h2><blockquote>
+<p>一般来讲，都是由软件厂商自己定义的编码规则，有的是公开的，有的是商业密秘，这些编码规则往往与创建此类格式的软件和解析此类格式软件形成一个闭环。比如：Word格式的文件，就必需使用 微软公司出品的Office办公软件去创建和解析。</p>
+</blockquote>
+<p>注：</p>
+<p>文本文件也是一种二进制文件，之所以把它单列出来，是因为它使用较为频繁，而且不方便使用二进制去处理它，而是使用字符去处理它更为方便。</p>
+<p>所以，文本文件是以<strong>字符</strong>为单位进行处理的，在JAVA 的IO流包中，专门提供了一系列的API来处理文本文件，这类流叫字符流。</p>
+<p>二进制文件是以<strong>字节</strong>为单位进行处理的，在JAVA的IO流包中，也专门提供了一系统的API来处理二进制文件，这类流叫字节流。</p>
+<h2 id="IO流的API"><a href="#IO流的API" class="headerlink" title="IO流的API"></a>IO流的API</h2><blockquote>
+<p>包: java.io </p>
+</blockquote>
+<p><strong>输入流和输出流</strong></p>
+<blockquote>
+<p>输入和输出都是以JVM为边界的，往JVM内存写入的，叫输入流。</p>
+<p>反过来，从JVM内存中向外输出的，叫输出流。</p>
+</blockquote>
+<p>输入      ||||||||                 |||||||        输出</p>
+<p>——–&gt;  ||||||||JVM内存 ||||||||    ———–&gt;</p>
+<h3 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h3><blockquote>
+<p>有负责读取的输入流和负责写入的输出流</p>
+</blockquote>
+<h4 id="字节输入流"><a href="#字节输入流" class="headerlink" title="字节输入流"></a>字节输入流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">java.io.InputStream        --- 抽象父类</span><br><span class="line">        \- java.io.FileInputStream</span><br><span class="line">        \- java.io.ByteArrayInputStream</span><br><span class="line">        \- java.io.FilterInputStream</span><br><span class="line">        		\- java.io.BufferInputStream</span><br><span class="line">        		\- java.io.DataInputStream     </span><br><span class="line">        		\- java.io.PushBackInputStream</span><br><span class="line">        \- java.io.ObjectInputStream</span><br><span class="line">抽象出一些共性的接口</span><br><span class="line">java.io.DataInput</span><br><span class="line">		\- java.io.ObjectInput</span><br></pre></td></tr></table></figure>
+
+<p><strong>InputStream中的共性方法:</strong></p>
+<ul>
+<li>int read()    –&gt;  读取1个字节， 效率较低。 返回值 -1表示读到了文件尾[EOF], 非-1的返回值 表示读到的字节本身。</li>
+<li>int read(byte[] buf)    —&gt;   尝试最多读取 buf.length个字节，这个方法的返回值表示实际读到的字节个数。如果读到文件尾【EOF】，则返回-1</li>
+<li>int read(byte[] buf, int offset, int length)    —&gt; 从offset位置处开始尝试最多读取 length个字节，返回值的意义同第2个方法。</li>
+<li>void close()    –&gt; 释放流源释。</li>
+<li>available()   </li>
+</ul>
+<h4 id="字节输出流"><a href="#字节输出流" class="headerlink" title="字节输出流"></a>字节输出流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">java.io.OutputStream        ---- 抽象父类</span><br><span class="line">		\- java.io.FileOutputStream</span><br><span class="line">		\- java.io.BufferedOutputStream</span><br><span class="line">		\- java.io.DataOutputStream</span><br><span class="line">		\- java.io.ObjectOutputStream</span><br><span class="line">		\- java.io.ByteArrayOutputStream</span><br><span class="line">抽象出一些共性的接口</span><br><span class="line">java.io.DataOutput</span><br><span class="line">		\- java.io.ObjectOutput</span><br></pre></td></tr></table></figure>
+
+<p><strong>OutputStream中的共性方法：</strong></p>
+<ul>
+<li>void write(int byte);   写入单个字节</li>
+<li>void write(byte[] buf);   写入 buf.length个字节</li>
+<li>void write(byte[] buf, int offset, int length) ;   写入 length个字节</li>
+<li>void close()</li>
+</ul>
+<p><strong>以上这些流又可以分成两种，一种是本身具备流的读写能力的，一种是在原有流的基础上，添加新的功能的流。</strong></p>
+<h4 id="节点流"><a href="#节点流" class="headerlink" title="节点流"></a>节点流</h4><blockquote>
+<p>就是本身拥有流的读写能力，比如：FileInputStream / FileOutputStream,  ByteArrayInputStream/ByteArrayOutputStream</p>
+<p>从构造器的参数也可以看出，这类流的构造是以”源” 为参数的。</p>
+</blockquote>
+<h4 id="过滤流"><a href="#过滤流" class="headerlink" title="过滤流"></a>过滤流</h4><blockquote>
+<p>本身并没有流的读写能力，它必需借助于节点流来构造。比如：DataInputStream/DataOutputStream, BuffredInputStream/BufferedOutputStream, …</p>
+<p>从构造器的参数也可以看出，这类流的构造是以 “流” 来参数。</p>
+</blockquote>
+<p>这是一种装饰模式，我们来看一下各自的创建过程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//节点流的创建</span></span><br><span class="line">FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"sample.md"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//过滤流的创建</span></span><br><span class="line">BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"sample.md"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//假设我要构造一个带缓存，能读基本数据类型的流</span></span><br><span class="line">DataInputStream dis = <span class="keyword">new</span> DataInputStream(</span><br><span class="line">    					<span class="keyword">new</span> BufferedInputStream(</span><br><span class="line">                            <span class="keyword">new</span> FileInputStream(<span class="string">"id.dat"</span>)));</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h3><h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><p>设计一个类型，提示如下方法：</p>
+<ol>
+<li>利用字节流完成一个文件的拷贝。要求方法的参数传入一个文件名，如果是目录，则提示不支持。拷贝后的文件名与原文件存放在同一个目录中，并且文件名后面添加 <strong>_副本</strong> 字样，如：原文件名为 <strong>a.txt</strong>, 则拷贝出来的文件名为 <strong>a_副本.txt</strong></li>
+<li>本题可选： 再实现一个方法，完成文件夹的COPY， 要求COPY整个文件夹，包含子文件夹和子文件。【可以使用递归】</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day13-IO%E6%B5%81/" data-id="ckcmov60i0016y0hca8mucbds" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/day14-IO%E6%B5%81-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          day14-IO流-2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/day12-%E5%86%85%E9%83%A8%E7%B1%BB%E3%80%81File/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">day12-内部类、File</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

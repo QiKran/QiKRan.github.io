@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kran">
+<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-day03-流程控制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day03-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.334Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/day03-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/">day03-流程控制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><blockquote>
+<p>也就是程序代码的结构，主要有三种</p>
+</blockquote>
+<h2 id="顺序结构"><a href="#顺序结构" class="headerlink" title="顺序结构"></a>顺序结构</h2><blockquote>
+<p>从上至下的代码执行结构，没有分支。</p>
+</blockquote>
+<h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><blockquote>
+<p>程序代码在执行时，根据“判断”来决定进入不同的分支之中，java语言提供两种语法：</p>
+</blockquote>
+<h3 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h3><p>语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(条件判断) &#123;</span><br><span class="line">    <span class="comment">//代码块</span></span><br><span class="line">&#125;</span><br><span class="line">或者：</span><br><span class="line"><span class="keyword">if</span>(条件判断) &#123;</span><br><span class="line">    <span class="comment">//代码块1</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="comment">//代码块2    </span></span><br><span class="line">&#125;</span><br><span class="line">或者</span><br><span class="line"><span class="keyword">if</span>(条件判断<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">//代码块1</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(条件判断<span class="number">2</span>) &#123;</span><br><span class="line">	<span class="comment">//代码块2    </span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	<span class="comment">//代码块3	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h3><blockquote>
+<p>也是一个多分支语句结构，它和if不同在于，switch只支持 <code>等值比较</code> 判断，不像if语句那般灵活。</p>
+</blockquote>
+<p>语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(变量因子) &#123;</span><br><span class="line">    <span class="keyword">case</span> 值<span class="number">1</span>:</span><br><span class="line">        <span class="comment">//代码块1</span></span><br><span class="line">        [<span class="keyword">break</span>;]</span><br><span class="line">    <span class="keyword">case</span> 值<span class="number">2</span>:</span><br><span class="line">        <span class="comment">//代码块2</span></span><br><span class="line">        [<span class="keyword">break</span>;]</span><br><span class="line">    ....</span><br><span class="line">    <span class="keyword">case</span> 值N：</span><br><span class="line">        <span class="comment">//代码块N</span></span><br><span class="line">        [<span class="keyword">break</span>;]</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="comment">//默认代码块</span></span><br><span class="line">        [<span class="keyword">break</span>;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<p>变量因子与case的值只能等值比较。所以，变量因子的类型只能是如下类型：</p>
+<p>byte, short, char, int</p>
+<p>在JDK5.0后，开始支持 枚举[enum]</p>
+<p>在JDK7.0后，开始支持 String</p>
+<h2 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h2><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><p>语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(expr1;expr2;expr3) &#123;</span><br><span class="line">    <span class="comment">//循环体</span></span><br><span class="line">&#125;</span><br><span class="line">注：</span><br><span class="line">expr1 表示循环初始化语句，它只执行<span class="number">1</span>次，可以省略</span><br><span class="line">expr2 表示循环条件判断语句，它随循环执行，如果成立，则执行循环体，不成立，则退出循环，可以省略</span><br><span class="line">expr3 表示循环变量因子变化语句，它随循环执行。，可以省略</span><br><span class="line"></span><br><span class="line">三个表达式的执行顺序：</span><br><span class="line">first:  =&gt;  expr1  [<span class="number">1</span>次]</span><br><span class="line">second: =&gt;  expr2  [N次]</span><br><span class="line">third:  =&gt;  循环体  [N次]</span><br><span class="line">last:   =&gt;  expr3  [N次]</span><br><span class="line">所以，如果三个表达式都省略的话，则变成：</span><br><span class="line"><span class="keyword">for</span>(;;) &#123;</span><br><span class="line">	<span class="comment">//循环体 -- 死循环</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如，我们要循环5 次</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"i = "</span>+i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在这里，变量i 就不可访问 了</span></span><br><span class="line"></span><br><span class="line">改写成：</span><br><span class="line"><span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(; j &lt; <span class="number">10</span>; j+=<span class="number">3</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"j = "</span>+j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在这里，变量j 还是可以访问 的。</span></span><br><span class="line">System.out.println(<span class="string">"此时的j的值是："</span>+j);  <span class="comment">//12</span></span><br></pre></td></tr></table></figure>
+
+<p>注：任何局部变量的可见范围只存在于定义它的那一对大括号之中。出了这一对大括号，变量就消失了。</p>
+<p><strong>循环也可以嵌套</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; <span class="number">5</span>; k++) &#123;</span><br><span class="line">            <span class="comment">//</span></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//例： 打印输出一个99法则表</p>
+<p>– 题目：</p>
+<p>打印输出如下的数字：</p>
+<p>1*1 = 1</p>
+<p>11*11 = 121</p>
+<p>111*111 = 12321</p>
+<p>….</p>
+<p>111111111*111111111=12345678987654321</p>
+<p>– 题目：</p>
+<p>打印如下数字：</p>
+<p>1*8 + 1 = 9</p>
+<p>12*8+2=98</p>
+<p>123*8+3=987</p>
+<p>1234*8+4=9876</p>
+<p>12345*8+5=98765</p>
+<p>….</p>
+<p>123456789*8+9=987654321</p>
+<h3 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h3><p>语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(条件)&#123;</span><br><span class="line">    <span class="comment">//循环体</span></span><br><span class="line">&#125;</span><br><span class="line">同样，循环<span class="number">5</span>次</span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(i &lt; <span class="number">5</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">"i = "</span>+i);</span><br><span class="line">    i++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>while 循环和for循环的使用场景</p>
+<ol>
+<li>如果能确定循环次t数，建议使用 for循环</li>
+<li>如果是迭代数组或集合，建议使用 for循环</li>
+<li>如果事先并不知道循环次数，建议使用while循环</li>
+</ol>
+</blockquote>
+<h2 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do while循环"></a>do while循环</h2><p>语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">//循环体</span></span><br><span class="line">&#125; <span class="keyword">while</span>(循环条件);</span><br><span class="line"></span><br><span class="line"><span class="comment">//写一个循环5次的代码</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">"i = "</span>+i);</span><br><span class="line">    i++;</span><br><span class="line">&#125; <span class="keyword">while</span>(i &lt; <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>注：do while适合交互式菜单的开发，一般是配合 switch 使用。</p>
+<h2 id="break语句和continue语句"><a href="#break语句和continue语句" class="headerlink" title="break语句和continue语句"></a>break语句和continue语句</h2><blockquote>
+<p>在循环体中，进行控制的语句，其中</p>
+<ol>
+<li>break 语句表示打破最接近于自己的那一层循环。</li>
+<li>continue 语句表示结束本轮循环，当然，它也只影响最接近于自己的那一层循环。</li>
+</ol>
+</blockquote>
+<p>例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;= <span class="number">9</span>;i++) &#123;</span><br><span class="line">    System.out.println(<span class="string">"i = "</span>+i);</span><br><span class="line">    <span class="keyword">if</span>(i % <span class="number">3</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">与</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;= <span class="number">9</span>;i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(i % <span class="number">3</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"i = "</span>+i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="在Eclipse中，配置代码注释的模板"><a href="#在Eclipse中，配置代码注释的模板" class="headerlink" title="在Eclipse中，配置代码注释的模板"></a>在Eclipse中，配置代码注释的模板</h2><h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><h3 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h3><blockquote>
+<p>就是指系统自动帮助我们进行类型转换，程序员无需做任何操作，一般来说，小范围类型在需要时，会自动向大范围类型 隐式转换。</p>
+</blockquote>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c = <span class="string">'A'</span>; <span class="comment">//字符型变量 c</span></span><br><span class="line"><span class="keyword">int</span> i = c;  <span class="comment">//ok, 此时，就发生了隐式类型的转换。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> a = <span class="number">100</span>; <span class="comment">//此时，就发生了隐式类型的转换。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><blockquote>
+<p>当你需要把大范围类型的变量赋值 给小范围 类型时，就需要做强制类型的转换</p>
+<p>语法：</p>
+<p>(类型)变量或表达式</p>
+</blockquote>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span> b1 = <span class="number">12</span>;</span><br><span class="line"><span class="keyword">byte</span> b2 = <span class="number">19</span>;</span><br><span class="line"><span class="keyword">byte</span> b3 = b1 + b2; <span class="comment">//compile error</span></span><br><span class="line"><span class="comment">//使用强制类型转换</span></span><br><span class="line"><span class="keyword">byte</span> b3 = (<span class="keyword">byte</span>)(b1 + b2);  <span class="comment">//ok</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//再比如：</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">97</span>;</span><br><span class="line"><span class="keyword">char</span> c = i; <span class="comment">//compile error</span></span><br><span class="line"><span class="comment">//使用强制类型转换</span></span><br><span class="line"><span class="keyword">char</span> c = (<span class="keyword">char</span>)i; <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="格式化输出-打印"><a href="#格式化输出-打印" class="headerlink" title="格式化输出/打印"></a>格式化输出/打印</h2><blockquote>
+<p>普通的打印输出，调用的是：<code>System.out.println()或System.out.print() 方法</code></p>
+<p>格式化打印输出，调用的是：<code>System.out.printf()</code> 方法</p>
+</blockquote>
+<p>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">9</span>;</span><br><span class="line"><span class="keyword">int</span> j = <span class="number">10</span>;</span><br><span class="line"><span class="comment">//打印输出 i*j的结果</span></span><br><span class="line">System.out.println(i+<span class="string">"*"</span>+j+<span class="string">"= "</span>+(i*j));</span><br><span class="line"><span class="comment">//这种打印有如下缺点：</span></span><br><span class="line"><span class="number">1</span>. 拼接时容易出错</span><br><span class="line"><span class="number">2</span>. 考虑优先级</span><br><span class="line"><span class="number">3</span>. 字符串拼接性能较低，因为会产生很多临时对象</span><br><span class="line"></span><br><span class="line">现在，我们使用格式化输出，如下：</span><br><span class="line">System.out.printf(<span class="string">"占位符 * 占位符 = 占位符\n"</span>,i, j, i*j);</span><br><span class="line"><span class="comment">//使用这种方式，上面的三个缺点都可以消除，同时，格式化输出还有如下优点：</span></span><br><span class="line"><span class="number">1</span>. 可以指定占位符的字符宽度</span><br><span class="line"><span class="number">2</span>. 可以设定对齐方式</span><br><span class="line"><span class="number">3</span>. 针对浮点数，还可以指定精度</span><br></pre></td></tr></table></figure>
+
+<h3 id="占位符的语法"><a href="#占位符的语法" class="headerlink" title="占位符的语法"></a>占位符的语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%[arguments_index$][flag][width][.precision]conversion</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>有关 conversion  的字母</p>
+<blockquote>
+<p>s   –&gt;  字符及字符串</p>
+<p>d   –&gt;  整数</p>
+<p>f    –&gt;  浮点数</p>
+<p>b   –&gt;  布尔值</p>
+<p>t    –&gt;  时间或日期，它还需要配合另一个字母【后面在日期格式化再细说】</p>
+<p>%  –&gt;  %本身</p>
+<p>…</p>
+</blockquote>
+</li>
+</ol>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">9</span>;</span><br><span class="line"><span class="keyword">int</span> j = <span class="number">10</span>;</span><br><span class="line"><span class="comment">//打印输出 i*j的结果</span></span><br><span class="line">System.out.printf(<span class="string">"%d*%d=%d\n"</span>, i, j, i*j);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>有关 width </p>
+<blockquote>
+<p>指定占位符的宽度，如果目标值超过了宽度，则使用目标值的真实宽度。如果目标值没有达到指定的宽度，则使用空格来填充，并且依赖于对齐方式【flag的值】</p>
+</blockquote>
+</li>
+<li><p>有关flag</p>
+<blockquote>
+<p>一个标记符号，默认是右对齐的，使用 <code>-</code> 表示左对齐</p>
+</blockquote>
+</li>
+</ol>
+<ol start="4">
+<li><p>有关 精度</p>
+<blockquote>
+<p>针对浮点数才有意义。</p>
+</blockquote>
+</li>
+<li><p>有关占位符与变量的对应顺序</p>
+<blockquote>
+<p>默认情况下，替换变量的个数与占位符个数是一一对应的。</p>
+<p>如果，替换变量的个数与占位符的个数不一样时，就可以使用 arguments_index$ 来指定。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="TODO-字符的表达方式"><a href="#TODO-字符的表达方式" class="headerlink" title="TODO 字符的表达方式"></a>TODO 字符的表达方式</h2><h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li><p>请写一个程序，请键盘输入任一整数，判断这个整数是否是质数/素数</p>
+</li>
+<li><p>请写一个程序，用户输入一个整数，请计算出这个整数的阶乘【使用double来保存结果】</p>
+</li>
+<li><p>请写一个程序，请找出1000以内的所有水仙花数。</p>
+<blockquote>
+<p>水仙花数是指 一个任意n位数[n要大于等于3]整数，它的每个位数的n次幂之和刚好等 于它自己。</p>
+<p>比如：153 = 1^3 + 5^3 + 3^3</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day03-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-id="ckcmov5zx000ly0hc3qj36xg9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-day02-语法元素" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day02-%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.331Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/day02-%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/">day02-语法元素</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java语法元素"><a href="#Java语法元素" class="headerlink" title="Java语法元素"></a>Java语法元素</h1><blockquote>
+<p>2020/3/10</p>
+</blockquote>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><blockquote>
+<p>用来给JAVA编程元素命名的，它由字母、数字、_、$组成，并且不以数字开头的字符序列。</p>
+<p>标识符尽量保持有意义，如：Hello, Cup, _abc, a5, …</p>
+</blockquote>
+<h2 id="数据类型【DataType】"><a href="#数据类型【DataType】" class="headerlink" title="数据类型【DataType】"></a>数据类型【DataType】</h2><blockquote>
+<p>有两大数据类型，一类是 基本类型， 另一类是 对象类型。</p>
+</blockquote>
+<h3 id="基本类型-primitive-type"><a href="#基本类型-primitive-type" class="headerlink" title="基本类型 [primitive type]"></a>基本类型 [primitive type]</h3><blockquote>
+<p>有 8 种，分别是：</p>
+<ul>
+<li><p>byte        – 字节型，占 1 个字节, 数字范围： -128 ~ +127</p>
+</li>
+<li><p>short      – 短整型，占2 个字节, 数字范围： -32768 ~ +32767</p>
+</li>
+<li><p>int           – 整型，占4个字节, 数字范围： -2147483648 ~ +2147483647</p>
+</li>
+<li><p>long        – 长整型，占8个字节, 数字范围： …..</p>
+</li>
+<li><p>double    – 双精度浮点，占 8 个字节, 范围大小： +/- 10^308</p>
+</li>
+<li><p>float        – 单精度浮点， 占 4个字节,  范围大小： +/- 10^38</p>
+</li>
+<li><p>char        – 字符型，占 2个字节, 范围同 short 一样。它每个数字都对应的一个“字符”， 它是由字符编码来定义的，常用的编码有： </p>
+<ul>
+<li>ASCII 码，它采用单字节编码，它至多可以编 256 个字符。</li>
+<li>GBK 码， 后来变成为 GB2312， 它是采用双字节编码，向上兼容ASCII 码。是国标。</li>
+<li>UTF-8码，国际编码，它是动态字节编码，兼容大多数国家和地址的编码。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>boolean   – 布尔类型，占 1个字节</li>
+</ul>
+</blockquote>
+<p>在计算机中，数据的存储以字节为单位，1个字节占8位二进制。</p>
+<p>我们所熟知的G字节，相当于 1024 * 1024 * 1024 个字节。</p>
+<p>1Gb = 1024 Mb</p>
+<p>1Mb = 1024 Kb</p>
+<p>1Kb = 1024 字节</p>
+<p>每种类型的数字范围是如何算出来的？</p>
+<p>它是由二进制的位数决定的，而位数由 所占字节数决定的。</p>
+<p>首先，理解一下 什么是二进制？</p>
+<blockquote>
+<p> 它由 0 和 1 组成，最小是0，最大是1.</p>
+<p>所以，1位二进制有2种变化， 2位二进制就有 2 * 2 种变化，依此类推，8位二进制就有 2^8 种变化，也就是 256 种状态。</p>
+</blockquote>
+<p>二进制                      十进制</p>
+<p>0 000 0000        =&gt;    0</p>
+<p>0 111 1111        =&gt;   2^7 - 1 =  +127</p>
+<p>. …  …..  …..</p>
+<p>1 000 0000        =&gt;    -128</p>
+<p>1 111 1111        =&gt;   -1</p>
+<h3 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h3><blockquote>
+<p>是一种复合类型，它采用 class 来定义，它主要也有两大类：</p>
+<ol>
+<li>由JRE自带的类型，如： java.lang.String, java.lang.System, java.util.Date, java.util.Scanner, …</li>
+<li>由程序员自定义的类型， 比如：Hello, PkgDemo, ImpDemo, …</li>
+</ol>
+</blockquote>
+<h2 id="变量、字面量、常量"><a href="#变量、字面量、常量" class="headerlink" title="变量、字面量、常量"></a>变量、字面量、常量</h2><h3 id="变量-variable"><a href="#变量-variable" class="headerlink" title="变量 [variable]"></a>变量 [variable]</h3><blockquote>
+<p>指变化的量，它的值在程序运行过程中是可以改变的。</p>
+<p>定义的语法：</p>
+<p>数据类型 变量名 [= 初始值];</p>
+</blockquote>
+<p>注：JAVA是一种强类型编程语言，类型在编译期间就必须确定。</p>
+<p>如：</p>
+<p>int i = 9;  //定义了一个整型变量，变量名为 i, 它的初始值是 9【字面量】</p>
+<p>再看：</p>
+<p>Date now = new Date(); //定义一个对象类型</p>
+<p>注：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对象类型的变量，简称 对象， 对象类型的变量必须通过 <span class="keyword">new</span> 操作符来初始化。只有 String 类型是特殊的，它可以使用 字面量 来初始化，也可以使用 <span class="keyword">new</span> 来初始化。</span><br><span class="line">基本类型的变量，简称 变量， 基本类型的变量可以直接使用 字面量 来初始化。</span><br></pre></td></tr></table></figure>
+
+<p>再来看更多的例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义基本类型</span></span><br><span class="line"><span class="keyword">byte</span> b1 = <span class="number">13</span>; <span class="comment">//ok</span></span><br><span class="line"><span class="keyword">short</span> s1  = <span class="number">15</span>; <span class="comment">//ok</span></span><br><span class="line"><span class="keyword">int</span> i1 = <span class="number">3</span>; <span class="comment">//ok</span></span><br><span class="line"><span class="keyword">long</span> x = <span class="number">100L</span>; <span class="comment">//长整型以L或l 结尾。</span></span><br><span class="line"><span class="keyword">int</span> i2 = <span class="number">12L</span>; <span class="comment">//compile error, 有可能丢失精度</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> c = <span class="string">'A'</span>;  <span class="comment">//ok</span></span><br><span class="line">String name = <span class="string">"jack"</span>; <span class="comment">//ok</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">boolean</span> y = <span class="keyword">true</span>; <span class="comment">//ok</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> d1 = <span class="number">3.456</span>; <span class="comment">//ok</span></span><br><span class="line"><span class="keyword">float</span> f1 = <span class="number">2.345F</span>; <span class="comment">//以 F 或 f结尾。</span></span><br><span class="line"><span class="comment">//定义对象变量</span></span><br><span class="line">Date now = <span class="keyword">new</span> Date();</span><br><span class="line"><span class="comment">//定义对象变量</span></span><br><span class="line">Scanner scan = <span class="keyword">new</span> Scanner(System.in); <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="字面量-literal"><a href="#字面量-literal" class="headerlink" title="字面量 [literal]"></a>字面量 [literal]</h3><blockquote>
+<p>就是字面本身的量，它的值是不可变的。</p>
+<p>如：5,  18, 4.5, ‘我’, “我们”, “你”, true, false, ….</p>
+<p>它的作用是用来给变量或常量赋值的。</p>
+</blockquote>
+<h3 id="常量-constant"><a href="#常量-constant" class="headerlink" title="常量[constant]"></a>常量[constant]</h3><blockquote>
+<p>在程序运行过程中，不可以变化的量【也就是不可变的变量】</p>
+<p>语法：</p>
+<p>final 数据类型 常量名 = 初始值;</p>
+<p>注：常量在定义时必须被初始化。</p>
+<p>常量名尽量使用大写字母</p>
+<p>如：</p>
+<p>final int ROW = 10; //定义了一个整型常量 ROW, 它的值是 10</p>
+<p>在代码修改或维护时，常量比字面量更有优势，所以，在程序中，除了给变量或常量赋值外，尽量不要直接使用字面量。</p>
+</blockquote>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><blockquote>
+<p>是用来运算的一些特殊符号，有：</p>
+<ol>
+<li><p>赋值运算符</p>
+<blockquote>
+<p>=  </p>
+</blockquote>
+</li>
+<li><p>比较运算符</p>
+<blockquote>
+<p>==, &gt;, &lt;, !=,  &gt;=,  &lt;=</p>
+<p>它的运算结果一定是 布尔值，也就是 true 或 false</p>
+</blockquote>
+</li>
+<li><p>算术运算符</p>
+<blockquote>
+<p>+, -, *, /,  %,  +=, -=, *=, /=</p>
+<p>++, 分为前++和后++， 前++是表达式的值增1，变量本身的值也增1。 后++ 是表达式的值不变，变量本身的值增1.</p>
+<p>–，分为前– 和 后–</p>
+</blockquote>
+<p>如：</p>
+<p>int i = 9 ;</p>
+<p>int j = i++; // 此时：i = 10 ,  j = 9</p>
+<p>int k = 13;</p>
+<p>int z = k++ + ++k; // k = 15, z = 28</p>
+<blockquote>
+<p>算术运算符的规则</p>
+<ol>
+<li>byte, short ,char, int 之间的算术和位运算，其结果一定是 int</li>
+<li>除以上规则外，所有小范围数字类型 与大范围数字类型之间的运算，其结果一定是大范围数字类型。</li>
+</ol>
+<p>​    byte, short, int —&gt; long  —&gt;  float  —&gt;  double</p>
+<p>​              char  —-/</p>
+</blockquote>
+<p>如：</p>
+<p>byte b1 = 12;</p>
+<p>byte b2 = 13;</p>
+<p>byte b3 = b1 + b2; // compile error</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>逻辑运算符</p>
+<blockquote>
+<p>&amp;&amp;  - 逻辑与, 当两个操作数同时为真时，其结果为真，有一个为假，结果为假。</p>
+<p>||  - 逻辑或, 当两个操作数同时为假时，其结果为假，有一个为真，结果为真。</p>
+<p>!      - 逻辑非， 真为假，假为真</p>
+</blockquote>
+<p>注：&amp;&amp; 和 || 都是短路运算符，就是当操作数的一边能够确定整个表达式的结果时，另一边则直接不参与运算。</p>
+</li>
+<li><p>位运算符</p>
+<blockquote>
+<p>&amp;  - 按位与</p>
+<p>|   - 按位或</p>
+<p>^    - 按位异或</p>
+<p>~    - 按位取反</p>
+<p><code>&gt;&gt;</code>  - 右移位， 正数，符号位补0， 负数，符号位补1</p>
+<p><code>&gt;&gt;&gt;</code>  - 无符号右移位， 符号位总是补0</p>
+<p><code>&lt;&lt;</code>  - 左移位</p>
+<p>&amp;=,  |=, ^=, ~=, &gt;&gt;= , &gt;&gt;&gt;=, &lt;&lt;=</p>
+</blockquote>
+<p>首先，我们要理解二进制，因为，位运算都是二进制的方式进行的。</p>
+<p>我们以一个整数为例</p>
+<p>int i = 9;</p>
+<p>int j = 13;</p>
+<p>它的二进制形式如下：</p>
+<p>0 0000000 00000000 00000000 00001001   =&gt;  9</p>
+<p>0 0000000 00000000 00000000 00001101    =&gt; 13</p>
+<p>按位求与的结果是：</p>
+<p>0 0000000 00000000 00000000 00001001    =&gt; 9</p>
+<p>按位求或的结果是：</p>
+<p>0 0000000 00000000 00000000 00001101   =&gt; 13</p>
+<p>按位求异或的结果：</p>
+<p>0 0000000 00000000 00000000 00000100   =&gt;  4</p>
+<p>把变量i按位取反的结果是：</p>
+<p>1 1111111 11111111 11111111 11110110  =&gt;  -10</p>
+<blockquote>
+<p>针对异或来说，存在如下的规律：</p>
+<p>一个整数连续异或另一个整数2次，其值不变。</p>
+</blockquote>
+<p><strong>再来学习一下十六进制和八进制</strong></p>
+<ol>
+<li>十六进制由0<del>9和A</del>F 组成，逢16进1，它的字面量形式是以 0x开头的。</li>
+<li>八进制由0~7组成，逢8进1， 它的字面量形式是以 0 开头的。</li>
+</ol>
+<p>在java中，整型即支持16进制的字面量也支持8进制的字面量，从JDK7开始，还支持二进制的字面量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如：</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">19</span>；<span class="comment">//10进制的字面量，默认就是 10进制</span></span><br><span class="line"><span class="keyword">int</span> j = <span class="number">023</span>; <span class="comment">//8进制的字面量， 转换成10进制就是：2*8^1 + 3*8^0 = 16+3 = 19</span></span><br><span class="line"><span class="keyword">int</span> k = <span class="number">0x13</span>; <span class="comment">//16进制的字面量，转换成10进制就是：1*16^1 + 3*16^0 = 16 + 3 = 19</span></span><br><span class="line"><span class="keyword">int</span> z = <span class="number">0b10011</span>; <span class="comment">//2进制的字面量，转换成10进制就是：1*2^4+1*2^1+1*2^0 = 16+2+1 = 19</span></span><br></pre></td></tr></table></figure>
+
+<p>描述一下二、十六、10进制 的对应关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">十进制				二进制				十六进制</span><br><span class="line"><span class="number">0</span>					<span class="number">0</span>				<span class="number">0x0</span></span><br><span class="line"><span class="number">1</span>					<span class="number">1</span>				<span class="number">0x1</span></span><br><span class="line"><span class="number">2</span>					<span class="number">10</span>				<span class="number">0x2</span></span><br><span class="line"><span class="number">3</span>					<span class="number">11</span>				<span class="number">0x3</span></span><br><span class="line"><span class="number">4</span>					<span class="number">100</span>				<span class="number">0x4</span></span><br><span class="line"><span class="number">5</span>					<span class="number">101</span>				<span class="number">0x5</span></span><br><span class="line"><span class="number">6</span>					<span class="number">110</span>				<span class="number">0x6</span></span><br><span class="line"><span class="number">7</span>					<span class="number">111</span>				<span class="number">0x7</span></span><br><span class="line"><span class="number">8</span>					<span class="number">1000</span>			<span class="number">0x8</span></span><br><span class="line"><span class="number">9</span>					<span class="number">1001</span>			<span class="number">0x9</span></span><br><span class="line"><span class="number">10</span>					<span class="number">1010</span>			<span class="number">0xA</span></span><br><span class="line"><span class="number">11</span>					<span class="number">1011</span>			<span class="number">0xB</span></span><br><span class="line"><span class="number">12</span>					<span class="number">1100</span>			<span class="number">0xC</span></span><br><span class="line"><span class="number">13</span>					<span class="number">1101</span>			<span class="number">0XD</span></span><br><span class="line"><span class="number">14</span>					<span class="number">1110</span>			<span class="number">0XE</span></span><br><span class="line"><span class="number">15</span>					<span class="number">1111</span>			<span class="number">0xF</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>位运算操作口决</strong></p>
+<p>清0取位要用与，某位置1可用或；</p>
+<p>若要取反与交换，轻轻松松用异或。</p>
+</li>
+</ol>
+<ol start="6">
+<li><p>三目运算符</p>
+<blockquote>
+<p>? :    相当一个 if语句，语法如下：</p>
+<p>expr1 ? expr2 : expr3;</p>
+<p>当 expr1 成立时，执行并返回 expr2, 否则，执行并返回expr3</p>
+</blockquote>
+</li>
+<li><p>instanceof运算符</p>
+<blockquote>
+<p>用来判断一个对象的类型。这个表达式的结果也是布尔值。</p>
+</blockquote>
+</li>
+<li><p>…</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ol>
+<li>设计一个程序，让用户从键盘输入任一整数，判断这个整数是否是偶数，是偶数，输出true， 不是的话，输出 false</li>
+</ol>
+<h2 id="表达式-【expression】"><a href="#表达式-【expression】" class="headerlink" title="表达式 【expression】"></a>表达式 【expression】</h2><blockquote>
+<p>由变量、常量、字面量与运算符组成的合法语句。</p>
+<p>所有的代码都是以表达式为基本单位的。</p>
+</blockquote>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><blockquote>
+<p>有两种注释格式，</p>
+<ol>
+<li><p>单行注释， 以 // 开头</p>
+</li>
+<li><p>多行注释， 以 /**  注释 */   【文档注释，将来可以通过命令提取出来】</p>
+<p>多行注释中，还有普通的，以  /*   注释  */ </p>
+</li>
+</ol>
+</blockquote>
+<p>文档注释必需放在如下位置才能被提取：</p>
+<ol>
+<li>package 的上面</li>
+<li>class 的上面</li>
+<li>方法的上面</li>
+<li>属性的上面</li>
+</ol>
+<p>在方法体中，不支持文档注释。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day02-%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0/" data-id="ckcmov5zz000ny0hc7yb69n3s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-day01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day01/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.291Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/day01/">day01</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="欢迎大家"><a href="#欢迎大家" class="headerlink" title="欢迎大家"></a>欢迎大家</h1><h2 id="数据-data"><a href="#数据-data" class="headerlink" title="数据 data"></a>数据 data</h2><p>数据有载体 - 》数据的格式</p>
+<h1 id="程序人员"><a href="#程序人员" class="headerlink" title="程序人员"></a>程序人员</h1><h2 id="技能"><a href="#技能" class="headerlink" title="技能"></a>技能</h2><ol>
+<li>知识点<ol>
+<li>开发语言/编程语言</li>
+<li>java语言是目前最为流行的编程语言</li>
+</ol>
+</li>
+<li>技能  -》把知识转化成有价值的东西　-&gt; 实操</li>
+</ol>
+<h2 id="如何学好这门编程语言"><a href="#如何学好这门编程语言" class="headerlink" title="如何学好这门编程语言"></a>如何学好这门编程语言</h2><ol>
+<li>打好基础 -》 知识点时间 + 操作时间</li>
+<li>知识面  -》 广度 + 深度<ol>
+<li>一线互联网大厂的技术要求 【BATJ + 字节跳动+华为…】</li>
+<li>站在巨人的臂膀上成长</li>
+</ol>
+</li>
+</ol>
+<h2 id="Java语言的学习"><a href="#Java语言的学习" class="headerlink" title="Java语言的学习"></a>Java语言的学习</h2><h3 id="先准备环境"><a href="#先准备环境" class="headerlink" title="先准备环境"></a>先准备环境</h3><ol>
+<li><p>安装JDK</p>
+<ul>
+<li>目录结构</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bin 目录   -&gt;  一些可执行文件以及动态链接库</span><br><span class="line">conf 目录   -&gt; 配置文件</span><br><span class="line">include 目录  -&gt; 针对OS平台的一些特定的库</span><br><span class="line">lib 目录  -&gt; 包含JDK所需要的一些第三方库，同时包含JDK自带的一些库，如：rt.jar</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>验证：</p>
+<p>在命令行中，输入</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">或</span><br><span class="line">javac -version</span><br></pre></td></tr></table></figure>
+
+<p>配置JDK</p>
+<ul>
+<li>设置 JAVA_HOME 环境变量</li>
+<li>修改 path 环境变量 [在CMD窗口中执行的命令，默认情况下先在当前目录下搜索，然后去PATH环境变量指定的目录中搜索，如果找不到，则报命令不是内部或外部命令]</li>
+</ul>
+<h3 id="相关概念的解释"><a href="#相关概念的解释" class="headerlink" title="相关概念的解释"></a>相关概念的解释</h3><ol>
+<li><p>JDK</p>
+<blockquote>
+<p>全称： Java Development Kit, JAVA开发工具包，它包含一些可执行命令，如： java,javac,jshell,javadoc 等， 以及一套JVM和JRE以及第三方的类库</p>
+</blockquote>
+</li>
+<li><p>JRE</p>
+<blockquote>
+<p>全称: JAVA Runtime Environment, JAVA运行时环境</p>
+</blockquote>
+</li>
+<li><p>JVM</p>
+<blockquote>
+<p>全称：Java Virutal Machine, JAVA虚拟机， 它是为了屏蔽底层OS之间的不同差异而存在的程序，它本身是不能跨平台的，而JAVA开发的代码不是直接接编译成底层OS所需要的执行程序，而是编译成JVM所需要的中间码，这个中间码我们叫 字节码. </p>
+<p>这样一来，我们所开发的JAVA程序就可以跨底层OS平台。</p>
+</blockquote>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">------------------------------------------------------------------------------</span><br><span class="line">    			              java app</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">|   JVM     |       JVM      |        JVM     |       JVM                      |</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line"> |WinOS     |   Linux       |    MacOS       |  Solaris                        |</span><br><span class="line"> -------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>所以，JAVA程序是 “一次编写，到处运行”</p>
+</li>
+</ol>
+<h3 id="Windows中常用的命令"><a href="#Windows中常用的命令" class="headerlink" title="Windows中常用的命令"></a>Windows中常用的命令</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 命令 - 切换工作目录【change Directory】</span><br><span class="line"><span class="built_in">dir</span> 命令 查看目录结构</span><br><span class="line"><span class="keyword">exit</span> 命令  - 退出命令行终端[terminal]</span><br><span class="line"><span class="built_in">ping</span> 命令  - 查看网络连接</span><br><span class="line"><span class="built_in">ipconfig</span> 命令  - 查看网络的</span><br><span class="line">tasklist 命令  - 查看进程列表</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
+<li>目录 directory, 是一种特殊的文件，它是可以包含其它目录或文件的文件【广义上的文件】</li>
+<li>文件 file, 是泛指，它是一种抽像的格式。每一种文件都会有扩展名[extension name],扩展名的作用是帮助操作系统能更快捷地识别文件。常用的扩展名有：<ol>
+<li>.java  [文本文件]</li>
+<li>.exe</li>
+<li>.class  【有严格的编码规则的，而且是不开放的，这是商业机密】</li>
+<li>.avi</li>
+<li>.jpg</li>
+<li>.mp3</li>
+<li>…</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>JSHELL [从JDK9.0开始支持交互式编程]</p>
+</li>
+</ol>
+<h3 id="Java程序的结构"><a href="#Java程序的结构" class="headerlink" title="Java程序的结构"></a>Java程序的结构</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名 </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//写你的业务逻辑</span></span><br><span class="line">        System.out.println(<span class="string">"whatever...."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序写完后，要保存，要求：</p>
+<ol>
+<li>扩展名必须是 .java, 是一个文本文件</li>
+<li>文件名必须与 类名 一样。</li>
+</ol>
+<h3 id="编程工具"><a href="#编程工具" class="headerlink" title="编程工具"></a>编程工具</h3><ol>
+<li><p>文本编辑器</p>
+<blockquote>
+<p>Editplus  - 很好用的文本编辑器</p>
+<p>Sublime Text3  -</p>
+<p>….</p>
+<p>特点： 简单，它只能编辑代码，不能做编译、调试、运行等功能</p>
+</blockquote>
+</li>
+<li><p>集成开发工具</p>
+<blockquote>
+<p>集代码编辑、编译、运行、调试于一体的开发工具，也可以集成很多第三方的库【lib】，提高程序人员的开发效率。</p>
+<p>Eclipse  -  由IBM开发的，免费的，开源的一套集成开发环境</p>
+<p>IntelliJ IDEA - 由 JetBrains 公司开发的，它的 Community Edition是免费的，我们可以使用 Enterprise Edition【收费】</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="第一个java程序"><a href="#第一个java程序" class="headerlink" title="第一个java程序"></a>第一个java程序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span>  <span class="title">Hello</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何存放代码？"><a href="#如何存放代码？" class="headerlink" title="如何存放代码？"></a>如何存放代码？</h3><ol>
+<li><p>新建一个工作区[workspace]</p>
+<blockquote>
+<p>目录结构</p>
+<p>workspace\</p>
+<p>​           code\    – 存放代码</p>
+<p>​            note\    – 存放笔记</p>
+<p>​            doc\     – 存放学习文档【第三方的技术文档】</p>
+<p>​            video\   – 学习视频</p>
+<p>​            tools\   – 存放一些小工具软件</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="编译和运行程序"><a href="#编译和运行程序" class="headerlink" title="编译和运行程序"></a>编译和运行程序</h3><ol>
+<li><p>编译 complie</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac [-options] 源文件路径</span><br></pre></td></tr></table></figure>
+
+<p>编译完成后，会生成字节码文件，它的扩展名是 .class</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>运行 run</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java [-options] 类名</span><br></pre></td></tr></table></figure>
+
+<p>选项：</p>
+<p>-cp 目录， 表示指定JVM搜索的类路径，其中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.  代表当前目录</span><br><span class="line">.. 代表父目录</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="加入软件包的程序"><a href="#加入软件包的程序" class="headerlink" title="加入软件包的程序"></a>加入软件包的程序</h3><ol>
+<li><p>语法：</p>
+<blockquote>
+<p>package 包名;</p>
+<p>注：包之间使用 . 号隔开</p>
+</blockquote>
+</li>
+<li><p>使用 <code>javac -d 目录</code> 编译后，会生成对应的目录结构</p>
+</li>
+<li><p>使用 <code>java -cp 目录 包名.类名</code> 来执行</p>
+</li>
+</ol>
+<p>注：</p>
+<p>javac -d 选项的作用</p>
+<ol>
+<li>把包名生成对应的目录结构</li>
+<li>指定字节码存放的位置</li>
+</ol>
+<p>包的命名：</p>
+<p>一般以公司域名倒置来定义前半部份</p>
+<p>后半部份以项目代码+功能模块+软件分层编号 来定义</p>
+<p>如： com.ali.crm.user.dao</p>
+<h3 id="JDK内置的软件包介绍"><a href="#JDK内置的软件包介绍" class="headerlink" title="JDK内置的软件包介绍"></a>JDK内置的软件包介绍</h3><p>还记得代码中有<code>String</code>和<code>System</code> 两个类型吗？</p>
+<p>这两个类都是<code>java.lang</code> 软件包下，这个包是JDK的基础核心包，它里面除了String 和 System 两个类以外，还有很多其它的类型。</p>
+<p>在JDK9之后，采用模块化开发，内置的所有软件包都是模块化的，其中，java.base 是基础模块，包含如下常用的软件包：</p>
+<p>java.lang     – 语言核心包，这个包下的类型是无需显示导入的。【也就是不需要写明 import 语句】</p>
+<p>java.io  </p>
+<p>java.nio</p>
+<p>java.net</p>
+<p>java.math</p>
+<p>java.lang.reflect</p>
+<p>…</p>
+<h3 id="导入其它类型"><a href="#导入其它类型" class="headerlink" title="导入其它类型"></a>导入其它类型</h3><p>语法：</p>
+<p>import 包名.类名;</p>
+<p>它必须是写在 package 和 类定义之间。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 包名;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> 包名.类名;</span><br><span class="line"><span class="keyword">import</span> 包名.类名;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span>  <span class="title">Hello</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day01/" data-id="ckcmov5zx000ky0hcadbdazil" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-组合与聚合的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/%E7%BB%84%E5%90%88%E4%B8%8E%E8%81%9A%E5%90%88%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.289Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/%E7%BB%84%E5%90%88%E4%B8%8E%E8%81%9A%E5%90%88%E7%9A%84%E5%8C%BA%E5%88%AB/">组合与聚合的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>组合关系是通过构造初始化其他类的对象</p>
+<p>聚合则是需要调用者自己传入</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/%E7%BB%84%E5%90%88%E4%B8%8E%E8%81%9A%E5%90%88%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="ckcmov60o001fy0hcejdkfc1v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Redis在服务上的配置与安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis%E5%9C%A8%E6%9C%8D%E5%8A%A1%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.418Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis%E5%9C%A8%E6%9C%8D%E5%8A%A1%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/">Redis在服务上的配置与安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h4 id="在Aliyun-Linux2上配置与安装"><a href="#在Aliyun-Linux2上配置与安装" class="headerlink" title="在Aliyun Linux2上配置与安装"></a>在Aliyun Linux2上配置与安装</h4><ol>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-6.0.5.tar.gz</span><br><span class="line">$ tar xzf redis-6.0.5.tar.gz</span><br><span class="line">$ cd redis-6.0.5</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">src&#x2F;redis-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无法make的问题</p>
+<p>在redis6.0的make过程中，会遇到无法安装服务的问题，需要升级GCC</p>
+</li>
+<li><p>开启YUM仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 先开启YUM仓库支持</span><br><span class="line">sudo yum install -y alinux-release-experimentals</span><br><span class="line"># 安装普通试验性软件包，其中&lt;packageName&gt;为您预期安装的软件包名称</span><br><span class="line">sudo yum install -y &lt;packageName&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装GCC插件开发工具包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 先安装scl-utils</span><br><span class="line">sudo yum install -y scl-utils</span><br><span class="line"># 打开YUM仓库支持</span><br><span class="line">sudo yum install -y alinux-release-experimentals</span><br><span class="line"># 从YUM源安装您需要的软件包，以下示例命令同时安装了SCL插件方式支持的所有开发工具包</span><br><span class="line">sudo yum install -y devtoolset-7-gcc devtoolset-7-gdb devtoolset-7-binutils devtoolset-7-make</span><br><span class="line">sudo yum install -y devtoolset-8-gcc devtoolset-8-gdb devtoolset-8-binutils devtoolset-8-make</span><br><span class="line">sudo yum install -y devtoolset-9-gcc devtoolset-9-gdb devtoolset-9-binutils devtoolset-9-make</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用GCC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 先查看现有的SCL，需要指定库名，本示例代码中，库名为devtoolset-7</span><br><span class="line">scl -l devtoolset-7</span><br><span class="line"># 运行相关的SCL软件(临时启用)</span><br><span class="line">#如果要永久配置则需要</span><br><span class="line">#echo &quot;source &#x2F;opt&#x2F;rh&#x2F;devtoolset-9&#x2F;enable&quot; &gt;&gt;&#x2F;etc&#x2F;profile</span><br><span class="line">scl enable devtoolset-7 bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看当前GCC版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h4 id="配置conf"><a href="#配置conf" class="headerlink" title="配置conf"></a>配置conf</h4><p>daemonize yes  是启动守护进程即后台运行</p>
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>reids-server /home/redis-6.0.5/redis.conf<br>#启动Redis 通过 /usr/local/bin下面的redis.conf 作为配置文件</p>
+<p><em># 启动redis客户端 端口是6379 如果有密码可以添加密码-a password</em><br>redis-cli -p 6379 </p>
+<p><em>注意：需要配置环境变量</em></p>
+<p><em>vim /etc/profile</em></p>
+<p><em>文件中插入redis目录</em></p>
+<p><em>PATH中引用它的目录到src下</em></p>
+<p>进入后 输入ping返回pong即成功</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis%E5%9C%A8%E6%9C%8D%E5%8A%A1%E4%B8%8A%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%AE%89%E8%A3%85/" data-id="ckcmov5zv000iy0hca1rw09uj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Redis数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.408Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Redis数据类型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis数据类型"><a href="#Redis数据类型" class="headerlink" title="Redis数据类型"></a>Redis数据类型</h1><blockquote>
+<p>Redis的数据存储主要通过key/value实现，key都是string类型，value则分不同的应用场景有五种类型定义：</p>
+</blockquote>
+<h2 id="字符串（Stirngs）"><a href="#字符串（Stirngs）" class="headerlink" title="字符串（Stirngs）"></a>字符串（Stirngs）</h2><p>字符串是一种最基本的Redis值类型。Redis字符串是二进制安全的，这意味着一个Redis字符串能包含任意类型的数据，如一张jpeg的图片或者是一个序列化的对象。具有全局统计功能的数据，如全局ID生成器、集群配置信息等；一个字符串类型的值最多能存储512M字节。</p>
+<h2 id="列表（Lists）"><a href="#列表（Lists）" class="headerlink" title="列表（Lists）"></a>列表（Lists）</h2><p>Redis列表是简单的字符串列表，按照插入顺序排序。常用于存储需要基于队列或者栈操作的系列数据，如消息队列； 你可以添加一个元素到列表的头部（左边）或者尾部（右边）。LPUSH 命令插入一个新元素到列表头部，而<a href="http://www.redis.cn/commands/rpush.html" target="_blank" rel="noopener">RPUSH</a>命令 插入一个新元素到列表的尾部。当 对一个空key执行其中某个命令时，将会创建一个新表。 类似的，如果一个操作要清空列表，那么key会从对应的key空间删除。这是个非常便利的语义， 因为如果使用一个不存在的key作为参数，所有的列表命令都会像在对一个空表操作一样。</p>
+<p>一个列表最多可以包含232-1个元素（4294967295，每个表超过40亿个元素）。</p>
+<p>从时间复杂度的角度来看，Redis列表主要的特性就是支持时间常数的 插入和靠近头尾部元素的删除，即使是需要插入上百万的条目。 访问列表两端的元素是非常快的，但如果你试着访问一个非常大 的列表的中间元素仍然是十分慢的，因为那是一个时间复杂度为 <strong>O(N)</strong> 的操作。</p>
+<p>你可以用Redis列表做许多有趣的事，例如你可以：</p>
+<ul>
+<li>在社交网络中建立一个时间线模型，使用<a href="http://www.redis.cn/commands/lpush.html" target="_blank" rel="noopener">LPUSH</a>去添加新的元素到用户时间线中，使用<a href="http://www.redis.cn/commands/lrange.html" target="_blank" rel="noopener">LRANGE</a>去检索一些最近插入的条目。</li>
+<li>你可以同时使用<a href="http://www.redis.cn/commands/lpush.html" target="_blank" rel="noopener">LPUSH</a>和<a href="http://www.redis.cn/commands/ltrim.html" target="_blank" rel="noopener">LTRIM</a>去创建一个永远不会超过指定元素数目的列表并同时记住最后的N个元素。</li>
+<li>列表可以用来当作消息传递的基元（primitive），例如，众所周知的用来创建后台任务的Resque Ruby库。</li>
+<li>你可以使用列表做更多事，这个数据类型支持许多命令，包括像<a href="http://www.redis.cn/commands/blpop.html" target="_blank" rel="noopener">BLPOP</a>这样的阻塞命令。请查看所有可用的列表操作命令获取更多的信息。</li>
+</ul>
+<h2 id="集合（Sets）"><a href="#集合（Sets）" class="headerlink" title="集合（Sets）"></a>集合（Sets）</h2><p>用于存储需要维护一个全局不重复的集合，如服务注册发现，可以实现全局去重的功能，如访问网页的独立IP，共同好友等；</p>
+<p>Redis集合是一个无序的字符串合集。你可以以<strong>O(1)</strong> 的时间复杂度（无论集合中有多少元素时间复杂度都为常量）完成 添加，删除以及测试元素是否存在的操作。</p>
+<p>Redis集合有着不允许相同成员存在的优秀特性。向集合中多次添加同一元素，在集合中最终只会存在一个此元素。实际上这就意味着，在添加元素前，你并不需要事先进行检验此元素是否已经存在的操作。</p>
+<p>一个Redis列表十分有趣的事是，它们支持一些服务端的命令从现有的集合出发去进行集合运算。 所以你可以在很短的时间内完成合并（union）,求交(intersection), 找出不同元素的操作。</p>
+<p>一个集合最多可以包含232-1个元素（4294967295，每个集合超过40亿个元素）。</p>
+<p>你可以用Redis集合做很多有趣的事，例如你可以：</p>
+<ul>
+<li>用集合跟踪一个独特的事。想要知道所有访问某个博客文章的独立IP？只要每次都用SADD来处理一个页面访问。那么你可以肯定重复的IP是不会插入的。</li>
+<li>Redis集合能很好的表示关系。你可以创建一个tagging系统，然后用集合来代表单个tag。接下来你可以用<a href="http://www.redis.cn/commands/sadd.html" target="_blank" rel="noopener">SADD</a>命令把所有拥有tag的对象的所有ID添加进集合，这样来表示这个特定的tag。如果你想要同时有3个不同tag的所有对象的所有ID，那么你需要使用<a href="http://www.redis.cn/commands/sinter.html" target="_blank" rel="noopener">SINTER</a>.</li>
+<li>使用<a href="http://www.redis.cn/commands/spop.html" target="_blank" rel="noopener">SPOP</a>或者<a href="http://www.redis.cn/commands/srandmember.html" target="_blank" rel="noopener">SRANDMEMBER</a>命令随机地获取元素。</li>
+</ul>
+<h2 id="哈希（Hashes）"><a href="#哈希（Hashes）" class="headerlink" title="哈希（Hashes）"></a>哈希（Hashes）</h2><p>用于存储对象结构的数据，多个field绑定到一个key上（对比使用string类型存储对象的优势在于hash类型可以直接update具体field的值而不影响其他field），如实现SSO，cookie为key，用户信息为value，并有指定过期时间；</p>
+<p>一个拥有少量（100个左右）字段的hash需要 很少的空间来存储，所有你可以在一个小型的 Redis实例中存储上百万的对象。尽管Hashes主要用来表示对象，但它们也能够存储许多元素，所以你也可以用Hashes来完成许多其他的任务。一个hash最多可以包含232-1 个key-value键值对（超过40亿）。</p>
+<h2 id="有序集合（Sorted-sets）"><a href="#有序集合（Sorted-sets）" class="headerlink" title="有序集合（Sorted sets）"></a>有序集合（Sorted sets）</h2><p>用于存储需要维护一个全局不重复但有权重排序的列表可以使用SORTED SET，如积分排行榜、带权重的消息队列</p>
+<p>Redis有序集合和Redis集合类似，是不包含 相同字符串的合集。它们的差别是，每个有序集合 的成员都关联着一个评分，这个评分用于把有序集 合中的成员按最低分到最高分排列。</p>
+<p>使用有序集合，你可以非常快地（<strong>O(log(N))</strong>）完成添加，删除和更新元素的操作。 因为元素是在插入时就排好序的，所以很快地通过评分(score)或者 位次(position)获得一个范围的元素。 访问有序集合的中间元素同样也是非常快的，因此你可以使用有序集合作为一个没用重复成员的智能列表。 在这个列表中， 你可以轻易地访问任何你需要的东西: 有序的元素，快速的存在性测试，快速访问集合中间元素！</p>
+<p>简而言之，使用有序集合你可以很好地完成 很多在其他数据库中难以实现的任务。</p>
+<p>使用有序集合你可以：</p>
+<ul>
+<li>在一个巨型在线游戏中建立一个排行榜，每当有新的记录产生时，使用<a href="http://www.redis.cn/commands/zadd.html" target="_blank" rel="noopener">ZADD</a> 来更新它。你可以用ZRANGE轻松地获取排名靠前的用户， 你也可以提供一个用户名，然后用<a href="http://www.redis.cn/commands/zrank.html" target="_blank" rel="noopener">ZRANK</a>获取他在排行榜中的名次。 同时使用<a href="http://www.redis.cn/commands/zrank.html" target="_blank" rel="noopener">ZRANK</a>和<a href="http://www.redis.cn/commands/zrange.html" target="_blank" rel="noopener">ZRANGE</a>你可以获得与指定用户有相同分数的用户名单。 所有这些操作都非常迅速。</li>
+<li>有序集合通常用来索引存储在Redis中的数据。 例如：如果你有很多的hash来表示用户，那么你可以使用一个有序集合，这个集合的年龄字段用来当作评分，用户ID当作值。用<a href="http://www.redis.cn/commands/zrangebyscore.html" target="_blank" rel="noopener">ZRANGEBYSCORE</a>可以简单快速地检索到给定年龄段的所有用户。</li>
+</ul>
+<h2 id="HyperLogLogs"><a href="#HyperLogLogs" class="headerlink" title="HyperLogLogs"></a>HyperLogLogs</h2><p>用于做基数统计（基于set类型的封装，仅根据输入的独立元素个数进行统计，而不存储元素本身），可以保证在输入元素数量或者体积非常大的时候可以保证统计所需的空间固定为12kb（最大2^64个元素） 。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="ckcmov5zu000hy0hc33o919l7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Redis基本命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.394Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">Redis基本命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis基本命令Keys"><a href="#Redis基本命令Keys" class="headerlink" title="Redis基本命令Keys"></a>Redis基本命令Keys</h1><h5 id="del-key"><a href="#del-key" class="headerlink" title="del key"></a>del key</h5><p>删除key</p>
+<h5 id="dump-key"><a href="#dump-key" class="headerlink" title="dump key"></a>dump key</h5><p>序列化给定key，并返回被序列化的值,使用<strong>restore</strong>命令可以将这个值反序列化为Redis键；restore <key> <ttl>  其中ttl是以毫秒为单位为key设置生存时间；如果ttl为0，那么不设置生存时间例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="built_in">set</span> dumpKey <span class="number">10</span></span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; dump dumpKey</span><br><span class="line"><span class="string">"\x00\xc0\n\t\x00\xbem\x06\x89Z(\x00\n"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; restore newKey <span class="number">0</span> <span class="string">"\x00\xc0\n\t\x00\xbem\x06\x89Z(\x00\n"</span></span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<h5 id="exists-key"><a href="#exists-key" class="headerlink" title="exists key"></a>exists key</h5><p>返回key是否存在 1存在 0不存在</p>
+<h5 id="expire-key-seconds"><a href="#expire-key-seconds" class="headerlink" title="expire key seconds"></a>expire key seconds</h5><p>设置<code>key</code>的过期时间，超过时间后，将会自动删除该<code>key</code>。在Redis的术语中一个<code>key</code>的相关超时是不确定的。超时后只有对<code>key</code>执行<a href="http://www.redis.cn/commands/del.html" target="_blank" rel="noopener">DEL</a>命令或者<a href="http://www.redis.cn/commands/set.html" target="_blank" rel="noopener">SET</a>命令或者<a href="http://www.redis.cn/commands/getset.html" target="_blank" rel="noopener">GETSET</a>时才会清除。 这意味着，从概念上讲所有改变<code>key</code>的值的操作都会使他清除。 </p>
+<p>使用<a href="http://www.redis.cn/commands/persist.html" target="_blank" rel="noopener">PERSIST</a>命令可以清除超时，使其变成一个永久的<code>key</code>。如果<code>key</code>被<a href="http://www.redis.cn/commands/rename.html" target="_blank" rel="noopener">RENAME</a>命令修改，相关的超时时间会转移到新<code>key</code>上面。如果<code>key</code>被<a href="http://www.redis.cn/commands/rename.html" target="_blank" rel="noopener">RENAME</a>命令修改，比如原来就存在<code>Key_A</code>,然后调用<code>RENAME Key_B Key_A</code>命令，这时不管原来<code>Key_A</code>是永久的还是设置为超时的，都会由<code>Key_B</code>的有效期状态覆盖。    </p>
+<p>刷新过期时间：对已过期的key执行expire操作,会更新它的过期时间</p>
+<h5 id="expireat-key-timestamp"><a href="#expireat-key-timestamp" class="headerlink" title="expireat key timestamp"></a>expireat key timestamp</h5><p>同expire 只是接收的时间参数是unix时间戳</p>
+<h5 id="keys-pattern"><a href="#keys-pattern" class="headerlink" title="keys pattern"></a>keys pattern</h5><p>查找所有符合给定模式pattern（正则表达式）的 key </p>
+<p><strong>警告</strong>: <code>KEYS</code> 的速度非常快，但在一个大的数据库中使用它仍然可能造成性能问题，如果你需要从一个数据集中查找特定的 <code>KEYS</code>， 你最好还是用 Redis 的集合结构 <a href="http://www.redis.cn/commands/sets.html" target="_blank" rel="noopener">SETS</a> 来代替。</p>
+<p>支持的正则表达模式：</p>
+<ul>
+<li><code>h?llo</code> 匹配 <code>hello</code>, <code>hallo</code> 和 <code>hxllo</code></li>
+<li><code>h*llo</code> 匹配 <code>hllo</code> 和 <code>heeeello</code></li>
+<li><code>h[ae]llo</code> 匹配 <code>hello</code> 和 <code>hallo,</code> 但是不匹配 <code>hillo</code></li>
+<li><code>h[^e]llo</code> 匹配 <code>hallo</code>, <code>hbllo</code>, … 但是不匹配 <code>hello</code></li>
+<li><code>h[a-b]llo</code> 匹配 <code>hallo</code> 和 <code>hbllo</code></li>
+</ul>
+<p>如果你想取消字符的特殊匹配（正则表达式，可以在它的前面加<code>\</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; MSET one <span class="number">1</span> two <span class="number">2</span> three <span class="number">3</span> four <span class="number">4</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; KEYS *o*</span><br><span class="line"><span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"one"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"two"</span></span><br><span class="line">redis&gt; KEYS t??</span><br><span class="line"><span class="number">1</span>) <span class="string">"two"</span></span><br><span class="line">redis&gt; KEYS *</span><br><span class="line"><span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"three"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"one"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"two"</span></span><br><span class="line">redis&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="MIGRATEhost-port-key-destination-db-timeout-COPY-REPLACE"><a href="#MIGRATEhost-port-key-destination-db-timeout-COPY-REPLACE" class="headerlink" title="MIGRATEhost port key destination-db timeout [COPY] [REPLACE]"></a>MIGRATEhost port key destination-db timeout [COPY] [REPLACE]</h5><p>将 key 原子性地从当前实例传送到目标实例的指定数据库上，一旦传送成功， key 保证会出现在目标实例上，而当前实例上的 key 会被删除。</p>
+<p>这个命令是一个原子操作，它在执行的时候会阻塞进行迁移的两个实例，直到以下任意结果发生：迁移成功，迁移失败，等到超时。如果超时命令会停止，并且返回IOERR错误；造成的可能是：</p>
+<ul>
+<li>key可能存在于两个实例</li>
+<li>key可能只存在于当前实例。</li>
+</ul>
+<h5 id="move-key-db"><a href="#move-key-db" class="headerlink" title="move key db"></a>move key db</h5><p>将当前数据库的 key 移动到给定的数据库 db 当中</p>
+<p>将当前数据库的 key 移动到给定的数据库 db 当中。</p>
+<p>如果当前数据库(源数据库)和给定数据库(目标数据库)有相同名字的给定 key ，或者 key 不存在于当前数据库，那么 MOVE 没有任何效果。</p>
+<p>因此，也可以利用这一特性，将 <code>MOVE</code> 当作锁(locking)原语(primitive)。</p>
+<h5 id="OBJECT-subcommand-arguments-arguments-…"><a href="#OBJECT-subcommand-arguments-arguments-…" class="headerlink" title="OBJECT subcommand [arguments [arguments …]]"></a>OBJECT subcommand [arguments [arguments …]]</h5><p><code>OBJECT</code> 命令可以在内部调试(debugging)给出keys的内部对象，它用于检查或者了解你的keys是否用到了特殊编码 的数据类型来存储空间z。 当redis作为缓存使用的时候，你的应用也可能用到这些由<code>OBJECT</code>命令提供的信息来决定应用层的key的驱逐策略(eviction policies)</p>
+<p><code>OBJECT</code> 支持多个子命令:</p>
+<ul>
+<li>OBJECT REFCOUNT 该命令主要用于调试(debugging)，它能够返回指定key所对应value被引用的次数.</li>
+<li>OBJECT ENCODING 该命令返回指定key对应value所使用的内部表示(representation)(译者注：也可以理解为数据的压缩方式).</li>
+<li>OBJECT IDLETIME 该命令返回指定key对应的value自被存储之后空闲的时间，以秒为单位(没有读写操作的请求) ，这个值返回以10秒为单位的秒级别时间，这一点可能在以后的实现中改善</li>
+</ul>
+<p>对象可以用多种方式编码:</p>
+<ul>
+<li>字符串可以被编码为 raw (常规字符串) 或者int (用字符串表示64位无符号整数这种编码方式是为了节省空间).</li>
+<li>列表类型可以被编码为ziplist 或者 linkedlist. ziplist 是为了节省较小的列表空间而设计一种特殊编码方式.</li>
+<li>集合被编码为 intset 或者 hashtable. intset 是为了存储数字的较小集合而设计的一种特殊编码方式.</li>
+<li>哈希表可以被编码为 zipmap 或者hashtable. zipmap 是专为了较小的哈希表而设计的一种特殊编码方式</li>
+<li>有序集合被编码为ziplist 或者 skiplist 格式. ziplist可以表示较小的有序集合, skiplist 表示任意大小多的有序集合.</li>
+</ul>
+<p>一旦你做了一个操作让redis无法再使用那些节省空间的编码方式，它将自动将那些特殊的编码类型转换为普通的编码类型.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; <span class="built_in">set</span> foo <span class="number">1000</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; object encoding foo</span><br><span class="line"><span class="string">"int"</span></span><br><span class="line">redis&gt; append foo bar</span><br><span class="line">(integer) <span class="number">7</span></span><br><span class="line">redis&gt; <span class="built_in">get</span> foo</span><br><span class="line"><span class="string">"1000bar"</span></span><br><span class="line">redis&gt; object encoding foo</span><br><span class="line"><span class="string">"raw"</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="persist-key"><a href="#persist-key" class="headerlink" title="persist key"></a>persist key</h5><p>移除给定key的生存时间，将这个 key 从『易失的』(带生存时间 key )转换成『持久的』(一个不带生存时间、永不过期的 key )。</p>
+<h5 id="PEXPIRE-key-milliseconds"><a href="#PEXPIRE-key-milliseconds" class="headerlink" title="PEXPIRE key milliseconds"></a>PEXPIRE key milliseconds</h5><p>这个命令和<a href="http://www.redis.cn/commands/expire.html" target="_blank" rel="noopener">EXPIRE</a>命令的作用类似，但是它以毫秒为单位设置 key 的生存时间，而不像<a href="http://www.redis.cn/commands/expire.html" target="_blank" rel="noopener">EXPIRE</a>命令那样，以秒为单位</p>
+<h5 id="PEXPIREAT-key-milliseconds-timestamp"><a href="#PEXPIREAT-key-milliseconds-timestamp" class="headerlink" title="PEXPIREAT key milliseconds-timestamp"></a>PEXPIREAT key milliseconds-timestamp</h5><p><code>PEXPIREAT</code> 这个命令和<a href="http://www.redis.cn/commands/expireat.html" target="_blank" rel="noopener">EXPIREAT</a>命令类似，但它以毫秒为单位设置 key 的过期 <code>unix</code> 时间戳，而不是像<a href="http://www.redis.cn/commands/expireat.html" target="_blank" rel="noopener">EXPIREAT</a>那样，以秒为单位。</p>
+<h5 id="pttl"><a href="#pttl" class="headerlink" title="pttl"></a>pttl</h5><p>这个命令类似于<a href="http://www.redis.cn/commands/ttl.html" target="_blank" rel="noopener">TTL</a>命令，但它以毫秒为单位返回 key 的剩余生存时间，而不是像<a href="http://www.redis.cn/commands/ttl.html" target="_blank" rel="noopener">TTL</a>命令那样，以秒为单位。</p>
+<h5 id="ttl"><a href="#ttl" class="headerlink" title="ttl"></a>ttl</h5><p>返回key剩余的过期时间。 这种反射能力允许Redis客户端检查指定key在数据集里面剩余的有效期。</p>
+<h5 id="randomkey"><a href="#randomkey" class="headerlink" title="randomkey"></a>randomkey</h5><p>从当前数据库返回一个随机的key</p>
+<h5 id="rename-key-newkey"><a href="#rename-key-newkey" class="headerlink" title="rename key newkey"></a>rename key newkey</h5><p>将key重命名为newkey</p>
+<h5 id="RESTORE-key-ttl-serialized-value-REPLACE"><a href="#RESTORE-key-ttl-serialized-value-REPLACE" class="headerlink" title="RESTORE key ttl serialized-value [REPLACE]"></a>RESTORE key ttl serialized-value [REPLACE]</h5><p>反序列化给定的序列化值，并将它和给定的 key 关联。</p>
+<p>参数 ttl 以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间。</p>
+<p><code>RESTORE</code> 在执行反序列化之前会先对序列化值的 RDB 版本和数据校验和进行检查，如果 RDB 版本不相同或者数据不完整的话，那么 RESTORE 会拒绝进行反序列化，并返回一个错误。</p>
+<h4 id="SCAN-cursor-MATCH-pattern-COUNT-count"><a href="#SCAN-cursor-MATCH-pattern-COUNT-count" class="headerlink" title="SCAN cursor [MATCH pattern] [COUNT count]"></a>SCAN cursor [MATCH pattern] [COUNT count]</h4><p><a href="http://www.redis.cn/commands/scan.html" target="_blank" rel="noopener">SCAN</a> 命令及其相关的 <a href="http://www.redis.cn/commands/sscan.html" target="_blank" rel="noopener">SSCAN</a>, <a href="http://www.redis.cn/commands/hscan.html" target="_blank" rel="noopener">HSCAN</a> 和 <a href="http://www.redis.cn/commands/zscan.html" target="_blank" rel="noopener">ZSCAN</a> 命令都用于增量迭代一个集合元素。</p>
+<ul>
+<li><a href="http://www.redis.cn/commands/scan.html" target="_blank" rel="noopener">SCAN</a> 命令用于迭代当前数据库中的key集合类型。</li>
+<li><a href="http://www.redis.cn/commands/sscan.html" target="_blank" rel="noopener">SSCAN</a> 命令用于迭代SET集合中的元素。</li>
+<li><a href="http://www.redis.cn/commands/hscan.html" target="_blank" rel="noopener">HSCAN</a> 命令用于迭代Hash类型中的键值对。</li>
+<li><a href="http://www.redis.cn/commands/zscan.html" target="_blank" rel="noopener">ZSCAN</a> 命令用于迭代SortSet集合中的元素和元素对应的分值</li>
+</ul>
+<p>cursor 是下标 可以从0开始</p>
+<p>MATCH 是通过正则表达式进行匹配  例如 scan 0 MATCH * 迭代所有集合</p>
+<p>COUNT 是迭代到多少个  默认是10 可以设置</p>
+<h5 id="SORTkey-BY-pattern-LIMIT-offset-count-GET-pattern-ASC-DESC-ALPHA-destination"><a href="#SORTkey-BY-pattern-LIMIT-offset-count-GET-pattern-ASC-DESC-ALPHA-destination" class="headerlink" title="SORTkey [BY pattern] [LIMIT offset count] [GET pattern] [ASC|DESC] [ALPHA] destination"></a>SORTkey [BY pattern] [LIMIT offset count] [GET pattern] [ASC|DESC] [ALPHA] destination</h5><p>返回或存储的key的lsit、set或sorted set中的元素。默认是按照数值类型配许的。并且按照两个元素的双精度浮点数类型值进行比较。例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort mylist</span><br></pre></td></tr></table></figure>
+
+<p>假设mylist是一个数字列表，这条命令将返回一个元素从小到大排序的相同大小列表。如果像从大到小排序。可以使用!Desc修饰符.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sort mylist desc</span><br></pre></td></tr></table></figure>
+
+<h5 id="Touch-key-key"><a href="#Touch-key-key" class="headerlink" title="Touch key key[..]"></a>Touch key key[..]</h5><p>修改指定keys 最后的访问时间，若key不存在，不做操作。</p>
+<h5 id="Type-key"><a href="#Type-key" class="headerlink" title="Type key"></a>Type key</h5><p>返回key所存储的value的数据结构类型，</p>
+<h5 id="Unlink-key-。。。"><a href="#Unlink-key-。。。" class="headerlink" title="Unlink key 。。。"></a>Unlink key 。。。</h5><p>该命令和<code>DEL</code>十分相似：删除指定的key(s),若key不存在则该key被跳过。但是，相比<code>DEL</code>会产生阻塞，该命令会在另一个线程中回收内存，因此它是非阻塞的。 这也是该命令名字的由来：仅将keys从keyspace元数据中删除，真正的删除会在后续异步操作。</p>
+<h5 id="WAIT-numslaves-timeout"><a href="#WAIT-numslaves-timeout" class="headerlink" title="WAIT numslaves timeout"></a>WAIT numslaves timeout</h5><p>此命令阻塞当前客户端，直到所有以前的写命令都成功的传输和指定的slaves确认。如果超时，指定以毫秒为单位，即使指定的slaves还没有到达，命令任然返回。</p>
+<p>命令<strong>始终返回</strong>之前写命令发送的slaves的数量，无论是在指定slaves的情况还是达到超时。</p>
+<p>注意点:</p>
+<ol>
+<li>当’WAIT’返回时，所有之前的写命令保证接收由<code>WAIT</code>返回的slaves的数量。</li>
+<li>如果命令呗当做事务的一部分发送，该命令不阻塞，而是只尽快返回先前写命令的slaves的数量。</li>
+<li>如果timeout是0那意味着永远阻塞。</li>
+<li>由于<code>WAIT</code>返回的是在失败和成功的情况下的slaves的数量。客户端应该检查返回的slaves的数量是等于或更大的复制水平。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" data-id="ckcmov5zs000fy0hc82y9flp3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Redis6.0_ACL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis6.0_ACL/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.362Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis6.0_ACL/">Redis6.0_ACL</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h3 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h3><p>ACl是Acces Control List （访问控制列表）的缩写，允许对访问Redis的连接做一些可执行命令和可访问的KEY的限制。工作方式是在连接之后，要iu客户端进行身份验证，以提供用户名和有效密码：如果身份验证成功，该客户端连接与给定用户绑定，并具有该用户的访问权限。</p>
+<h3 id="什么时候用ACLs"><a href="#什么时候用ACLs" class="headerlink" title="什么时候用ACLs"></a>什么时候用ACLs</h3><ol>
+<li><strong>希望通过限制对命令和 KEY 的访问来提高安全性</strong>。以便不受信任的客户端无法访问，而受信任的客户端仅具有满足要求的最低操作权限。如：某些客户端可能仅能执行只读命令。</li>
+<li><strong>想提高操作安全性</strong>，以防止由于软件或人为错误而导致非授权情况的操作，导致数据或配置的损坏。例如，不应该让所有客户端都能够调用 FLUSHALL 命令。</li>
+</ol>
+<h3 id="ACL规则"><a href="#ACL规则" class="headerlink" title="ACL规则"></a>ACL规则</h3><p>ACLS 是使用 DSL（Domain specific language,领域专用语言）来定义的。</p>
+<p>可以通过两种方式配置 ACL</p>
+<ol>
+<li><p>在命令行通过 ACL 命令配置</p>
+</li>
+<li><p>开启 Redis 配置文件中开启 aclfile 配置项，通过配置文件的方式加载</p>
+<blockquote>
+<p>redis.conf 默认配置中, 使用外部 aclfile 是不开启的我们通过配置来启用：aclfile  /usr/local/redis6/users.acl</p>
+<p>/usr/local/redis6/users.acl 即 acl 的配置文件</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="启动或禁用用户"><a href="#启动或禁用用户" class="headerlink" title="启动或禁用用户"></a>启动或禁用用户</h3><ul>
+<li><strong>on</strong>  启用。可以使用该用户进行身份认证</li>
+<li><strong>off</strong>  禁用。不能使用该用户进行身份认证，但已通过身份认证的连接仍然可以使用。</li>
+</ul>
+<h3 id="启用或禁用命令"><a href="#启用或禁用命令" class="headerlink" title="启用或禁用命令"></a>启用或禁用命令</h3><ol>
+<li>+<command>  将 <command> 命令添加到用户可调用的命令列表中</li>
+<li>-<command>  从可调用的命令列表中移除 <command> 命令</li>
+<li>+@<category>  允许用户调用 <category> 分类中的所有命令（可通过 ACL CAT 命令查看完成分类列表）</li>
+<li>-@<category>  禁止用户调用 <category> 分类中的所有命令</li>
+<li>+<command>|subcommand  允许使用原本禁用的特定类别下的特定子命令</li>
+<li>+@all  允许调用所有命令，与使用 allcommands 效果相同。包括当前存在的命令以及将来通过模块加载的命令</li>
+<li>-@all  禁止调用所有命令</li>
+</ol>
+<h3 id="允许或禁止访问某些-KEY"><a href="#允许或禁止访问某些-KEY" class="headerlink" title="允许或禁止访问某些 KEY"></a>允许或禁止访问某些 KEY</h3><ul>
+<li>~<pattern> 添加符合条件的模式。如：  ~* 允许所有 KEY，使用 ~* 与 allkeys 效果相同 </li>
+<li>resetkeys 使用当前模式覆盖所有允许的模式。如： ~foo:* ~bar:*  resetkeys ~objects:* ，最终客户端只允许访问匹配 ~object:* 模式的 KEY</li>
+</ul>
+<h3 id="为用户配置有效密码"><a href="#为用户配置有效密码" class="headerlink" title="为用户配置有效密码"></a>为用户配置有效密码</h3><ul>
+<li><strong>‘&gt;’<password></strong>  将密码添加到用户有效密码列表中。例如：&gt;mypassword 将会把 mypassword 添加到用户的密码列表中。该操作会清除用户的 nopass 标记。每个用户可由拥有多个有效密码</li>
+<li><strong>&lt;<password></strong>  将密码从用户有效密码列表中移除。列表中不存在改密码时，会报错。</li>
+<li>#<hash>  将此 SHA-256 哈希值添加到用户的有效密码列表中。该哈希值将与 ACL 用户输入的密码的哈希值进行比较。这将允许用户将此哈希值存储在 acl 配置文件中，而不是存储明文密码。仅接受 SHA-256 哈希值，因为密码的哈希必须由 64 个字符长度的小写的十六进制字符组成。</li>
+<li><strong>!<hash></strong>  从有效密码列表中删除该哈希值。（适用于不知道哈希值指定的密码但又想从用户中删除密码的情况）</li>
+<li>nopass  删除用户所有密码，并将该用户标记为不需要密码。如果此指令引用于 default 用户，则每个新的连接都将立即通过 default 用户进行连接，而无需任何显示的 AUTH 命令。</li>
+<li>resetpass  清除用户可用密码列表的数据，并清除 nopass 状态。之后该用户将没有任何关联的有效密码，将不允许登录，直到为该用户设置了有效密码或将用户设置成 nopass 状态</li>
+<li>reset  重置用户到初始状态。该命令会执行以下操作：resetpass，resetkeys，off，-@ all。</li>
+</ul>
+<blockquote>
+<p>未使用 nopass 标记且没有有效密码列表的用户，实际上是无法使用的。因为无法以该用户的身份登录。</p>
+</blockquote>
+<h2 id="ACL常用命令"><a href="#ACL常用命令" class="headerlink" title="ACL常用命令"></a>ACL常用命令</h2><h5 id="acl-list-检查当前获得的acl列表"><a href="#acl-list-检查当前获得的acl列表" class="headerlink" title="acl list    检查当前获得的acl列表"></a>acl list    检查当前获得的acl列表</h5><p>首次安装后只有一个默认的default用户，其具有如下状态：</p>
+<ul>
+<li>用户名为default</li>
+<li>用户处于启用状态</li>
+<li>访问不需要密码</li>
+<li>可以访问所有的Key</li>
+<li>可以执行所有命令</li>
+</ul>
+<h4 id="acl-setuser"><a href="#acl-setuser" class="headerlink" title="acl setuser"></a>acl setuser</h4><p>acl setuser <username>用户不存在，则按默认规则创建用户，用户存在，则该命令不执行任何操作。</p>
+<p>acl setuser <username> <rules>不存在则创建用户，且添加rules；如若有用户则追加rules；ps：用户名区分大小写</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个名为 lnrcoder 的用户</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; ACL SETUSER lnrcoder</span><br><span class="line">OK</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 查询所有活动的 ACL</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; ACL LIST</span><br><span class="line"><span class="number">1</span>) <span class="string">"user default on nopass ~* +@all"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"user lnrcoder off -@all"</span></span><br></pre></td></tr></table></figure>
+
+<p>我们创建的 lnrcoder 用户默认规则为：</p>
+<ul>
+<li><p>处于关闭状态</p>
+</li>
+<li><p>无法执行任何命令</p>
+</li>
+<li><p>没有匹配的访问 KEY 的模式</p>
+</li>
+<li><p>没有有效的密码</p>
+<p>我们为其配置一些 ACL 规则</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用户状态设置为启用，密码为 mypassword，允许访问以 cached: 开头的 KEY，允许执行 get 命令</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; ACL SETUSER lnrcoder on &gt;mypassword ~cached:* +<span class="built_in">get</span></span><br><span class="line">OK</span><br><span class="line"> </span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; ACL LIST</span><br><span class="line"><span class="number">1</span>) <span class="string">"user default on nopass ~* +@all"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"user lnrcoder on #89e01536ac207279409d4de1e5253e01f4a1769e696db0d6062ca9b8f56767c8 ~cached:* -@all +get"</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// set 一个以 cached: 开头的 KEY 用来测试</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="built_in">set</span> cached:test test</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 AUTH 切换到 lnrcoder 用户下</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; AUTH lnrcoder mypassword</span><br><span class="line">OK</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 使用 set 命令设置不符合匹配规则的 KEY</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="built_in">set</span> a <span class="number">1</span></span><br><span class="line">(error) NOPERM this user has no permissions to run the 'set' command or its subcommand</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 使用 set 命令设置符合匹配规则的 KEY</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="built_in">set</span> cached:aaa <span class="number">1</span></span><br><span class="line">(error) NOPERM this user has no permissions to run the 'set' command or its subcommand</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 使用 get 命令获取不符合匹配的 KEY 值</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="built_in">get</span> a</span><br><span class="line">(error) NOPERM <span class="keyword">this</span> user has no permissions to access one of the keys used as arguments</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 使用 get 命令获取符合匹配规则的 KEY 值</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="built_in">get</span> cached:test</span><br><span class="line"><span class="string">"test"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>acl getuser <username></strong></p>
+<p>同 acl list作用类是。acl getuser用来获取指定用户的acl状态信息</p>
+<p><strong>acl deluser</strong></p>
+<p>删除用户acl deluser <username></p>
+<p><strong>acl users</strong></p>
+<p>查看所有用户</p>
+<p><strong>acl whoami</strong></p>
+<p>查看当前 操作的用户</p>
+<p><strong>acl cat</strong></p>
+<p>显示所有的acl类别</p>
+<p>acl cat <category>显示指定类别中所有的Redis命令</p>
+<p><strong>acl save</strong></p>
+<p>前提：redis配置中启用了aclfile选项，将当前所有的acl存入aclfile，覆盖aclfile内容</p>
+<p><strong>acl load</strong><br>前提：redis配置中启用了aclfile选项</p>
+<p>从acl文件中加载定义的acl规则</p>
+<p>该命令保证所有的规则都有效时才能执行成：</p>
+<ul>
+<li>如果aclfile文件中每一行都有效，则将所有内容加载到内存替换内存中现有的ACL规则</li>
+<li>如果文件中有一行或多行无效，则不会加载任何内容，继续使用现有内存中的规则。</li>
+</ul>
+<p><strong>acl genpass</strong></p>
+<p>可以使用该命令来生成redis密码，该命令默认创建一个256bit的32字节的伪随机字符串，并将其转换为64字节的字母+数字的字符串。如有参数，则使用指定的位数长度。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; ACL GENPASS</span><br><span class="line"><span class="string">"e2ceb52e866908c2706e521b7d145eb78ec4b5806ef1fd0bcb4482687d2c82f7"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; ACL GENPASS <span class="number">32</span></span><br><span class="line"><span class="string">"fbcc163c"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; ACL GENPASS <span class="number">64</span></span><br><span class="line"><span class="string">"3ab469e7c659c19a"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>acl log</strong></p>
+<p>查看安全事件的日志 ；可使用 acl log reset命令清空log</p>
+<p>该命令记录如下的acl安全事件</p>
+<ul>
+<li><p>无法通过auth身份验证的</p>
+</li>
+<li><p>违背当前acl规则，执行命令被拒绝</p>
+</li>
+<li><p>访问当前acl规则中不允许的Key，被拒绝访问</p>
+</li>
+</ul>
+<p><strong>acl help</strong></p>
+<p>acl 命令帮助</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis6.0_ACL/" data-id="ckcmov5zp000cy0hcfx2879k9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Redis_String命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis_String%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.306Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis_String%E5%91%BD%E4%BB%A4/">Redis_String命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis字符串命令"><a href="#Redis字符串命令" class="headerlink" title="Redis字符串命令"></a>Redis字符串命令</h1><h4 id="append-key-value"><a href="#append-key-value" class="headerlink" title="append key value"></a>append key value</h4><p>如果 <code>key</code> 已经存在，并且值为字符串，那么这个命令会把 <code>value</code> 追加到原来值（value）的结尾。 如果 <code>key</code> 不存在，那么它将首先创建一个空字符串的<code>key</code>，再执行追加操作，这种情况 <a href="http://www.redis.cn/ommands/append.html" target="_blank" rel="noopener">APPEND</a> 将类似于 <a href="http://www.redis.cn/ommands/set.html" target="_blank" rel="noopener">SET</a> 操作</p>
+<p>模式：Time series</p>
+<p><a href="http://www.redis.cn/ommands/append.html" target="_blank" rel="noopener">APPEND</a> 命令可以用来连接一系列固定长度的样例,与使用列表相比这样更加紧凑. 通常会用来记录节拍序列. 每收到一个新的节拍样例就可以这样记录:</p>
+<p><strong>strlen</strong>用来计算样例个数</p>
+<p><strong>getrange<key> <strat> <end></strong>允许随机访问序列中的各个元素</p>
+<p>*<em>setrange <key> <offset> <value> *</em>可以用来覆写已有的序列值</p>
+<h4 id="BITCOUNT-key-start-end"><a href="#BITCOUNT-key-start-end" class="headerlink" title="BITCOUNT key [start end]"></a>BITCOUNT key [start end]</h4><p>统计字符串被设置为1的bit数.</p>
+<p>一般情况下，给定的整个字符串都会被进行计数，通过指定额外的 start 或 end 参数，可以让计数只在特定的位上进行。</p>
+<p>start 和 end 参数的设置和 <a href="http://www.redis.cn/commands/getrange.html" target="_blank" rel="noopener">GETRANGE</a> 命令类似，都可以使用负数值：比如 -1 表示最后一个位，而 -2 表示倒数第二个位，以此类推</p>
+<h4 id="BITFIELDkey-GET-type-offset-SET-type-offset-value-INCRBY-type-offset-increment-OVERFLOW-WRAP-SAT-FAIL"><a href="#BITFIELDkey-GET-type-offset-SET-type-offset-value-INCRBY-type-offset-increment-OVERFLOW-WRAP-SAT-FAIL" class="headerlink" title="BITFIELDkey [GET type offset] [SET type offset value] [INCRBY type offset increment] [OVERFLOW WRAP|SAT|FAIL]"></a>BITFIELDkey [GET type offset] [SET type offset value] [INCRBY type offset increment] [OVERFLOW WRAP|SAT|FAIL]</h4><p>本命令会把Redis字符串当作位数组，并能对变长位宽和任意未字节对齐的指定整型位域进行寻址。在实践中，可以使用该命令对一个有符号的5位整型数的1234位设置指定值，也可以对一个31位无符号整型数的4567位进行取值。类似地，在对指定的整数进行自增和自减操作，本命令可以提供有保证的、可配置的上溢和下溢处理操作。</p>
+<p><code>BITFIELD</code>命令能操作多字节位域，它会执行一系列操作，并返回一个响应数组，在参数列表中每个响应数组匹配相应的操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#例如，下面的命令是对一个mykey有符号整数从第<span class="number">5</span>位开始偏移<span class="number">100</span>位自增<span class="number">1</span>，并获取<span class="number">4</span>位无符号整数的值： </span><br><span class="line">BITFIELD mykey INCRBY i5 <span class="number">100</span> <span class="number">1</span> GET u4 <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) (integer) <span class="number">1</span></span><br><span class="line"><span class="number">2</span>) (integer) <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="位和位偏移"><a href="#位和位偏移" class="headerlink" title="位和位偏移"></a>位和位偏移</h5><p>bitfield命令有两种方式来指定位偏移。如果未定带数字的前缀，将会以字符串的第0位作为起始位。</p>
+<p>不过，如果偏移量带有<code>#</code>前缀，那么指定的偏移量需要乘以整型宽度，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#将会在第1个i8整数的偏移0位和第2个整数的偏移8位进行设值。如果想得到一个给定长度的普通整型数组，则不一定要在客户端进行计算。</span><br><span class="line">BITFIELD mystring SET i8 #0 100 i8 #1 200</span><br></pre></td></tr></table></figure>
+
+<h4 id="BITOP-operation-destkey-key-key-…"><a href="#BITOP-operation-destkey-key-key-…" class="headerlink" title="BITOP operation destkey key [key …]"></a>BITOP operation destkey key [key …]</h4><p>对一个或多个保存二进制的字符串key进行位元操作，并将结果保存到destkey上。</p>
+<p><code>BITOP</code> 命令支持 AND 、 OR 、 NOT 、 XOR 这四种操作中的任意一种参数：</p>
+<ul>
+<li><code>BITOP AND destkey srckey1 srckey2 srckey3 ... srckeyN</code> ，对一个或多个 key 求逻辑并，并将结果保存到 destkey 。</li>
+<li><code>BITOP OR destkey srckey1 srckey2 srckey3 ... srckeyN</code>，对一个或多个 key 求逻辑或，并将结果保存到 destkey 。</li>
+<li><code>BITOP XOR destkey srckey1 srckey2 srckey3 ... srckeyN</code>，对一个或多个 key 求逻辑异或，并将结果保存到 destkey 。</li>
+<li><code>BITOP NOT destkey srckey</code>，对给定 key 求逻辑非，并将结果保存到 destkey 。</li>
+</ul>
+<p>除了 NOT 操作之外，其他操作都可以接受一个或多个 key 作为输入。</p>
+<p>执行结果将始终保持到<code>destkey</code>里面。</p>
+<h4 id="BITPOS-key-bit-start-end"><a href="#BITPOS-key-bit-start-end" class="headerlink" title="BITPOS key bit [start] [end]"></a>BITPOS key bit [start] [end]</h4><p>返回字符串里面第一个被设置为1或者0的bit位,bit参数填1或0</p>
+<h4 id="DECR-key"><a href="#DECR-key" class="headerlink" title="DECR key"></a>DECR key</h4><p>对key对应的数字做减1操作。如果key不存在，那么在操作之前，这个key对应的值会被置为0。如果key有一个错误类型的value或者是一个不能表示成数字的字符串，就返回错误。这个操作最大支持在64位有符号的整型数字。</p>
+<h4 id="DECRBY-key-decrement"><a href="#DECRBY-key-decrement" class="headerlink" title="DECRBY key decrement"></a>DECRBY key decrement</h4><p>将key对应的数字value自减 decrement 返回一个减完后的差</p>
+<h4 id="Get-key"><a href="#Get-key" class="headerlink" title="Get key"></a>Get key</h4><p>获得key的value，如果不存在则返回nil</p>
+<h4 id="getbit-key-offset"><a href="#getbit-key-offset" class="headerlink" title="getbit key offset"></a>getbit key offset</h4><p>在对key使用setbit key offset value后 可使用该命令来获取 key offset处的bit值</p>
+<h4 id="getrange-key-start-end"><a href="#getrange-key-start-end" class="headerlink" title="getrange key start end"></a>getrange key start end</h4><p><strong>警告</strong>：这个命令是被改成GETRANGE的，在小于2.0的Redis版本中叫SUBSTR。 返回key对应的字符串value的子串，这个子串是由start和end位移决定的（两者都在string内）。可以用负的位移来表示从string尾部开始数的下标。所以-1就是最后一个字符，-2就是倒数第二个，以此类推。这个函数处理超出范围的请求时，都把结果限制在string内。  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; SET mykey <span class="string">"This is a string"</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; GETRANGE mykey <span class="number">0</span> <span class="number">3</span></span><br><span class="line"><span class="string">"This"</span></span><br><span class="line">redis&gt; GETRANGE mykey <span class="number">-3</span> <span class="number">-1</span></span><br><span class="line"><span class="string">"ing"</span></span><br><span class="line">redis&gt; GETRANGE mykey <span class="number">0</span> <span class="number">-1</span></span><br><span class="line"><span class="string">"This is a string"</span></span><br><span class="line">redis&gt; GETRANGE mykey <span class="number">10</span> <span class="number">100</span></span><br><span class="line"><span class="string">"string"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="GETSET-key-value"><a href="#GETSET-key-value" class="headerlink" title="GETSET key value"></a>GETSET key value</h4><p>自动将key对应到value并且返回原来key对应的value。如果key存在但是对应的value不是字符串，就返回错误。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; getset mykey test</span><br><span class="line"><span class="string">"this is string"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="built_in">get</span> mykey</span><br><span class="line"><span class="string">"test"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="INCR"><a href="#INCR" class="headerlink" title="INCR"></a>INCR</h4><p>该值必须是数字类型。对存储在指定<code>key</code>的数值执行原子的加1操作。如果指定的key不存在，那么在执行incr操作之前，会先将它的值设定为<code>0</code>。</p>
+<h4 id="incrby"><a href="#incrby" class="headerlink" title="incrby"></a>incrby</h4><p>将key对应的数字加decrement。如果key不存在，操作之前，key就会被置为0，返回结果是增长后的和</p>
+<h4 id="INCRBYFLOAT-key-increment"><a href="#INCRBYFLOAT-key-increment" class="headerlink" title="INCRBYFLOAT key increment"></a>INCRBYFLOAT key increment</h4><p>增长浮点数 key的value必须是浮点数</p>
+<h4 id="MGET-key-key-…"><a href="#MGET-key-key-…" class="headerlink" title="MGET key [key …]"></a>MGET key [key …]</h4><p>返回所有指定的key的value。对于每个不对应string或者不存在的key，都返回特殊值<code>nil</code>。正因为此，这个操作从来不会失败。</p>
+<h4 id="MSET-key-value-key-value-…"><a href="#MSET-key-value-key-value-…" class="headerlink" title="MSET key value [key value …]"></a>MSET key value [key value …]</h4><p>对应给定的keys到他们相应的values上。<code>MSET</code>会用新的value替换已经存在的value，就像普通的<a href="http://www.redis.cn/commands/set.html" target="_blank" rel="noopener">SET</a>命令一样。如果你不想覆盖已经存在的values，请参看命令<a href="http://www.redis.cn/commands/msetnx.html" target="_blank" rel="noopener">MSETNX</a>。</p>
+<p><code>MSET</code>是原子的，所以所有给定的keys是一次性set的。客户端不可能看到这种一部分keys被更新而另外的没有改变的情况。</p>
+<h4 id="MSETNX-key-value-key-value-…"><a href="#MSETNX-key-value-key-value-…" class="headerlink" title="MSETNX key value [key value …]"></a>MSETNX key value [key value …]</h4><p>对应给定的keys到他们相应的values上。只要有一个key已经存在，<code>MSETNX</code>一个操作都不会执行。 由于这种特性，<code>MSETNX</code>可以实现要么所有的操作都成功，要么一个都不执行，这样可以用来设置不同的key，来表示一个唯一的对象的不同字段。</p>
+<p><code>MSETNX</code>是原子的，所以所有给定的keys是一次性set的。客户端不可能看到这种一部分keys被更新而另外的没有改变的情况。</p>
+<h4 id="PSETEX-key-milliseconds-value"><a href="#PSETEX-key-milliseconds-value" class="headerlink" title="PSETEX key milliseconds value"></a>PSETEX key milliseconds value</h4><p><a href="http://www.redis.cn/commands/psetex.html" target="_blank" rel="noopener">PSETEX</a>和<a href="http://www.redis.cn/commands/setex.html" target="_blank" rel="noopener">SETEX</a>一样，唯一的区别是到期时间以毫秒为单位,而不是秒</p>
+<h4 id="SET-key-value-EX-seconds-PX-milliseconds-NX-XX"><a href="#SET-key-value-EX-seconds-PX-milliseconds-NX-XX" class="headerlink" title="SET key value [EX seconds] [PX milliseconds] [NX|XX]"></a>SET key value [EX seconds] [PX milliseconds] [NX|XX]</h4><p>设置key 和其对用的值</p>
+<ul>
+<li><code>EX</code> <em>seconds</em> – Set the specified expire time, in seconds.</li>
+<li><code>PX</code> <em>milliseconds</em> – Set the specified expire time, in milliseconds.</li>
+<li><code>NX</code> – Only set the key if it does not already exist.</li>
+<li><code>XX</code> – Only set the key if it already exist.</li>
+<li><code>EX</code> <em>seconds</em> – 设置键key的过期时间，单位时秒</li>
+<li><code>PX</code> <em>milliseconds</em> – 设置键key的过期时间，单位时毫秒</li>
+<li><code>NX</code> – 只有键key不存在的时候才会设置key的值</li>
+<li><code>XX</code> – 只有键key存在的时候才会设置key的值</li>
+</ul>
+<p><strong>注意:</strong> 由于<code>SET</code>命令加上选项已经可以完全取代<a href="http://www.redis.cn/commands/setnx.html" target="_blank" rel="noopener">SETNX</a>, <a href="http://www.redis.cn/commands/setex.html" target="_blank" rel="noopener">SETEX</a>, <a href="http://www.redis.cn/commands/psetex.html" target="_blank" rel="noopener">PSETEX</a>的功能，所以在将来的版本中，redis可能会不推荐使用并且最终抛弃这几个命令。</p>
+<h4 id="SETBIT-key-offset-value"><a href="#SETBIT-key-offset-value" class="headerlink" title="SETBIT key offset value"></a>SETBIT key offset value</h4><p>设置或者清空key的value(字符串)在offset处的bit值。那个位置的bit要么被设置，要么被清空，这个由value（只能是0或者1）来决定。</p>
+<h4 id="SETEX-key-seconds-value"><a href="#SETEX-key-seconds-value" class="headerlink" title="SETEX key seconds value"></a>SETEX key seconds value</h4><p>设置key对应字符串value，并且设置key在给定的seconds时间之后超时过期。</p>
+<h4 id="SETNX-key-value"><a href="#SETNX-key-value" class="headerlink" title="SETNX key value"></a>SETNX key value</h4><p>将<code>key</code>设置值为<code>value</code>，如果<code>key</code>不存在，这种情况下等同<a href="http://www.redis.cn/commands/set.html" target="_blank" rel="noopener">SET</a>命令。 当<code>key</code>存在时，什么也不做。<code>SETNX</code>是”<strong>SET</strong> if <strong>N</strong>ot e<strong>X</strong>ists”的简写。</p>
+<h4 id="SETRANGE-key-offset-value"><a href="#SETRANGE-key-offset-value" class="headerlink" title="SETRANGE key offset value"></a>SETRANGE key offset value</h4><p>这个命令的作用是覆盖key对应的string的一部分，从指定的offset处开始，覆盖value的长度。如果offset比当前key对应string还要长，那这个string后面就补0以达到offset。不存在的keys被认为是空字符串，所以这个命令可以确保key有一个足够大的字符串，能在offset处设置value。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; SET key1 <span class="string">"Hello World"</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; SETRANGE key1 <span class="number">6</span> <span class="string">"Redis"</span></span><br><span class="line">(integer) <span class="number">11</span></span><br><span class="line">redis&gt; GET key1</span><br><span class="line"><span class="string">"Hello Redis"</span></span><br><span class="line">#补<span class="number">0</span>的例子</span><br><span class="line">redis&gt; SETRANGE key2 <span class="number">6</span> <span class="string">"Redis"</span></span><br><span class="line">(integer) <span class="number">11</span></span><br><span class="line">redis&gt; GET key2</span><br><span class="line"><span class="string">"\x00\x00\x00\x00\x00\x00Redis"</span></span><br><span class="line">redis&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="STRLEN-key"><a href="#STRLEN-key" class="headerlink" title="STRLEN key"></a>STRLEN key</h4><p>返回key的string类型value的长度。如果key对应的非string类型，就返回错误。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis_String%E5%91%BD%E4%BB%A4/" data-id="ckcmov5zq000dy0hc5dwp6hcm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Redis_Sorted_Sets" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis_Sorted_Sets/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.288Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis_Sorted_Sets/">Redis_Sorted_Sets</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis-Sorted-Sets命令"><a href="#Redis-Sorted-Sets命令" class="headerlink" title="Redis_Sorted_Sets命令"></a>Redis_Sorted_Sets命令</h1><h4 id="ZADDkey-NX-XX-CH-INCR-score-member-score-member-…"><a href="#ZADDkey-NX-XX-CH-INCR-score-member-score-member-…" class="headerlink" title="ZADDkey [NX|XX] [CH] [INCR] score member [score member …]"></a>ZADDkey [NX|XX] [CH] [INCR] score member [score member …]</h4><p>将所有指定成员添加到键为<code>key</code>有序集合（sorted set）里面。 添加时可以指定多个分数/成员（score/member）对。 如果指定添加的成员已经是有序集合里面的成员，则会更新改成员的分数（scrore）并更新到正确的排序位置。</p>
+<p>如果<code>key</code>不存在，将会创建一个新的有序集合（sorted set）并将分数/成员（score/member）对添加到有序集合，就像原来存在一个空的有序集合一样。如果<code>key</code>存在，但是类型不是有序集合，将会返回一个错误应答。</p>
+<p>分数值是一个双精度的浮点型数字字符串。<code>+inf</code>和<code>-inf</code>都是有效值。</p>
+<h6 id="ZADD-参数（options）-gt-Redis-3-0-2"><a href="#ZADD-参数（options）-gt-Redis-3-0-2" class="headerlink" title="ZADD 参数（options） (&gt;= Redis 3.0.2)"></a>ZADD 参数（options） (&gt;= Redis 3.0.2)</h6><p>ZADD 命令在<code>key</code>后面分数/成员（score/member）对前面支持一些参数，他们是：</p>
+<ul>
+<li><strong>XX</strong>: 仅仅更新存在的成员，不添加新成员。</li>
+<li><strong>NX</strong>: 不更新存在的成员。只添加新成员。</li>
+<li><strong>CH</strong>: 修改返回值为发生变化的成员总数，原始是返回新添加成员的总数 (CH 是 <em>changed</em> 的意思)。更改的元素是<strong>新添加的成员</strong>，已经存在的成员<strong>更新分数</strong>。 所以在命令中指定的成员有相同的分数将不被计算在内。注：在通常情况下，<code>ZADD</code>返回值只计算新添加成员的数量。</li>
+<li><strong>INCR</strong>: 当<code>ZADD</code>指定这个选项时，成员的操作就等同<a href="http://www.redis.cn/commands/zincrby.html" target="_blank" rel="noopener">ZINCRBY</a>命令，对成员的分数进行递增操作。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset <span class="number">4</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zscan zset <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"0"</span></span><br><span class="line"></span><br><span class="line">   <span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line">   <span class="number">2</span>) <span class="string">"4"</span></span><br><span class="line">#带XX参数</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset xx <span class="number">4</span> <span class="string">"four"</span> <span class="number">1</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zscan zset <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"0"</span></span><br><span class="line">    <span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line">    <span class="number">2</span>) <span class="string">"1"</span></span><br><span class="line">#不使用NX参数 score不同 member相同的话会更新</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset <span class="number">3</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zscan zset <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"0"</span></span><br><span class="line"><span class="number">2</span>) <span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line">   <span class="number">2</span>) <span class="string">"3"</span></span><br><span class="line">#使用NX参数后 则只添加不对原有的成员进行更新，如果<span class="built_in">set</span>中有相同的memeber则添加失败。</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset nx <span class="number">10</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line">#带ch的参数</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset xx ch <span class="number">4</span> <span class="string">"four"</span> <span class="number">5</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">2</span></span><br><span class="line">#使用incr的参数 这里是使four成员的分数自增<span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset xx ch incr <span class="number">1</span> <span class="string">"four"</span></span><br><span class="line"><span class="string">"6"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zscan zset <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"0"</span></span><br><span class="line"><span class="number">2</span>) <span class="number">1</span>) <span class="string">"zero"</span></span><br><span class="line">   <span class="number">2</span>) <span class="string">"0"</span></span><br><span class="line">   <span class="number">3</span>) <span class="string">"four"</span></span><br><span class="line">   <span class="number">4</span>) <span class="string">"6"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="ZCARD-key"><a href="#ZCARD-key" class="headerlink" title="ZCARD key"></a>ZCARD key</h4><p>返回key的有序集合元素个数</p>
+<h4 id="ZCOUNT-key-min-max"><a href="#ZCOUNT-key-min-max" class="headerlink" title="ZCOUNT key min max"></a>ZCOUNT key min max</h4><p>返回有序集key中，score值在min和max之间(默认包括score值等于min或max)的成员。 关于参数min和max的详细使用方法，</p>
+<h4 id="ZINCRBY-key-increment-member"><a href="#ZINCRBY-key-increment-member" class="headerlink" title="ZINCRBY key increment member"></a>ZINCRBY key increment member</h4><p>为有序集key的成员member的score值加上增量increment。如果key中不存在member，就在key中添加一个member，score是increment（就好像它之前的score是0.0）。如果key不存在，就创建一个只含有指定member成员的有序集合。</p>
+<p>当key不是有序集类型时，返回一个错误。</p>
+<p>score值必须是字符串表示的整数值或双精度浮点数，并且能接受double精度的浮点数。也有可能给一个负数来减少score的值。返回一个新的score值</p>
+<h4 id="ZINTERSTOREdestination-numkeys-key-key-…-WEIGHTS-weight-SUM-MIN-MAX"><a href="#ZINTERSTOREdestination-numkeys-key-key-…-WEIGHTS-weight-SUM-MIN-MAX" class="headerlink" title="ZINTERSTOREdestination numkeys key [key …] [WEIGHTS weight] [SUM|MIN|MAX]"></a>ZINTERSTOREdestination numkeys key [key …] [WEIGHTS weight] [SUM|MIN|MAX]</h4><p>计算给定的numkeys个有序集合的交集，并且把结果放到destination中。 在给定要计算的key和其它参数之前，必须先给定key个数(numberkeys)。</p>
+<p>默认情况下，结果中一个元素的分数是有序集合中该元素分数之和，前提是该元素在这些有序集合中都存在。因为交集要求其成员必须是给定的每个有序集合中的成员，结果集中的每个元素的分数和输入的有序集合个数相等。</p>
+<p>对于WEIGHTS和AGGREGATE：</p>
+<ul>
+<li>weights：你可以为每个给定的有序集指定一个乘法因子，意思就是，每个给定有序集的所有成员的score值在传递给聚合函数之前都要先乘以该因子。如果WEIGHTS没有给定，默认就是1。</li>
+<li>Aggregate：使用AGGREGATE选项，你可以指定并集的结果集的聚合方式。默认使用的参数SUM，可以将所有集合中某个成员的score值之和作为结果集中该成员的score值。如果使用参数MIN或者MAX，结果集就是所有集合中元素最小或最大的元素。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; ZADD zset1 1 &quot;one&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZADD zset1 2 &quot;two&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZADD zset2 1 &quot;one&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZADD zset2 2 &quot;two&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZADD zset2 3 &quot;three&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZINTERSTORE out 2 zset1 zset2 WEIGHTS 2 3</span><br><span class="line">(integer) 2</span><br><span class="line">redis&gt; ZRANGE out 0 -1 WITHSCORES</span><br><span class="line">1) &quot;one&quot;</span><br><span class="line">2) &quot;5&quot;</span><br><span class="line">3) &quot;two&quot;</span><br><span class="line">4) &quot;10&quot;</span><br><span class="line">redis&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ZLEXCOUNT-key-min-max"><a href="#ZLEXCOUNT-key-min-max" class="headerlink" title="ZLEXCOUNT key min max"></a>ZLEXCOUNT key min max</h4><p><code>ZLEXCOUNT</code> 命令用于计算有序集合中指定成员之间的成员数量</p>
+<ul>
+<li>min：名称前要夹【符合作为开头 ，之间不能有空格，</li>
+<li>可以使用-和+表示最小值和最大值</li>
+<li>min 和max不能放反</li>
+<li>min和max是使用字典区间即【a,b,c,d,e,f】</li>
+<li>计算时包括min和max</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zscan zset 0</span><br><span class="line">1) &quot;0&quot;</span><br><span class="line">2)  1) &quot;ac&quot;</span><br><span class="line">    2) &quot;2&quot;</span><br><span class="line">    3) &quot;al&quot;</span><br><span class="line">    4) &quot;2&quot;</span><br><span class="line">    5) &quot;ao&quot;</span><br><span class="line">    6) &quot;2&quot;</span><br><span class="line">    7) &quot;aq&quot;</span><br><span class="line">    8) &quot;2&quot;</span><br><span class="line">    9) &quot;oq&quot;</span><br><span class="line">   10) &quot;3&quot;</span><br><span class="line">127.0.0.1:6379&gt; zlexcount zset [a [q</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ZPOPMAX-key-count"><a href="#ZPOPMAX-key-count" class="headerlink" title="ZPOPMAX key [count]"></a>ZPOPMAX key [count]</h4><p>删除并返回有序集合<code>key</code>中的最多<code>count</code>个具有最高得分的成员。</p>
+<p>如未指定，<code>count</code>的默认值为1。指定一个大于有序集合的基数的<code>count</code>不会产生错误。 当返回多个元素时候，得分最高的元素将是第一个元素，然后是分数较低的元素。</p>
+<h4 id="ZPOPMIN-key-count"><a href="#ZPOPMIN-key-count" class="headerlink" title="ZPOPMIN key [count]"></a>ZPOPMIN key [count]</h4><p>删除并返回有序集合<code>key</code>中的最多<code>count</code>个具有最低得分的成员。</p>
+<p>如未指定，<code>count</code>的默认值为1。指定一个大于有序集合的基数的<code>count</code>不会产生错误。 当返回多个元素时候，得分最低的元素将是第一个元素，然后是分数较高的元素。</p>
+<h4 id="ZRANGE-key-start-stop-WITHSCORES"><a href="#ZRANGE-key-start-stop-WITHSCORES" class="headerlink" title="ZRANGE key start stop [WITHSCORES]"></a>ZRANGE key start stop [WITHSCORES]</h4><p>返回存储在有序集合<code>key</code>中的指定范围的元素。 返回的元素可以认为是按得分从最低到最高排列。 如果得分相同，将按字典排序。</p>
+<p>参数<code>start</code>和<code>stop</code>都是基于零的索引且都是闭区间；可以使用负数（末尾偏移量）</p>
+<p><code>start</code>参数的值大于有序集合中的最大索引，或者<code>start &gt; stop</code>，将会返回一个空列表。 如果<code>stop</code>的值大于有序集合的末尾，Redis会将其视为有序集合的最后一个元素。</p>
+<p>可以传递<code>WITHSCORES</code>选项，以便将元素的分数与元素一起返回。</p>
+<h4 id="ZRANGEBYLEX-key-min-max-LIMIT-offset-count"><a href="#ZRANGEBYLEX-key-min-max-LIMIT-offset-count" class="headerlink" title="ZRANGEBYLEX key min max [LIMIT offset count]"></a>ZRANGEBYLEX key min max [LIMIT offset count]</h4><p>ZRANGEBYLEX 返回指定成员区间内的成员，按成员字典正序排序, 分数必须相同。 在某些业务场景中,需要对一个字符串数组按名称的字典顺序进行排序时,可以使用Redis中SortSet这种数据结构来处理。</p>
+<ul>
+<li><p>limit:是否根据返回结果进行分页，offset起始位置，count返回数量。</p>
+</li>
+<li><p>分数必须相同! 如果有序集合中的成员分数有不一致的,返回的结果就不准。</p>
+</li>
+<li><p>成员字符串作为二进制数组的字节数进行比较。</p>
+</li>
+<li><p>默认是以ASCII字符集的顺序进行排列。如果成员字符串包含utf-8这类字符集的内容,就会影响返回结果,所以建议不要使用。</p>
+</li>
+<li><p>默认情况下, “max” 和 “min” 参数前必须加 “[” 符号作为开头。”[” 符号与成员之间不能有空格, 返回成员结果集会包含参数 “min” 和 “max” 。</p>
+</li>
+<li><p>“max” 和 “min” 参数前可以加 “(“ 符号作为开头表示小于, “(“ 符号与成员之间不能有空格。返回成员结果集不会包含 “max” 和 “min” 成员。一般用于在max前面</p>
+</li>
+<li><p>可以使用 “-“ 和 “+” 表示得分最小值和最大值</p>
+</li>
+<li><p>“min” 和 “max” 不能反, “max” 放前面 “min”放后面会导致返回结果为空</p>
+</li>
+<li><p>与ZRANGEBYLEX获取顺序相反的指令是<a href="http://www.redis.cn/commands/zrevrangebylex.html" target="_blank" rel="noopener">ZREVRANGEBYLEX</a>。</p>
+</li>
+<li><p>源码中采用C语言中<code>memcmp()</code>函数, 从字符的第0位到最后一位进行排序,如果前面部分相同,那么较长的字符串比较短的字符串排序靠后。</p>
+</li>
+</ul>
+<h4 id="ZRANGEBYSCOREkey-min-max-WITHSCORES-LIMIT-offset-count"><a href="#ZRANGEBYSCOREkey-min-max-WITHSCORES-LIMIT-offset-count" class="headerlink" title="ZRANGEBYSCOREkey min max [WITHSCORES] [LIMIT offset count]"></a>ZRANGEBYSCOREkey min max [WITHSCORES] [LIMIT offset count]</h4><p>在min—max区间 返回这区间根据分数来排序的 set ；</p>
+<ul>
+<li>min 和max前可以加（符号表示小于 。不能加【</li>
+<li>如需全部列出，则min max 就是 -inf +inf</li>
+</ul>
+<h4 id="ZRANK-key-member"><a href="#ZRANK-key-member" class="headerlink" title="ZRANK key member"></a>ZRANK key member</h4><p>返回有序集key中成员member的排名。其中有序集成员按score值递增(从小到大)顺序排列。排名以0为底，也就是说，score值最小的成员排名为0。</p>
+<p>使用ZREVRANK命令可以获得成员按score值递减(从大到小)排列的排名。</p>
+<h4 id="ZREM-key-member-member-…"><a href="#ZREM-key-member-member-…" class="headerlink" title="ZREM key member [member …]"></a>ZREM key member [member …]</h4><p>移除key中的成员。</p>
+<h4 id="ZREMRANGEBYLEX-key-min-max"><a href="#ZREMRANGEBYLEX-key-min-max" class="headerlink" title="ZREMRANGEBYLEX key min max"></a>ZREMRANGEBYLEX key min max</h4><p>ZREMRANGEBYLEX 删除名称按字典由低到高排序成员之间所有成员。<br>不要在成员分数不同的有序集合中使用此命令, 因为它是基于分数一致的有序集合设计的,如果使用,会导致删除的结果不正确。<br>待删除的有序集合中,分数最好相同,否则删除结果会不正常。</p>
+<ul>
+<li><p>min 必须以【开头，可以使用（开头，可以使用—代替</p>
+</li>
+<li><p>max必须以【开头，可以使用（开头，可以使用+代替 </p>
+</li>
+<li><p>有序集合中分数必须相同! 如果有序集合中的成员分数有不一致的,结果就不准。</p>
+</li>
+<li><p>成员顺序是按成员字符串作为二进制数组的字节数进行比较。</p>
+</li>
+<li><p>默认是以ASCII字符集的顺序进行排列。如果成员字符串包含utf-8这类字符集的内容,就会影响返回结果,所以建议不要使用。</p>
+</li>
+<li><p>源码中采用C语言中<code>memcmp()</code>函数, 从字符的第0位到最后一位进行排序,如果前面部分相同,那么较长的字符串比较短的字符串排序靠后。</p>
+</li>
+<li><p>默认情况下, “max” 和 “min” 参数前必须加 “[” 符号作为开头。”[” 符号与成员之间不能有空格, 返回成员结果集会包含参数 “max”和 “min”</p>
+</li>
+<li><p>“max” 和 “min” 参数前可以加 “(“ 符号作为开头表示小于, “(“ 符号与成员之间不能有空格。返回成员结果集不会包含 “max” 和 “min” 成员。</p>
+</li>
+<li><p>可以使用 “-“ 和 “+” 表示得分最小值和最大值</p>
+</li>
+<li><p>“max”和 “min” 不能反, “max” 放后面 “min”放前面会删除不了元素</p>
+</li>
+</ul>
+<h4 id="ZREMRANGEBYRANK-key-start-stop"><a href="#ZREMRANGEBYRANK-key-start-stop" class="headerlink" title="ZREMRANGEBYRANK key start stop"></a>ZREMRANGEBYRANK key start stop</h4><p>移除有序集key中，指定排名(rank)区间内的所有成员。下标参数start和stop都以0为底，0处是分数最小的那个元素。这些索引也可是负数，表示位移从最高分处开始数。例如，-1是分数最高的元素，-2是分数第二高的，依次类推</p>
+<h4 id="ZREMRANGEBYSCORE-key-min-max"><a href="#ZREMRANGEBYSCORE-key-min-max" class="headerlink" title="ZREMRANGEBYSCORE key min max"></a>ZREMRANGEBYSCORE key min max</h4><p>移除有序集key中，所有score值介于min和max之间(包括等于min或max)的成员。 自版本2.1.6开始，score值等于min或max的成员也可以不包括在内min和max可以是用 -inf 和+inf 表示最低和最高</p>
+<h4 id="ZREVRANGE-key-start-stop-WITHSCORES"><a href="#ZREVRANGE-key-start-stop-WITHSCORES" class="headerlink" title="ZREVRANGE key start stop [WITHSCORES]"></a>ZREVRANGE key start stop [WITHSCORES]</h4><p>返回有序集key中，指定区间内的成员。其中成员的位置按score值递减(从大到小)来排列。具有相同score值的成员按字典序的反序排列。 除了成员按score值递减的次序排列这一点外，<a href="http://www.redis.cn/commands/zrevrange.html" target="_blank" rel="noopener">ZREVRANGE</a>命令的其他方面和<a href="http://www.redis.cn/commands/zrange.html" target="_blank" rel="noopener">ZRANGE</a>命令一样。</p>
+<h4 id="ZREVRANGEBYLEX-key-max-min-LIMIT-offset-count"><a href="#ZREVRANGEBYLEX-key-max-min-LIMIT-offset-count" class="headerlink" title="ZREVRANGEBYLEX key max min [LIMIT offset count]"></a>ZREVRANGEBYLEX key max min [LIMIT offset count]</h4><p>ZREVRANGEBYLEX 返回指定成员区间内的成员，按成员字典倒序排序, 分数必须相同。<br>在某些业务场景中,需要对一个字符串数组按名称的字典顺序进行倒序排列时,可以使用Redis中SortSet这种数据结构来处理。语法请参考zrangebylex</p>
+<h4 id="ZREVRANGEBYSCOREkey-max-min-WITHSCORES-LIMIT-offset-count"><a href="#ZREVRANGEBYSCOREkey-max-min-WITHSCORES-LIMIT-offset-count" class="headerlink" title="ZREVRANGEBYSCOREkey max min [WITHSCORES] [LIMIT offset count]"></a>ZREVRANGEBYSCOREkey max min [WITHSCORES] [LIMIT offset count]</h4><p><code>ZREVRANGEBYSCORE</code> 返回有序集合中指定分数区间内的成员，分数由高到低排序</p>
+<h4 id="ZREVRANK-key-member"><a href="#ZREVRANK-key-member" class="headerlink" title="ZREVRANK key member"></a>ZREVRANK key member</h4><p>返回有序集key中成员member的排名，其中有序集成员按score值从大到小排列。排名以0为底，也就是说，score值最大的成员排名为0。</p>
+<p>使用<a href="http://www.redis.cn/commands/zrank.html" target="_blank" rel="noopener">ZRANK</a>命令可以获得成员按score值递增(从小到大)排列的排名</p>
+<h4 id="ZSCAN-key-cursor-MATCH-pattern-COUNT-count"><a href="#ZSCAN-key-cursor-MATCH-pattern-COUNT-count" class="headerlink" title="ZSCAN key cursor [MATCH pattern] [COUNT count]"></a>ZSCAN key cursor [MATCH pattern] [COUNT count]</h4><p>请参考基本命令中的scan</p>
+<h4 id="ZSCORE-key-member"><a href="#ZSCORE-key-member" class="headerlink" title="ZSCORE key member"></a>ZSCORE key member</h4><p>返回有序集key中，成员member的score值。</p>
+<p>如果member元素不是有序集key的成员，或key不存在，返回nil。</p>
+<h4 id="ZUNIONSTOREdestination-numkeys-key-key-…-WEIGHTS-weight-SUM-MIN-MAX"><a href="#ZUNIONSTOREdestination-numkeys-key-key-…-WEIGHTS-weight-SUM-MIN-MAX" class="headerlink" title="ZUNIONSTOREdestination numkeys key [key …] [WEIGHTS weight] [SUM|MIN|MAX]"></a>ZUNIONSTOREdestination numkeys key [key …] [WEIGHTS weight] [SUM|MIN|MAX]</h4><p>计算给定的numkeys个有序集合的并集，并且把结果放到destination中。在给定要计算的key和其它参数之前，必须先给定key个数(numberkeys)。 默认情况下，结果集中某个成员的score值是所有给定集下该成员score值之和。</p>
+<p>使用WEIGHTS选项，你可以为每个给定的有序集指定一个乘法因子，意思就是，每个给定有序集的所有成员的score值在传递给聚合函数之前都要先乘以该因子。如果WEIGHTS没有给定，默认就是1。</p>
+<p>使用AGGREGATE选项，你可以指定并集的结果集的聚合方式。默认使用的参数SUM，可以将所有集合中某个成员的score值之和作为结果集中该成员的score值。如果使用参数MIN或者MAX，结果集就是所有集合中元素最小或最大的元素。如若目标存在则会覆盖。</p>
+<h4 id="BZPOPMAX-key-key-…-timeout"><a href="#BZPOPMAX-key-key-…-timeout" class="headerlink" title="BZPOPMAX key [key …] timeout"></a>BZPOPMAX key [key …] timeout</h4><p><code>BZPOPMAX</code> 是有序集合命令 <code>ZPOPMAX</code>带有阻塞功能的版本。</p>
+<p>在参数中的所有有序集合均为空的情况下，阻塞连接。参数中包含多个有序集合时，按照参数中key的顺序，返回第一个非空key中分数最大的成员和对应的分数</p>
+<p>参数 <code>timeout</code> 可以理解为客户端被阻塞的最大秒数值，0 表示永久阻塞。</p>
+<p>详细说明请参照<a href="http://www.redis.cn/commands/bzpopmin.html" target="_blank" rel="noopener">BZPOPMIN 说明文档</a>，<code>BZPOPMAX</code>返回非空有序集合 key中分数最大的成员，而<code>BZPOPMIN</code>返回该key中分数最小的成员，除此之外，两条命令无其他差别。</p>
+<h4 id="BZPOPMIN-key-key-…-timeout"><a href="#BZPOPMIN-key-key-…-timeout" class="headerlink" title="BZPOPMIN key [key …] timeout"></a>BZPOPMIN key [key …] timeout</h4><p><code>BZPOPMIN</code> 是有序集合命令 <code>ZPOPMIN</code>带有阻塞功能的版本。</p>
+<p>在参数中的所有有序集合均为空的情况下，阻塞连接。参数中包含多个有序集合时，按照参数中key的顺序，返回第一个非空key中分数最小的成员和对应的分数</p>
+<p>参数 <code>timeout</code> 可以理解为客户端被阻塞的最大秒数值，0 表示永久阻塞。</p>
+<p>详细说明请参照<a href="http://www.redis.cn/commands/blpop.html" target="_blank" rel="noopener">BLPOP 说明文档</a>，<code>BZPOPMIN</code>适用有序集合类型的key，BLPOP适用列表类型的key，除此之外，两条命令无其他差别。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis_Sorted_Sets/" data-id="ckcmov606000xy0hc5j1i7z3d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

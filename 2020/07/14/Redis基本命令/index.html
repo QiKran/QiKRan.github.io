@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Redis基本命令 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Redis基本命令Keysdel key删除key dump key序列化给定key，并返回被序列化的值,使用restore命令可以将这个值反序列化为Redis键；restore    其中ttl是以毫秒为单位为key设置生存时间；如果ttl为0，那么不设置生存时间例子： 123456127.0.0.1:6379&gt; set dumpKey 10OK127.0.0.1:6379&gt; dum">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis基本命令">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="Redis基本命令Keysdel key删除key dump key序列化给定key，并返回被序列化的值,使用restore命令可以将这个值反序列化为Redis键；restore    其中ttl是以毫秒为单位为key设置生存时间；如果ttl为0，那么不设置生存时间例子： 123456127.0.0.1:6379&gt; set dumpKey 10OK127.0.0.1:6379&gt; dum">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:13:48.394Z">
+<meta property="article:modified_time" content="2020-06-23T05:52:53.601Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Redis基本命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.394Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis基本命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis基本命令Keys"><a href="#Redis基本命令Keys" class="headerlink" title="Redis基本命令Keys"></a>Redis基本命令Keys</h1><h5 id="del-key"><a href="#del-key" class="headerlink" title="del key"></a>del key</h5><p>删除key</p>
+<h5 id="dump-key"><a href="#dump-key" class="headerlink" title="dump key"></a>dump key</h5><p>序列化给定key，并返回被序列化的值,使用<strong>restore</strong>命令可以将这个值反序列化为Redis键；restore <key> <ttl>  其中ttl是以毫秒为单位为key设置生存时间；如果ttl为0，那么不设置生存时间例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; <span class="built_in">set</span> dumpKey <span class="number">10</span></span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; dump dumpKey</span><br><span class="line"><span class="string">"\x00\xc0\n\t\x00\xbem\x06\x89Z(\x00\n"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; restore newKey <span class="number">0</span> <span class="string">"\x00\xc0\n\t\x00\xbem\x06\x89Z(\x00\n"</span></span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<h5 id="exists-key"><a href="#exists-key" class="headerlink" title="exists key"></a>exists key</h5><p>返回key是否存在 1存在 0不存在</p>
+<h5 id="expire-key-seconds"><a href="#expire-key-seconds" class="headerlink" title="expire key seconds"></a>expire key seconds</h5><p>设置<code>key</code>的过期时间，超过时间后，将会自动删除该<code>key</code>。在Redis的术语中一个<code>key</code>的相关超时是不确定的。超时后只有对<code>key</code>执行<a href="http://www.redis.cn/commands/del.html" target="_blank" rel="noopener">DEL</a>命令或者<a href="http://www.redis.cn/commands/set.html" target="_blank" rel="noopener">SET</a>命令或者<a href="http://www.redis.cn/commands/getset.html" target="_blank" rel="noopener">GETSET</a>时才会清除。 这意味着，从概念上讲所有改变<code>key</code>的值的操作都会使他清除。 </p>
+<p>使用<a href="http://www.redis.cn/commands/persist.html" target="_blank" rel="noopener">PERSIST</a>命令可以清除超时，使其变成一个永久的<code>key</code>。如果<code>key</code>被<a href="http://www.redis.cn/commands/rename.html" target="_blank" rel="noopener">RENAME</a>命令修改，相关的超时时间会转移到新<code>key</code>上面。如果<code>key</code>被<a href="http://www.redis.cn/commands/rename.html" target="_blank" rel="noopener">RENAME</a>命令修改，比如原来就存在<code>Key_A</code>,然后调用<code>RENAME Key_B Key_A</code>命令，这时不管原来<code>Key_A</code>是永久的还是设置为超时的，都会由<code>Key_B</code>的有效期状态覆盖。    </p>
+<p>刷新过期时间：对已过期的key执行expire操作,会更新它的过期时间</p>
+<h5 id="expireat-key-timestamp"><a href="#expireat-key-timestamp" class="headerlink" title="expireat key timestamp"></a>expireat key timestamp</h5><p>同expire 只是接收的时间参数是unix时间戳</p>
+<h5 id="keys-pattern"><a href="#keys-pattern" class="headerlink" title="keys pattern"></a>keys pattern</h5><p>查找所有符合给定模式pattern（正则表达式）的 key </p>
+<p><strong>警告</strong>: <code>KEYS</code> 的速度非常快，但在一个大的数据库中使用它仍然可能造成性能问题，如果你需要从一个数据集中查找特定的 <code>KEYS</code>， 你最好还是用 Redis 的集合结构 <a href="http://www.redis.cn/commands/sets.html" target="_blank" rel="noopener">SETS</a> 来代替。</p>
+<p>支持的正则表达模式：</p>
+<ul>
+<li><code>h?llo</code> 匹配 <code>hello</code>, <code>hallo</code> 和 <code>hxllo</code></li>
+<li><code>h*llo</code> 匹配 <code>hllo</code> 和 <code>heeeello</code></li>
+<li><code>h[ae]llo</code> 匹配 <code>hello</code> 和 <code>hallo,</code> 但是不匹配 <code>hillo</code></li>
+<li><code>h[^e]llo</code> 匹配 <code>hallo</code>, <code>hbllo</code>, … 但是不匹配 <code>hello</code></li>
+<li><code>h[a-b]llo</code> 匹配 <code>hallo</code> 和 <code>hbllo</code></li>
+</ul>
+<p>如果你想取消字符的特殊匹配（正则表达式，可以在它的前面加<code>\</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; MSET one <span class="number">1</span> two <span class="number">2</span> three <span class="number">3</span> four <span class="number">4</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; KEYS *o*</span><br><span class="line"><span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"one"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"two"</span></span><br><span class="line">redis&gt; KEYS t??</span><br><span class="line"><span class="number">1</span>) <span class="string">"two"</span></span><br><span class="line">redis&gt; KEYS *</span><br><span class="line"><span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"three"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"one"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"two"</span></span><br><span class="line">redis&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="MIGRATEhost-port-key-destination-db-timeout-COPY-REPLACE"><a href="#MIGRATEhost-port-key-destination-db-timeout-COPY-REPLACE" class="headerlink" title="MIGRATEhost port key destination-db timeout [COPY] [REPLACE]"></a>MIGRATEhost port key destination-db timeout [COPY] [REPLACE]</h5><p>将 key 原子性地从当前实例传送到目标实例的指定数据库上，一旦传送成功， key 保证会出现在目标实例上，而当前实例上的 key 会被删除。</p>
+<p>这个命令是一个原子操作，它在执行的时候会阻塞进行迁移的两个实例，直到以下任意结果发生：迁移成功，迁移失败，等到超时。如果超时命令会停止，并且返回IOERR错误；造成的可能是：</p>
+<ul>
+<li>key可能存在于两个实例</li>
+<li>key可能只存在于当前实例。</li>
+</ul>
+<h5 id="move-key-db"><a href="#move-key-db" class="headerlink" title="move key db"></a>move key db</h5><p>将当前数据库的 key 移动到给定的数据库 db 当中</p>
+<p>将当前数据库的 key 移动到给定的数据库 db 当中。</p>
+<p>如果当前数据库(源数据库)和给定数据库(目标数据库)有相同名字的给定 key ，或者 key 不存在于当前数据库，那么 MOVE 没有任何效果。</p>
+<p>因此，也可以利用这一特性，将 <code>MOVE</code> 当作锁(locking)原语(primitive)。</p>
+<h5 id="OBJECT-subcommand-arguments-arguments-…"><a href="#OBJECT-subcommand-arguments-arguments-…" class="headerlink" title="OBJECT subcommand [arguments [arguments …]]"></a>OBJECT subcommand [arguments [arguments …]]</h5><p><code>OBJECT</code> 命令可以在内部调试(debugging)给出keys的内部对象，它用于检查或者了解你的keys是否用到了特殊编码 的数据类型来存储空间z。 当redis作为缓存使用的时候，你的应用也可能用到这些由<code>OBJECT</code>命令提供的信息来决定应用层的key的驱逐策略(eviction policies)</p>
+<p><code>OBJECT</code> 支持多个子命令:</p>
+<ul>
+<li>OBJECT REFCOUNT 该命令主要用于调试(debugging)，它能够返回指定key所对应value被引用的次数.</li>
+<li>OBJECT ENCODING 该命令返回指定key对应value所使用的内部表示(representation)(译者注：也可以理解为数据的压缩方式).</li>
+<li>OBJECT IDLETIME 该命令返回指定key对应的value自被存储之后空闲的时间，以秒为单位(没有读写操作的请求) ，这个值返回以10秒为单位的秒级别时间，这一点可能在以后的实现中改善</li>
+</ul>
+<p>对象可以用多种方式编码:</p>
+<ul>
+<li>字符串可以被编码为 raw (常规字符串) 或者int (用字符串表示64位无符号整数这种编码方式是为了节省空间).</li>
+<li>列表类型可以被编码为ziplist 或者 linkedlist. ziplist 是为了节省较小的列表空间而设计一种特殊编码方式.</li>
+<li>集合被编码为 intset 或者 hashtable. intset 是为了存储数字的较小集合而设计的一种特殊编码方式.</li>
+<li>哈希表可以被编码为 zipmap 或者hashtable. zipmap 是专为了较小的哈希表而设计的一种特殊编码方式</li>
+<li>有序集合被编码为ziplist 或者 skiplist 格式. ziplist可以表示较小的有序集合, skiplist 表示任意大小多的有序集合.</li>
+</ul>
+<p>一旦你做了一个操作让redis无法再使用那些节省空间的编码方式，它将自动将那些特殊的编码类型转换为普通的编码类型.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; <span class="built_in">set</span> foo <span class="number">1000</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; object encoding foo</span><br><span class="line"><span class="string">"int"</span></span><br><span class="line">redis&gt; append foo bar</span><br><span class="line">(integer) <span class="number">7</span></span><br><span class="line">redis&gt; <span class="built_in">get</span> foo</span><br><span class="line"><span class="string">"1000bar"</span></span><br><span class="line">redis&gt; object encoding foo</span><br><span class="line"><span class="string">"raw"</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="persist-key"><a href="#persist-key" class="headerlink" title="persist key"></a>persist key</h5><p>移除给定key的生存时间，将这个 key 从『易失的』(带生存时间 key )转换成『持久的』(一个不带生存时间、永不过期的 key )。</p>
+<h5 id="PEXPIRE-key-milliseconds"><a href="#PEXPIRE-key-milliseconds" class="headerlink" title="PEXPIRE key milliseconds"></a>PEXPIRE key milliseconds</h5><p>这个命令和<a href="http://www.redis.cn/commands/expire.html" target="_blank" rel="noopener">EXPIRE</a>命令的作用类似，但是它以毫秒为单位设置 key 的生存时间，而不像<a href="http://www.redis.cn/commands/expire.html" target="_blank" rel="noopener">EXPIRE</a>命令那样，以秒为单位</p>
+<h5 id="PEXPIREAT-key-milliseconds-timestamp"><a href="#PEXPIREAT-key-milliseconds-timestamp" class="headerlink" title="PEXPIREAT key milliseconds-timestamp"></a>PEXPIREAT key milliseconds-timestamp</h5><p><code>PEXPIREAT</code> 这个命令和<a href="http://www.redis.cn/commands/expireat.html" target="_blank" rel="noopener">EXPIREAT</a>命令类似，但它以毫秒为单位设置 key 的过期 <code>unix</code> 时间戳，而不是像<a href="http://www.redis.cn/commands/expireat.html" target="_blank" rel="noopener">EXPIREAT</a>那样，以秒为单位。</p>
+<h5 id="pttl"><a href="#pttl" class="headerlink" title="pttl"></a>pttl</h5><p>这个命令类似于<a href="http://www.redis.cn/commands/ttl.html" target="_blank" rel="noopener">TTL</a>命令，但它以毫秒为单位返回 key 的剩余生存时间，而不是像<a href="http://www.redis.cn/commands/ttl.html" target="_blank" rel="noopener">TTL</a>命令那样，以秒为单位。</p>
+<h5 id="ttl"><a href="#ttl" class="headerlink" title="ttl"></a>ttl</h5><p>返回key剩余的过期时间。 这种反射能力允许Redis客户端检查指定key在数据集里面剩余的有效期。</p>
+<h5 id="randomkey"><a href="#randomkey" class="headerlink" title="randomkey"></a>randomkey</h5><p>从当前数据库返回一个随机的key</p>
+<h5 id="rename-key-newkey"><a href="#rename-key-newkey" class="headerlink" title="rename key newkey"></a>rename key newkey</h5><p>将key重命名为newkey</p>
+<h5 id="RESTORE-key-ttl-serialized-value-REPLACE"><a href="#RESTORE-key-ttl-serialized-value-REPLACE" class="headerlink" title="RESTORE key ttl serialized-value [REPLACE]"></a>RESTORE key ttl serialized-value [REPLACE]</h5><p>反序列化给定的序列化值，并将它和给定的 key 关联。</p>
+<p>参数 ttl 以毫秒为单位为 key 设置生存时间；如果 ttl 为 0 ，那么不设置生存时间。</p>
+<p><code>RESTORE</code> 在执行反序列化之前会先对序列化值的 RDB 版本和数据校验和进行检查，如果 RDB 版本不相同或者数据不完整的话，那么 RESTORE 会拒绝进行反序列化，并返回一个错误。</p>
+<h4 id="SCAN-cursor-MATCH-pattern-COUNT-count"><a href="#SCAN-cursor-MATCH-pattern-COUNT-count" class="headerlink" title="SCAN cursor [MATCH pattern] [COUNT count]"></a>SCAN cursor [MATCH pattern] [COUNT count]</h4><p><a href="http://www.redis.cn/commands/scan.html" target="_blank" rel="noopener">SCAN</a> 命令及其相关的 <a href="http://www.redis.cn/commands/sscan.html" target="_blank" rel="noopener">SSCAN</a>, <a href="http://www.redis.cn/commands/hscan.html" target="_blank" rel="noopener">HSCAN</a> 和 <a href="http://www.redis.cn/commands/zscan.html" target="_blank" rel="noopener">ZSCAN</a> 命令都用于增量迭代一个集合元素。</p>
+<ul>
+<li><a href="http://www.redis.cn/commands/scan.html" target="_blank" rel="noopener">SCAN</a> 命令用于迭代当前数据库中的key集合类型。</li>
+<li><a href="http://www.redis.cn/commands/sscan.html" target="_blank" rel="noopener">SSCAN</a> 命令用于迭代SET集合中的元素。</li>
+<li><a href="http://www.redis.cn/commands/hscan.html" target="_blank" rel="noopener">HSCAN</a> 命令用于迭代Hash类型中的键值对。</li>
+<li><a href="http://www.redis.cn/commands/zscan.html" target="_blank" rel="noopener">ZSCAN</a> 命令用于迭代SortSet集合中的元素和元素对应的分值</li>
+</ul>
+<p>cursor 是下标 可以从0开始</p>
+<p>MATCH 是通过正则表达式进行匹配  例如 scan 0 MATCH * 迭代所有集合</p>
+<p>COUNT 是迭代到多少个  默认是10 可以设置</p>
+<h5 id="SORTkey-BY-pattern-LIMIT-offset-count-GET-pattern-ASC-DESC-ALPHA-destination"><a href="#SORTkey-BY-pattern-LIMIT-offset-count-GET-pattern-ASC-DESC-ALPHA-destination" class="headerlink" title="SORTkey [BY pattern] [LIMIT offset count] [GET pattern] [ASC|DESC] [ALPHA] destination"></a>SORTkey [BY pattern] [LIMIT offset count] [GET pattern] [ASC|DESC] [ALPHA] destination</h5><p>返回或存储的key的lsit、set或sorted set中的元素。默认是按照数值类型配许的。并且按照两个元素的双精度浮点数类型值进行比较。例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort mylist</span><br></pre></td></tr></table></figure>
+
+<p>假设mylist是一个数字列表，这条命令将返回一个元素从小到大排序的相同大小列表。如果像从大到小排序。可以使用!Desc修饰符.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sort mylist desc</span><br></pre></td></tr></table></figure>
+
+<h5 id="Touch-key-key"><a href="#Touch-key-key" class="headerlink" title="Touch key key[..]"></a>Touch key key[..]</h5><p>修改指定keys 最后的访问时间，若key不存在，不做操作。</p>
+<h5 id="Type-key"><a href="#Type-key" class="headerlink" title="Type key"></a>Type key</h5><p>返回key所存储的value的数据结构类型，</p>
+<h5 id="Unlink-key-。。。"><a href="#Unlink-key-。。。" class="headerlink" title="Unlink key 。。。"></a>Unlink key 。。。</h5><p>该命令和<code>DEL</code>十分相似：删除指定的key(s),若key不存在则该key被跳过。但是，相比<code>DEL</code>会产生阻塞，该命令会在另一个线程中回收内存，因此它是非阻塞的。 这也是该命令名字的由来：仅将keys从keyspace元数据中删除，真正的删除会在后续异步操作。</p>
+<h5 id="WAIT-numslaves-timeout"><a href="#WAIT-numslaves-timeout" class="headerlink" title="WAIT numslaves timeout"></a>WAIT numslaves timeout</h5><p>此命令阻塞当前客户端，直到所有以前的写命令都成功的传输和指定的slaves确认。如果超时，指定以毫秒为单位，即使指定的slaves还没有到达，命令任然返回。</p>
+<p>命令<strong>始终返回</strong>之前写命令发送的slaves的数量，无论是在指定slaves的情况还是达到超时。</p>
+<p>注意点:</p>
+<ol>
+<li>当’WAIT’返回时，所有之前的写命令保证接收由<code>WAIT</code>返回的slaves的数量。</li>
+<li>如果命令呗当做事务的一部分发送，该命令不阻塞，而是只尽快返回先前写命令的slaves的数量。</li>
+<li>如果timeout是0那意味着永远阻塞。</li>
+<li>由于<code>WAIT</code>返回的是在失败和成功的情况下的slaves的数量。客户端应该检查返回的slaves的数量是等于或更大的复制水平。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" data-id="ckcmov5zs000fy0hc82y9flp3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Redis数据类型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/Redis6.0_ACL/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Redis6.0_ACL</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

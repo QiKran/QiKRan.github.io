@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Redis_Hashs | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Redis_Hashes命令HDEL key field [field …]从 key 指定的哈希集中移除指定的域。在哈希集中不存在的域将被忽略。 如果 key 指定的哈希集不存在，它将被认为是一个空的哈希集，该命令将返回0。 HSET key field value设置 key 指定的哈希集中指定字段的值。 如果 key 指定的哈希集不存在，会创建一个新的哈希集并与 key 关联。 如果字段在哈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis_Hashs">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/Redis_Hashs/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="Redis_Hashes命令HDEL key field [field …]从 key 指定的哈希集中移除指定的域。在哈希集中不存在的域将被忽略。 如果 key 指定的哈希集不存在，它将被认为是一个空的哈希集，该命令将返回0。 HSET key field value设置 key 指定的哈希集中指定字段的值。 如果 key 指定的哈希集不存在，会创建一个新的哈希集并与 key 关联。 如果字段在哈">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:13:48.244Z">
+<meta property="article:modified_time" content="2020-06-24T07:30:08.112Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Redis_Hashs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis_Hashs/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.244Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis_Hashs
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis-Hashes命令"><a href="#Redis-Hashes命令" class="headerlink" title="Redis_Hashes命令"></a>Redis_Hashes命令</h1><h4 id="HDEL-key-field-field-…"><a href="#HDEL-key-field-field-…" class="headerlink" title="HDEL key field [field …]"></a>HDEL key field [field …]</h4><p>从 key 指定的哈希集中移除指定的域。在哈希集中不存在的域将被忽略。</p>
+<p>如果 key 指定的哈希集不存在，它将被认为是一个空的哈希集，该命令将返回0。</p>
+<h4 id="HSET-key-field-value"><a href="#HSET-key-field-value" class="headerlink" title="HSET key field value"></a>HSET key field value</h4><p>设置 key 指定的哈希集中指定字段的值。</p>
+<p>如果 key 指定的哈希集不存在，会创建一个新的哈希集并与 key 关联。</p>
+<p>如果字段在哈希集中存在，它将被重写。</p>
+<h4 id="HEXISTS-key-field"><a href="#HEXISTS-key-field" class="headerlink" title="HEXISTS key field"></a>HEXISTS key field</h4><p>判断key中是否存在该field，1表示存在，0不存在</p>
+<h4 id="HGET-key-field"><a href="#HGET-key-field" class="headerlink" title="HGET key field"></a>HGET key field</h4><p>获取key中的field；返回field的value，如若不存在则返回nil。</p>
+<h4 id="HGETALL-key"><a href="#HGETALL-key" class="headerlink" title="HGETALL key"></a>HGETALL key</h4><p>获取key中的所有 field-value</p>
+<h4 id="HINCRBY-key-field-increment"><a href="#HINCRBY-key-field-increment" class="headerlink" title="HINCRBY key field increment"></a>HINCRBY key field increment</h4><p>增加 <code>key</code> 指定的哈希集中指定字段的数值。如果 <code>key</code> 不存在，会创建一个新的哈希集并与 <code>key</code> 关联。如果字段不存在，则字段的值在该操作执行前被设置为 0；<code>HINCRBY</code> 支持的值的范围限定在 64位 有符号整数</p>
+<p>说白了就是 field的value 根据increment 进行自增 返回是自增后的结果。</p>
+<h4 id="HINCRBYFLOAT-key-field-increment"><a href="#HINCRBYFLOAT-key-field-increment" class="headerlink" title="HINCRBYFLOAT key field increment"></a>HINCRBYFLOAT key field increment</h4><p>与上面一样 只不过 increment是float类型的</p>
+<h4 id="HKEYS-key"><a href="#HKEYS-key" class="headerlink" title="HKEYS key"></a>HKEYS key</h4><p>查看该哈希key下的所有属性即filed</p>
+<h4 id="HLEN-key"><a href="#HLEN-key" class="headerlink" title="HLEN key"></a>HLEN key</h4><p>返回key中的属性长度。</p>
+<h4 id="HMGET-key-field-field-…"><a href="#HMGET-key-field-field-…" class="headerlink" title="HMGET key field [field …]"></a>HMGET key field [field …]</h4><p>返回 <code>key</code> 指定的哈希集中指定字段的值。</p>
+<p>对于哈希集中不存在的每个字段，返回 <code>nil</code> 值。因为不存在的keys被认为是一个空的哈希集，对一个不存在的 <code>key</code> 执行 <a href="http://www.redis.cn/commands/hmget.html" target="_blank" rel="noopener">HMGET</a> 将返回一个只含有 <code>nil</code> 值的列表</p>
+<h4 id="HMSET-key-field-value-field-value-…"><a href="#HMSET-key-field-value-field-value-…" class="headerlink" title="HMSET key field value [field value …]"></a>HMSET key field value [field value …]</h4><p>设置 <code>key</code> 指定的哈希集中指定字段的值。该命令将重写所有在哈希集中存在的字段。如果 <code>key</code> 指定的哈希集不存在，会创建一个新的哈希集并与 <code>key</code> 关联；与hset的区别就是 该命令可以指定多个值。</p>
+<h4 id="HSCAN-key-cursor-MATCH-pattern-COUNT-count"><a href="#HSCAN-key-cursor-MATCH-pattern-COUNT-count" class="headerlink" title="HSCAN key cursor [MATCH pattern] [COUNT count]"></a>HSCAN key cursor [MATCH pattern] [COUNT count]</h4><p>遍历，详情参考基本命令中的scan</p>
+<h4 id="HSETNX-key-field-value"><a href="#HSETNX-key-field-value" class="headerlink" title="HSETNX key field value"></a>HSETNX key field value</h4><p>只在 <code>key</code> 指定的哈希集中不存在指定的字段时，设置字段的值。如果 <code>key</code> 指定的哈希集不存在，会创建一个新的哈希集并与 <code>key</code> 关联。<strong>如果字段已存在，该操作无效果</strong></p>
+<h4 id="HSTRLEN-key-field"><a href="#HSTRLEN-key-field" class="headerlink" title="HSTRLEN key field"></a>HSTRLEN key field</h4><p>返回hash指定field的value的字符串长度，如果hash或者field不存在，返回0.</p>
+<h4 id="HVALS-key"><a href="#HVALS-key" class="headerlink" title="HVALS key"></a>HVALS key</h4><p>返回哈希key中所有属性的的value。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis_Hashs/" data-id="ckcmov5zk0009y0hc7k4o31un" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/Redis_HyperLogLog/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Redis_HyperLogLog
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/Redis_Connection/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Redis_Connection</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

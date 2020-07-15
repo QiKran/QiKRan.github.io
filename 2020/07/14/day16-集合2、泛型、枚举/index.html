@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>day16-集合2、泛型、枚举 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="集合-Map回顾一下Collection分支  List,  有序、可重复 ArrayList LinkedList Vector Stack  – 设计有缺陷，不建议使用     Set， 无序、不可重复的 HashSet   –  组合了一个HashMap来实现的 SortedSet TreeSet   –  组合了一个 TreeMap 来实现的     Queue，FIFO（先进先出） Pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day16-集合2、泛型、枚举">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/day16-%E9%9B%86%E5%90%882%E3%80%81%E6%B3%9B%E5%9E%8B%E3%80%81%E6%9E%9A%E4%B8%BE/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="集合-Map回顾一下Collection分支  List,  有序、可重复 ArrayList LinkedList Vector Stack  – 设计有缺陷，不建议使用     Set， 无序、不可重复的 HashSet   –  组合了一个HashMap来实现的 SortedSet TreeSet   –  组合了一个 TreeMap 来实现的     Queue，FIFO（先进先出） Pr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:16:02.559Z">
+<meta property="article:modified_time" content="2020-07-14T09:04:32.053Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-day16-集合2、泛型、枚举" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day16-%E9%9B%86%E5%90%882%E3%80%81%E6%B3%9B%E5%9E%8B%E3%80%81%E6%9E%9A%E4%B8%BE/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.559Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      day16-集合2、泛型、枚举
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="集合-Map"><a href="#集合-Map" class="headerlink" title="集合-Map"></a>集合-Map</h1><p>回顾一下Collection分支</p>
+<ul>
+<li>List,  有序、可重复<ul>
+<li>ArrayList</li>
+<li>LinkedList</li>
+<li>Vector<ul>
+<li>Stack  – 设计有缺陷，不建议使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Set， 无序、不可重复的<ul>
+<li>HashSet   –  <strong>组合了一个HashMap来实现的</strong></li>
+<li>SortedSet<ul>
+<li>TreeSet   –  <strong>组合了一个 TreeMap 来实现的</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Queue，FIFO（先进先出）<ul>
+<li>PriorityQueue</li>
+<li>Deque  – Double End Queue</li>
+</ul>
+</li>
+</ul>
+<p>Map</p>
+<p>与Collection不同,Map存储的是键 - 值对，也就是 Key - Value, 本质上在Map内部，这个key和value会被封装成 Map.Entry 对象， 这个对象中拥有key和value  两个属性。</p>
+<p>Map的特点：</p>
+<ul>
+<li>key是无序的、不可重复的</li>
+<li>key可以为null, 注：对value没有任何要求。</li>
+</ul>
+<p>Map的常用操作</p>
+<ul>
+<li>put(K key, Value v)   把一对键值对存放当前的Map中</li>
+<li>get(K key)   -&gt;   Value  通过key来获取Value</li>
+<li>containsKey(K key)  判断当前的MAP中是否包含指定的key</li>
+<li>containsValue(V value)   判断当前的MAP中是否包含指定的Value</li>
+<li>三个方法可以把MAP转换成Set或Collection<ul>
+<li>values()  -&gt;  Collection     把Map的所有值取出来，形成一个Collection并返回</li>
+<li>keySet()   -&gt;  Set<K>   把MAP的所有KEY取出来，形成一个SET并返回，不含VALUE</li>
+<li>entrySet()   -&gt; Set&lt;Entry&lt;K, V&gt;&gt;   把MAP的所有KEY和VALUE都取来，并封装成Entry对象，把Entry对象存放到Set中，并返回</li>
+</ul>
+</li>
+</ul>
+<p>Map的实现类 - HashMap</p>
+<p>此类采用哈希算法来实现Map， 它的原理如下：</p>
+<p>首先，当把一个对象put到HashMap中时，容器会调用此对象的hashcode方法获取对象的哈希码值，根据此哈希码值来计算出此对象应该存放的位置“桶”。</p>
+<p>其次，当再把一个对象put到此HashMap中时，容器同样会调用此对象的hashcode方法获取对象的哈希码值，再根据此哈希码值来计算出此对象应该存放的位置“桶”。如果此时，这个位置”桶”被前面的对象给占用了，那么容器会调用此对象的equals()方法来判断此对象与<strong>占桶</strong>对象是否是<strong>“相等”</strong>，如果equals方法返回true，则相等，那么后面会覆盖前面。如果equals方法返回false,  则容器会把撞桶的对象采用平衡二叉树来存储，并且是用红黑树算法来决定它的位置。</p>
+<p>最后，每个对象 的加入都重复上面的第2步。</p>
+<p>有关二叉树的知识</p>
+<ul>
+<li><p>普通二叉树，就是把数据以左孩子和右孩子 的方式进行存储，不是采用线性结构，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二叉树的数据节点封装结构</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    Node left;   <span class="comment">// 指向左孩子的指针</span></span><br><span class="line">    Node right;  <span class="comment">//指向右孩子的指针</span></span><br><span class="line">    Object data;  <span class="comment">//数据</span></span><br><span class="line">    <span class="comment">//....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：普通二叉树使用价值不高</p>
+</li>
+<li><p>排序二叉树【Search Binary Tree】，是指左孩子节点值比它的根节点值要小，右孩子节点值比它的根节点值要大。每一个子树也是同样的规则</p>
+<p>注：排序二叉有 前序、中序、后序三种遍历方式。</p>
+</li>
+<li><p>平衡二叉树【Balanced Binary Tree】，首先它是排序二叉树，再满足如下要求</p>
+<ul>
+<li>左子树的高度与右子树的高度差，其绝对值小于或等于1</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="SortedMap-接口"><a href="#SortedMap-接口" class="headerlink" title="SortedMap [接口]"></a>SortedMap [接口]</h3><blockquote>
+<p>可排序的Map, 它是Map的子接口，提供了自动排序的功能。</p>
+<p>它要求存放在此容器中的key是能够比较的。API 中提供了两种比较的接口</p>
+<ul>
+<li><p>java.lang.Comparable 接口 【可比较器的】</p>
+<p>它里面有一个 <code>compareTo方法</code>。</p>
+</li>
+<li><p>java.util.Comparator 接口 【比较器】</p>
+<p>它里面有一个 <code>compare</code> 方法</p>
+</li>
+</ul>
+<p>第一： 如果我们不传递比较器到SortedMap中，则要求你加入到此容器的中对象必需要实现 <code>Comparable</code> 接口，这样一来，当你开始添加第2个对象时，容器会把你传入的对象强制类型转换成 <code>Comparable</code> 接口，并且调用对象的<code>compareTo</code>方法，从而决定他们之间的大小，也就决定了存放的位置。</p>
+<p>第二：如果我们传递了一个比较器对象到此容器中，此种情况下，就不要求被添加的对象去实现<code>Comparable</code> 接口，而是通过这个比较器去比较。它的原理如下：</p>
+<p>​    - 从添加第2个对象开始，调用比较器的<code>compare</code> 方法，并把前面已经存在的1个对象和刚加入的对象做参数传递给这个<code>compare</code> 方法，由这个方法决定两个对象的大小，如果返回0，表示相同，后面的会把前面的覆盖掉，如果返回-1,表示后加入的比前面的小。如果返回1，表示后加入的比前面的大。</p>
+</blockquote>
+<h4 id="实现类：TreeMap"><a href="#实现类：TreeMap" class="headerlink" title="实现类：TreeMap"></a>实现类：TreeMap</h4><blockquote>
+<p>底层采用<strong>平衡二叉树</strong>来实现。</p>
+</blockquote>
+<p>常用方法：</p>
+<ul>
+<li><p>public TreeMap()    要求被添加对象要实现 <code>Comparable</code> 接口</p>
+<p>注：在JDK, 以下几种常用类型都是实现了 <code>Comparable</code> 接口的，</p>
+<ul>
+<li>Integer, Long</li>
+<li>String</li>
+<li>Date</li>
+<li>..</li>
+</ul>
+<p>所以，我们使用Map时，Key的类型尽量使用 Integer, Long, String, 如果你的Key是一个自定义类型，那最好实现 <code>Comparable</code> 接口。</p>
+</li>
+<li><p>public TreeMap(Comparator c)   传入比较器， 这种方式更加灵活，对Key没有实现 <code>Comparable</code> 接口的要求。</p>
+</li>
+<li><p>public TreeMap(Map m);</p>
+</li>
+</ul>
+<p>…</p>
+<h4 id="再来看看-TreeSet"><a href="#再来看看-TreeSet" class="headerlink" title="再来看看 TreeSet"></a>再来看看 TreeSet</h4><blockquote>
+<p>此实现类实现了 <code>SortedSet</code> 接口，此类本质上是组合了 <code>TreeMap</code>对象。利用了 TreeMap的Key的位置来存储元素。所以，对于TreeSet而言，它同样有如下构造</p>
+<ul>
+<li>public TreeSet()     要求被添加了对象实现 <code>Comparable</code> 接口</li>
+<li>public TreeSet(Comparator c)  由于传入了比较器，所以，不要求 元素实现 Comparable 接口。</li>
+</ul>
+</blockquote>
+<h2 id="JCF小结"><a href="#JCF小结" class="headerlink" title="JCF小结"></a>JCF小结</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">java.lang.Iterable</span><br><span class="line">	\- java.util.Collection</span><br><span class="line">			\- java.util.List</span><br><span class="line">					\- ArrayList    数组实现的</span><br><span class="line">					\- LinkedList	双向链表实现的</span><br><span class="line">					\- Vector</span><br><span class="line">			\- java.util.Set</span><br><span class="line">					\- HashSet   哈希算法+红黑树， 组合了 HashMap</span><br><span class="line">					\- java.util.SortedSet</span><br><span class="line">							\- TreeSet   平衡二叉树，组合了 TreeMap</span><br><span class="line">			\- java.util.Queue</span><br><span class="line">					\- PriorityQueue      优先队列</span><br><span class="line">					\- java.util.Deque    双端队列</span><br><span class="line">							\- ArrayDeque   数组</span><br><span class="line">			</span><br><span class="line">java.util.Map</span><br><span class="line">	\- HashMap		哈希算法</span><br><span class="line">	\- java.util.SortedMap</span><br><span class="line">				\- TreeMap	平衡二叉树实现</span><br><span class="line">				</span><br><span class="line"><span class="comment">//两个做比较的接口</span></span><br><span class="line">java.lang.Comparable&lt;T&gt;</span><br><span class="line">java.util.Comparator&lt;T&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型-Generic"><a href="#泛型-Generic" class="headerlink" title="泛型 Generic"></a>泛型 Generic</h2><blockquote>
+<p>泛型就是<strong>类型参数化</strong></p>
+<p>泛型有如下特点：</p>
+<ol>
+<li>泛型是编译时的概念，在运行时并不存在泛型。</li>
+<li>泛型不存在多态【因为它只是编译期的概念】</li>
+</ol>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List a = <span class="keyword">new</span> ArrayList(); <span class="comment">//ok</span></span><br><span class="line">Object b = <span class="keyword">new</span> Student(); <span class="comment">//ok</span></span><br><span class="line">List&lt;Object&gt; ab = <span class="keyword">new</span> ArrayList&lt;Student&gt;(); <span class="comment">//compile error</span></span><br><span class="line"></span><br><span class="line">List&lt;Student&gt; ab = <span class="keyword">new</span> ArrayList&lt;Student&gt;(); <span class="comment">//ok</span></span><br><span class="line"><span class="comment">//或</span></span><br><span class="line">List&lt;Student&gt; ab = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="泛型字母"><a href="#泛型字母" class="headerlink" title="泛型字母"></a>泛型字母</h3><blockquote>
+<p>就是一个泛型的符号代替，一般使用单个字母，如：T, K, V, E, S, …</p>
+</blockquote>
+<h3 id="泛型类的定义"><a href="#泛型类的定义" class="headerlink" title="泛型类的定义"></a>泛型类的定义</h3><p>语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类型&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">    	</span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    </span><br><span class="line">    在类型中定义了泛型字母，在属性和方法中就可以使用这个泛型字母 T</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleStack</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//采用组合模式</span></span><br><span class="line">	<span class="keyword">private</span> LinkedList&lt;T&gt; container;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SimpleStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//初始化这个容器</span></span><br><span class="line">		<span class="keyword">this</span>.container = <span class="keyword">new</span> LinkedList&lt;T&gt;();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(T element)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//把元素放在第一个位置</span></span><br><span class="line">		<span class="keyword">this</span>.container.push(element); <span class="comment">//等价于调用 addFirst()</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//永远取出列表中的第1个元素</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.container.pop(); <span class="comment">//等 价于调用 removeFirst()</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.container.isEmpty();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.container.size();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//只返回本栈的栈顶元素，但是此元素并不从栈中移除</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.container.peek();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用：</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    SimpleStack&lt;Integer&gt; ss1 = <span class="keyword">new</span> SimpleStack&lt;&gt;();</span><br><span class="line">    ss1.push(<span class="number">12</span>); <span class="comment">//ok</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    SimpleStack&lt;String&gt; ss2 = <span class="keyword">new</span> SimpleStack&lt;&gt;();</span><br><span class="line">    ss2.push(<span class="string">"jack"</span>); <span class="comment">//ok</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="泛型方法的定义"><a href="#泛型方法的定义" class="headerlink" title="泛型方法的定义"></a>泛型方法的定义</h3><blockquote>
+<p>此处所指是指 在类的层面上，没有定义泛型字母，而在方法中需要使用泛型。</p>
+<p>泛型方法的定义一般都在 工具类，因为工具类的方法都是静态的。</p>
+<p>语法：</p>
+<p>修饰符 <T> 返回类型 方法名(T p, … )throws 异常列表 { … }</p>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名 </span>&#123;</span><br><span class="line">   	<span class="comment">//属性</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ma</span><span class="params">()</span> </span>&#123;  ....  &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//泛型方法: 在返回类型和修饰符之间，要单独定义泛型字母，这样一来，在方法体中，就可以使用这个泛型字母。</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">mb</span><span class="params">(T p)</span> </span>&#123;  ...   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="泛型通配符-wildcards"><a href="#泛型通配符-wildcards" class="headerlink" title="泛型通配符 wildcards"></a>泛型通配符 wildcards</h3><ul>
+<li>? 通配任意类型</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; intList = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">//ok</span></span><br><span class="line">intList.add(<span class="number">100</span>); <span class="comment">//ok</span></span><br><span class="line"></span><br><span class="line">List&lt;String&gt; strList = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">//ok</span></span><br><span class="line">strList.add(<span class="string">"jack"</span>); <span class="comment">//ok</span></span><br><span class="line"></span><br><span class="line">List&lt;?&gt; hehe = <span class="keyword">new</span> ArrayList&lt;String&gt;(); <span class="comment">//ok</span></span><br><span class="line">hehe.add(<span class="keyword">null</span>);  <span class="comment">//ok</span></span><br><span class="line">hehe.add(<span class="string">"jack"</span>); <span class="comment">//error</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(List&lt;?&gt; container)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">for</span>(Object o  : container) &#123;</span><br><span class="line">        System.out.println(o);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>进一步对通配符进行限定，可以限定类型上限，也可以限定类型下限</p>
+<p>&lt;? extends  类型&gt;   指定上限</p>
+<p>&lt;? super 类型&gt;        指定下限</p>
+<h4 id="集合的工具类-Collections"><a href="#集合的工具类-Collections" class="headerlink" title="集合的工具类 Collections"></a>集合的工具类 Collections</h4><blockquote>
+<p>方法详见API文档</p>
+<p>addAll()</p>
+<p>sort()</p>
+<p>ncopies()</p>
+<p>shuffle()</p>
+<p>….</p>
+</blockquote>
+<h2 id="枚举-enum"><a href="#枚举-enum" class="headerlink" title="枚举 [enum]"></a>枚举 [enum]</h2><blockquote>
+<p>同样是一种类型，利用 <strong>enum</strong> 关键字来定义,  编译完成后，也是字节码文件。</p>
+<p><strong>枚举是一种类型安全的常量类</strong></p>
+<p>语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> 枚举名 &#123;</span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">   	<span class="comment">//1.普通属性，同 class 一样，使用不多</span></span><br><span class="line">    <span class="comment">//2.常量属性，也就是枚举本身的公开静态常量, 每一个枚举常量，都是枚举本身的一个实例。</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Season &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//普通属性</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">//常量属性</span></span><br><span class="line">    SPRING,</span><br><span class="line">    SUMMER,</span><br><span class="line">    AUTUMN,</span><br><span class="line">    WINTER;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：拥有固定值的信息适合定义成枚举，如：四季、星期、月份、交通信号灯、扑克牌花色、扑克牌点数、…</p>
+</blockquote>
+<h4 id="枚举的特点"><a href="#枚举的特点" class="headerlink" title="枚举的特点"></a>枚举的特点</h4><ol>
+<li>它的构造方法一定是私有的。</li>
+<li>枚举中也可以定义抽象方法，每一个枚举常量都必需要实现这个抽象方法。</li>
+<li>我们定义的枚举，都自动继承于 java.lang.Enum<T> </li>
+</ol>
+<h3 id="为什么-说枚举常量是类型安全的常量呢？"><a href="#为什么-说枚举常量是类型安全的常量呢？" class="headerlink" title="为什么 说枚举常量是类型安全的常量呢？"></a>为什么 说枚举常量是类型安全的常量呢？</h3><blockquote>
+<p>因为枚举的常量，都是指向本类的实例，不是其它的类型。</p>
+<p>因为枚举的构造方法默认就是私有的，而且只能是私有的。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Constant</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Constant SPRING = <span class="keyword">new</span> Constant();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Constant SUMMER = <span class="keyword">new</span> Constant();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Constant AUTUMN = <span class="keyword">new</span> Constant();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Constant WINTER = <span class="keyword">new</span> Constant();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Constant</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//以上的类就是枚举的本质，改成使用 enum 来定义如下：</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Season &#123;</span><br><span class="line">    SPRING,</span><br><span class="line">    SUMMER,</span><br><span class="line">    AUTUMN,</span><br><span class="line">    WINTER;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseXX</span> </span>&#123;</span><br><span class="line">    <span class="comment">//参数season取出常量类 Constant的四个常量之一</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">convert</span><span class="params">(Constant season)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(season == Constant.SPRING) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"春天"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(season == Constant.SUMMER) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ....</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        String s = convert(Constant.SPRING);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li><p>定义一个扑克牌花色 的枚举, 包含 黑、红、梅、方 四个枚举常量</p>
+</li>
+<li><p>定义一个扑克牌点数的枚举，包含 1，2，3，4，5，。。。，J,Q,K  13个枚举常量</p>
+</li>
+<li><p>定义一个卡片类[Card], 内置2个属性， 花色和点数， 提供构造方法、getter/setter、 toString, hashcode,equals方法</p>
+</li>
+<li><p>定义一个扑克牌类[Poker], 提供如下属性：</p>
+<ul>
+<li>private List<Card> cards;</li>
+<li>private boolean hasKing; //是否包含大小王，如果此属性为真 ，则cards中要含大小王。如果为假，则cards中不含大小王。</li>
+</ul>
+<p>再定义如下方法</p>
+<ul>
+<li>空参构造， 相当于hasKing属性为假，不含大小王来填充 cards</li>
+<li>带boolean 类型构造，由用户决定是否要含大小王，如果传入真，则要包含大小王来填充 cards</li>
+<li>public List<Card> newPoker() { }  //获取一封新的扑克牌</li>
+<li>public void shuffle(List<Card> cards) {}  //洗牌</li>
+<li>public void play(List<Card> cards, int player, int cardsForEach) {}  //发牌，其中，cards代表扑克牌，player代表玩家数量， cardsForEach 代表每个玩家发多少张牌。 此方法要求把每个玩家的牌打印出来。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day16-%E9%9B%86%E5%90%882%E3%80%81%E6%B3%9B%E5%9E%8B%E3%80%81%E6%9E%9A%E4%B8%BE/" data-id="ckcmov60d0011y0hc357i7lja" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          day17-反射、注解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/day15-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">day15-集合框架</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

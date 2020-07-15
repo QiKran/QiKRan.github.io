@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Redis_Sorted_Sets | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Redis_Sorted_Sets命令ZADDkey [NX|XX] [CH] [INCR] score member [score member …]将所有指定成员添加到键为key有序集合（sorted set）里面。 添加时可以指定多个分数&#x2F;成员（score&#x2F;member）对。 如果指定添加的成员已经是有序集合里面的成员，则会更新改成员的分数（scrore）并更新到正确的排序位置。 如果key">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis_Sorted_Sets">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/Redis_Sorted_Sets/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="Redis_Sorted_Sets命令ZADDkey [NX|XX] [CH] [INCR] score member [score member …]将所有指定成员添加到键为key有序集合（sorted set）里面。 添加时可以指定多个分数&#x2F;成员（score&#x2F;member）对。 如果指定添加的成员已经是有序集合里面的成员，则会更新改成员的分数（scrore）并更新到正确的排序位置。 如果key">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:13:48.288Z">
+<meta property="article:modified_time" content="2020-06-24T06:53:30.830Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Redis_Sorted_Sets" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis_Sorted_Sets/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.288Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis_Sorted_Sets
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis-Sorted-Sets命令"><a href="#Redis-Sorted-Sets命令" class="headerlink" title="Redis_Sorted_Sets命令"></a>Redis_Sorted_Sets命令</h1><h4 id="ZADDkey-NX-XX-CH-INCR-score-member-score-member-…"><a href="#ZADDkey-NX-XX-CH-INCR-score-member-score-member-…" class="headerlink" title="ZADDkey [NX|XX] [CH] [INCR] score member [score member …]"></a>ZADDkey [NX|XX] [CH] [INCR] score member [score member …]</h4><p>将所有指定成员添加到键为<code>key</code>有序集合（sorted set）里面。 添加时可以指定多个分数/成员（score/member）对。 如果指定添加的成员已经是有序集合里面的成员，则会更新改成员的分数（scrore）并更新到正确的排序位置。</p>
+<p>如果<code>key</code>不存在，将会创建一个新的有序集合（sorted set）并将分数/成员（score/member）对添加到有序集合，就像原来存在一个空的有序集合一样。如果<code>key</code>存在，但是类型不是有序集合，将会返回一个错误应答。</p>
+<p>分数值是一个双精度的浮点型数字字符串。<code>+inf</code>和<code>-inf</code>都是有效值。</p>
+<h6 id="ZADD-参数（options）-gt-Redis-3-0-2"><a href="#ZADD-参数（options）-gt-Redis-3-0-2" class="headerlink" title="ZADD 参数（options） (&gt;= Redis 3.0.2)"></a>ZADD 参数（options） (&gt;= Redis 3.0.2)</h6><p>ZADD 命令在<code>key</code>后面分数/成员（score/member）对前面支持一些参数，他们是：</p>
+<ul>
+<li><strong>XX</strong>: 仅仅更新存在的成员，不添加新成员。</li>
+<li><strong>NX</strong>: 不更新存在的成员。只添加新成员。</li>
+<li><strong>CH</strong>: 修改返回值为发生变化的成员总数，原始是返回新添加成员的总数 (CH 是 <em>changed</em> 的意思)。更改的元素是<strong>新添加的成员</strong>，已经存在的成员<strong>更新分数</strong>。 所以在命令中指定的成员有相同的分数将不被计算在内。注：在通常情况下，<code>ZADD</code>返回值只计算新添加成员的数量。</li>
+<li><strong>INCR</strong>: 当<code>ZADD</code>指定这个选项时，成员的操作就等同<a href="http://www.redis.cn/commands/zincrby.html" target="_blank" rel="noopener">ZINCRBY</a>命令，对成员的分数进行递增操作。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset <span class="number">4</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zscan zset <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"0"</span></span><br><span class="line"></span><br><span class="line">   <span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line">   <span class="number">2</span>) <span class="string">"4"</span></span><br><span class="line">#带XX参数</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset xx <span class="number">4</span> <span class="string">"four"</span> <span class="number">1</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zscan zset <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"0"</span></span><br><span class="line">    <span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line">    <span class="number">2</span>) <span class="string">"1"</span></span><br><span class="line">#不使用NX参数 score不同 member相同的话会更新</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset <span class="number">3</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zscan zset <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"0"</span></span><br><span class="line"><span class="number">2</span>) <span class="number">1</span>) <span class="string">"four"</span></span><br><span class="line">   <span class="number">2</span>) <span class="string">"3"</span></span><br><span class="line">#使用NX参数后 则只添加不对原有的成员进行更新，如果<span class="built_in">set</span>中有相同的memeber则添加失败。</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset nx <span class="number">10</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line">#带ch的参数</span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset xx ch <span class="number">4</span> <span class="string">"four"</span> <span class="number">5</span> <span class="string">"four"</span></span><br><span class="line">(integer) <span class="number">2</span></span><br><span class="line">#使用incr的参数 这里是使four成员的分数自增<span class="number">1</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zadd zset xx ch incr <span class="number">1</span> <span class="string">"four"</span></span><br><span class="line"><span class="string">"6"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; zscan zset <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"0"</span></span><br><span class="line"><span class="number">2</span>) <span class="number">1</span>) <span class="string">"zero"</span></span><br><span class="line">   <span class="number">2</span>) <span class="string">"0"</span></span><br><span class="line">   <span class="number">3</span>) <span class="string">"four"</span></span><br><span class="line">   <span class="number">4</span>) <span class="string">"6"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="ZCARD-key"><a href="#ZCARD-key" class="headerlink" title="ZCARD key"></a>ZCARD key</h4><p>返回key的有序集合元素个数</p>
+<h4 id="ZCOUNT-key-min-max"><a href="#ZCOUNT-key-min-max" class="headerlink" title="ZCOUNT key min max"></a>ZCOUNT key min max</h4><p>返回有序集key中，score值在min和max之间(默认包括score值等于min或max)的成员。 关于参数min和max的详细使用方法，</p>
+<h4 id="ZINCRBY-key-increment-member"><a href="#ZINCRBY-key-increment-member" class="headerlink" title="ZINCRBY key increment member"></a>ZINCRBY key increment member</h4><p>为有序集key的成员member的score值加上增量increment。如果key中不存在member，就在key中添加一个member，score是increment（就好像它之前的score是0.0）。如果key不存在，就创建一个只含有指定member成员的有序集合。</p>
+<p>当key不是有序集类型时，返回一个错误。</p>
+<p>score值必须是字符串表示的整数值或双精度浮点数，并且能接受double精度的浮点数。也有可能给一个负数来减少score的值。返回一个新的score值</p>
+<h4 id="ZINTERSTOREdestination-numkeys-key-key-…-WEIGHTS-weight-SUM-MIN-MAX"><a href="#ZINTERSTOREdestination-numkeys-key-key-…-WEIGHTS-weight-SUM-MIN-MAX" class="headerlink" title="ZINTERSTOREdestination numkeys key [key …] [WEIGHTS weight] [SUM|MIN|MAX]"></a>ZINTERSTOREdestination numkeys key [key …] [WEIGHTS weight] [SUM|MIN|MAX]</h4><p>计算给定的numkeys个有序集合的交集，并且把结果放到destination中。 在给定要计算的key和其它参数之前，必须先给定key个数(numberkeys)。</p>
+<p>默认情况下，结果中一个元素的分数是有序集合中该元素分数之和，前提是该元素在这些有序集合中都存在。因为交集要求其成员必须是给定的每个有序集合中的成员，结果集中的每个元素的分数和输入的有序集合个数相等。</p>
+<p>对于WEIGHTS和AGGREGATE：</p>
+<ul>
+<li>weights：你可以为每个给定的有序集指定一个乘法因子，意思就是，每个给定有序集的所有成员的score值在传递给聚合函数之前都要先乘以该因子。如果WEIGHTS没有给定，默认就是1。</li>
+<li>Aggregate：使用AGGREGATE选项，你可以指定并集的结果集的聚合方式。默认使用的参数SUM，可以将所有集合中某个成员的score值之和作为结果集中该成员的score值。如果使用参数MIN或者MAX，结果集就是所有集合中元素最小或最大的元素。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; ZADD zset1 1 &quot;one&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZADD zset1 2 &quot;two&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZADD zset2 1 &quot;one&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZADD zset2 2 &quot;two&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZADD zset2 3 &quot;three&quot;</span><br><span class="line">(integer) 1</span><br><span class="line">redis&gt; ZINTERSTORE out 2 zset1 zset2 WEIGHTS 2 3</span><br><span class="line">(integer) 2</span><br><span class="line">redis&gt; ZRANGE out 0 -1 WITHSCORES</span><br><span class="line">1) &quot;one&quot;</span><br><span class="line">2) &quot;5&quot;</span><br><span class="line">3) &quot;two&quot;</span><br><span class="line">4) &quot;10&quot;</span><br><span class="line">redis&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ZLEXCOUNT-key-min-max"><a href="#ZLEXCOUNT-key-min-max" class="headerlink" title="ZLEXCOUNT key min max"></a>ZLEXCOUNT key min max</h4><p><code>ZLEXCOUNT</code> 命令用于计算有序集合中指定成员之间的成员数量</p>
+<ul>
+<li>min：名称前要夹【符合作为开头 ，之间不能有空格，</li>
+<li>可以使用-和+表示最小值和最大值</li>
+<li>min 和max不能放反</li>
+<li>min和max是使用字典区间即【a,b,c,d,e,f】</li>
+<li>计算时包括min和max</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zscan zset 0</span><br><span class="line">1) &quot;0&quot;</span><br><span class="line">2)  1) &quot;ac&quot;</span><br><span class="line">    2) &quot;2&quot;</span><br><span class="line">    3) &quot;al&quot;</span><br><span class="line">    4) &quot;2&quot;</span><br><span class="line">    5) &quot;ao&quot;</span><br><span class="line">    6) &quot;2&quot;</span><br><span class="line">    7) &quot;aq&quot;</span><br><span class="line">    8) &quot;2&quot;</span><br><span class="line">    9) &quot;oq&quot;</span><br><span class="line">   10) &quot;3&quot;</span><br><span class="line">127.0.0.1:6379&gt; zlexcount zset [a [q</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ZPOPMAX-key-count"><a href="#ZPOPMAX-key-count" class="headerlink" title="ZPOPMAX key [count]"></a>ZPOPMAX key [count]</h4><p>删除并返回有序集合<code>key</code>中的最多<code>count</code>个具有最高得分的成员。</p>
+<p>如未指定，<code>count</code>的默认值为1。指定一个大于有序集合的基数的<code>count</code>不会产生错误。 当返回多个元素时候，得分最高的元素将是第一个元素，然后是分数较低的元素。</p>
+<h4 id="ZPOPMIN-key-count"><a href="#ZPOPMIN-key-count" class="headerlink" title="ZPOPMIN key [count]"></a>ZPOPMIN key [count]</h4><p>删除并返回有序集合<code>key</code>中的最多<code>count</code>个具有最低得分的成员。</p>
+<p>如未指定，<code>count</code>的默认值为1。指定一个大于有序集合的基数的<code>count</code>不会产生错误。 当返回多个元素时候，得分最低的元素将是第一个元素，然后是分数较高的元素。</p>
+<h4 id="ZRANGE-key-start-stop-WITHSCORES"><a href="#ZRANGE-key-start-stop-WITHSCORES" class="headerlink" title="ZRANGE key start stop [WITHSCORES]"></a>ZRANGE key start stop [WITHSCORES]</h4><p>返回存储在有序集合<code>key</code>中的指定范围的元素。 返回的元素可以认为是按得分从最低到最高排列。 如果得分相同，将按字典排序。</p>
+<p>参数<code>start</code>和<code>stop</code>都是基于零的索引且都是闭区间；可以使用负数（末尾偏移量）</p>
+<p><code>start</code>参数的值大于有序集合中的最大索引，或者<code>start &gt; stop</code>，将会返回一个空列表。 如果<code>stop</code>的值大于有序集合的末尾，Redis会将其视为有序集合的最后一个元素。</p>
+<p>可以传递<code>WITHSCORES</code>选项，以便将元素的分数与元素一起返回。</p>
+<h4 id="ZRANGEBYLEX-key-min-max-LIMIT-offset-count"><a href="#ZRANGEBYLEX-key-min-max-LIMIT-offset-count" class="headerlink" title="ZRANGEBYLEX key min max [LIMIT offset count]"></a>ZRANGEBYLEX key min max [LIMIT offset count]</h4><p>ZRANGEBYLEX 返回指定成员区间内的成员，按成员字典正序排序, 分数必须相同。 在某些业务场景中,需要对一个字符串数组按名称的字典顺序进行排序时,可以使用Redis中SortSet这种数据结构来处理。</p>
+<ul>
+<li><p>limit:是否根据返回结果进行分页，offset起始位置，count返回数量。</p>
+</li>
+<li><p>分数必须相同! 如果有序集合中的成员分数有不一致的,返回的结果就不准。</p>
+</li>
+<li><p>成员字符串作为二进制数组的字节数进行比较。</p>
+</li>
+<li><p>默认是以ASCII字符集的顺序进行排列。如果成员字符串包含utf-8这类字符集的内容,就会影响返回结果,所以建议不要使用。</p>
+</li>
+<li><p>默认情况下, “max” 和 “min” 参数前必须加 “[” 符号作为开头。”[” 符号与成员之间不能有空格, 返回成员结果集会包含参数 “min” 和 “max” 。</p>
+</li>
+<li><p>“max” 和 “min” 参数前可以加 “(“ 符号作为开头表示小于, “(“ 符号与成员之间不能有空格。返回成员结果集不会包含 “max” 和 “min” 成员。一般用于在max前面</p>
+</li>
+<li><p>可以使用 “-“ 和 “+” 表示得分最小值和最大值</p>
+</li>
+<li><p>“min” 和 “max” 不能反, “max” 放前面 “min”放后面会导致返回结果为空</p>
+</li>
+<li><p>与ZRANGEBYLEX获取顺序相反的指令是<a href="http://www.redis.cn/commands/zrevrangebylex.html" target="_blank" rel="noopener">ZREVRANGEBYLEX</a>。</p>
+</li>
+<li><p>源码中采用C语言中<code>memcmp()</code>函数, 从字符的第0位到最后一位进行排序,如果前面部分相同,那么较长的字符串比较短的字符串排序靠后。</p>
+</li>
+</ul>
+<h4 id="ZRANGEBYSCOREkey-min-max-WITHSCORES-LIMIT-offset-count"><a href="#ZRANGEBYSCOREkey-min-max-WITHSCORES-LIMIT-offset-count" class="headerlink" title="ZRANGEBYSCOREkey min max [WITHSCORES] [LIMIT offset count]"></a>ZRANGEBYSCOREkey min max [WITHSCORES] [LIMIT offset count]</h4><p>在min—max区间 返回这区间根据分数来排序的 set ；</p>
+<ul>
+<li>min 和max前可以加（符号表示小于 。不能加【</li>
+<li>如需全部列出，则min max 就是 -inf +inf</li>
+</ul>
+<h4 id="ZRANK-key-member"><a href="#ZRANK-key-member" class="headerlink" title="ZRANK key member"></a>ZRANK key member</h4><p>返回有序集key中成员member的排名。其中有序集成员按score值递增(从小到大)顺序排列。排名以0为底，也就是说，score值最小的成员排名为0。</p>
+<p>使用ZREVRANK命令可以获得成员按score值递减(从大到小)排列的排名。</p>
+<h4 id="ZREM-key-member-member-…"><a href="#ZREM-key-member-member-…" class="headerlink" title="ZREM key member [member …]"></a>ZREM key member [member …]</h4><p>移除key中的成员。</p>
+<h4 id="ZREMRANGEBYLEX-key-min-max"><a href="#ZREMRANGEBYLEX-key-min-max" class="headerlink" title="ZREMRANGEBYLEX key min max"></a>ZREMRANGEBYLEX key min max</h4><p>ZREMRANGEBYLEX 删除名称按字典由低到高排序成员之间所有成员。<br>不要在成员分数不同的有序集合中使用此命令, 因为它是基于分数一致的有序集合设计的,如果使用,会导致删除的结果不正确。<br>待删除的有序集合中,分数最好相同,否则删除结果会不正常。</p>
+<ul>
+<li><p>min 必须以【开头，可以使用（开头，可以使用—代替</p>
+</li>
+<li><p>max必须以【开头，可以使用（开头，可以使用+代替 </p>
+</li>
+<li><p>有序集合中分数必须相同! 如果有序集合中的成员分数有不一致的,结果就不准。</p>
+</li>
+<li><p>成员顺序是按成员字符串作为二进制数组的字节数进行比较。</p>
+</li>
+<li><p>默认是以ASCII字符集的顺序进行排列。如果成员字符串包含utf-8这类字符集的内容,就会影响返回结果,所以建议不要使用。</p>
+</li>
+<li><p>源码中采用C语言中<code>memcmp()</code>函数, 从字符的第0位到最后一位进行排序,如果前面部分相同,那么较长的字符串比较短的字符串排序靠后。</p>
+</li>
+<li><p>默认情况下, “max” 和 “min” 参数前必须加 “[” 符号作为开头。”[” 符号与成员之间不能有空格, 返回成员结果集会包含参数 “max”和 “min”</p>
+</li>
+<li><p>“max” 和 “min” 参数前可以加 “(“ 符号作为开头表示小于, “(“ 符号与成员之间不能有空格。返回成员结果集不会包含 “max” 和 “min” 成员。</p>
+</li>
+<li><p>可以使用 “-“ 和 “+” 表示得分最小值和最大值</p>
+</li>
+<li><p>“max”和 “min” 不能反, “max” 放后面 “min”放前面会删除不了元素</p>
+</li>
+</ul>
+<h4 id="ZREMRANGEBYRANK-key-start-stop"><a href="#ZREMRANGEBYRANK-key-start-stop" class="headerlink" title="ZREMRANGEBYRANK key start stop"></a>ZREMRANGEBYRANK key start stop</h4><p>移除有序集key中，指定排名(rank)区间内的所有成员。下标参数start和stop都以0为底，0处是分数最小的那个元素。这些索引也可是负数，表示位移从最高分处开始数。例如，-1是分数最高的元素，-2是分数第二高的，依次类推</p>
+<h4 id="ZREMRANGEBYSCORE-key-min-max"><a href="#ZREMRANGEBYSCORE-key-min-max" class="headerlink" title="ZREMRANGEBYSCORE key min max"></a>ZREMRANGEBYSCORE key min max</h4><p>移除有序集key中，所有score值介于min和max之间(包括等于min或max)的成员。 自版本2.1.6开始，score值等于min或max的成员也可以不包括在内min和max可以是用 -inf 和+inf 表示最低和最高</p>
+<h4 id="ZREVRANGE-key-start-stop-WITHSCORES"><a href="#ZREVRANGE-key-start-stop-WITHSCORES" class="headerlink" title="ZREVRANGE key start stop [WITHSCORES]"></a>ZREVRANGE key start stop [WITHSCORES]</h4><p>返回有序集key中，指定区间内的成员。其中成员的位置按score值递减(从大到小)来排列。具有相同score值的成员按字典序的反序排列。 除了成员按score值递减的次序排列这一点外，<a href="http://www.redis.cn/commands/zrevrange.html" target="_blank" rel="noopener">ZREVRANGE</a>命令的其他方面和<a href="http://www.redis.cn/commands/zrange.html" target="_blank" rel="noopener">ZRANGE</a>命令一样。</p>
+<h4 id="ZREVRANGEBYLEX-key-max-min-LIMIT-offset-count"><a href="#ZREVRANGEBYLEX-key-max-min-LIMIT-offset-count" class="headerlink" title="ZREVRANGEBYLEX key max min [LIMIT offset count]"></a>ZREVRANGEBYLEX key max min [LIMIT offset count]</h4><p>ZREVRANGEBYLEX 返回指定成员区间内的成员，按成员字典倒序排序, 分数必须相同。<br>在某些业务场景中,需要对一个字符串数组按名称的字典顺序进行倒序排列时,可以使用Redis中SortSet这种数据结构来处理。语法请参考zrangebylex</p>
+<h4 id="ZREVRANGEBYSCOREkey-max-min-WITHSCORES-LIMIT-offset-count"><a href="#ZREVRANGEBYSCOREkey-max-min-WITHSCORES-LIMIT-offset-count" class="headerlink" title="ZREVRANGEBYSCOREkey max min [WITHSCORES] [LIMIT offset count]"></a>ZREVRANGEBYSCOREkey max min [WITHSCORES] [LIMIT offset count]</h4><p><code>ZREVRANGEBYSCORE</code> 返回有序集合中指定分数区间内的成员，分数由高到低排序</p>
+<h4 id="ZREVRANK-key-member"><a href="#ZREVRANK-key-member" class="headerlink" title="ZREVRANK key member"></a>ZREVRANK key member</h4><p>返回有序集key中成员member的排名，其中有序集成员按score值从大到小排列。排名以0为底，也就是说，score值最大的成员排名为0。</p>
+<p>使用<a href="http://www.redis.cn/commands/zrank.html" target="_blank" rel="noopener">ZRANK</a>命令可以获得成员按score值递增(从小到大)排列的排名</p>
+<h4 id="ZSCAN-key-cursor-MATCH-pattern-COUNT-count"><a href="#ZSCAN-key-cursor-MATCH-pattern-COUNT-count" class="headerlink" title="ZSCAN key cursor [MATCH pattern] [COUNT count]"></a>ZSCAN key cursor [MATCH pattern] [COUNT count]</h4><p>请参考基本命令中的scan</p>
+<h4 id="ZSCORE-key-member"><a href="#ZSCORE-key-member" class="headerlink" title="ZSCORE key member"></a>ZSCORE key member</h4><p>返回有序集key中，成员member的score值。</p>
+<p>如果member元素不是有序集key的成员，或key不存在，返回nil。</p>
+<h4 id="ZUNIONSTOREdestination-numkeys-key-key-…-WEIGHTS-weight-SUM-MIN-MAX"><a href="#ZUNIONSTOREdestination-numkeys-key-key-…-WEIGHTS-weight-SUM-MIN-MAX" class="headerlink" title="ZUNIONSTOREdestination numkeys key [key …] [WEIGHTS weight] [SUM|MIN|MAX]"></a>ZUNIONSTOREdestination numkeys key [key …] [WEIGHTS weight] [SUM|MIN|MAX]</h4><p>计算给定的numkeys个有序集合的并集，并且把结果放到destination中。在给定要计算的key和其它参数之前，必须先给定key个数(numberkeys)。 默认情况下，结果集中某个成员的score值是所有给定集下该成员score值之和。</p>
+<p>使用WEIGHTS选项，你可以为每个给定的有序集指定一个乘法因子，意思就是，每个给定有序集的所有成员的score值在传递给聚合函数之前都要先乘以该因子。如果WEIGHTS没有给定，默认就是1。</p>
+<p>使用AGGREGATE选项，你可以指定并集的结果集的聚合方式。默认使用的参数SUM，可以将所有集合中某个成员的score值之和作为结果集中该成员的score值。如果使用参数MIN或者MAX，结果集就是所有集合中元素最小或最大的元素。如若目标存在则会覆盖。</p>
+<h4 id="BZPOPMAX-key-key-…-timeout"><a href="#BZPOPMAX-key-key-…-timeout" class="headerlink" title="BZPOPMAX key [key …] timeout"></a>BZPOPMAX key [key …] timeout</h4><p><code>BZPOPMAX</code> 是有序集合命令 <code>ZPOPMAX</code>带有阻塞功能的版本。</p>
+<p>在参数中的所有有序集合均为空的情况下，阻塞连接。参数中包含多个有序集合时，按照参数中key的顺序，返回第一个非空key中分数最大的成员和对应的分数</p>
+<p>参数 <code>timeout</code> 可以理解为客户端被阻塞的最大秒数值，0 表示永久阻塞。</p>
+<p>详细说明请参照<a href="http://www.redis.cn/commands/bzpopmin.html" target="_blank" rel="noopener">BZPOPMIN 说明文档</a>，<code>BZPOPMAX</code>返回非空有序集合 key中分数最大的成员，而<code>BZPOPMIN</code>返回该key中分数最小的成员，除此之外，两条命令无其他差别。</p>
+<h4 id="BZPOPMIN-key-key-…-timeout"><a href="#BZPOPMIN-key-key-…-timeout" class="headerlink" title="BZPOPMIN key [key …] timeout"></a>BZPOPMIN key [key …] timeout</h4><p><code>BZPOPMIN</code> 是有序集合命令 <code>ZPOPMIN</code>带有阻塞功能的版本。</p>
+<p>在参数中的所有有序集合均为空的情况下，阻塞连接。参数中包含多个有序集合时，按照参数中key的顺序，返回第一个非空key中分数最小的成员和对应的分数</p>
+<p>参数 <code>timeout</code> 可以理解为客户端被阻塞的最大秒数值，0 表示永久阻塞。</p>
+<p>详细说明请参照<a href="http://www.redis.cn/commands/blpop.html" target="_blank" rel="noopener">BLPOP 说明文档</a>，<code>BZPOPMIN</code>适用有序集合类型的key，BLPOP适用列表类型的key，除此之外，两条命令无其他差别。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis_Sorted_Sets/" data-id="ckcmov606000xy0hc5j1i7z3d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/Redis_String%E5%91%BD%E4%BB%A4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Redis_String命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/Redis_Sets%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Redis_Sets命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

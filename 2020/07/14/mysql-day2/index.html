@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>mysql-day2 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SQL操作 SQL标准是针对关系型数据库管理系统的一套操作标准，全称是：Structure Query Language,它有多种不同的命令，主要有：   DDL 命令， Data Definition Language, 数据定义语句，主要包含的命令有： CREATE 命令， 如：create database,  create table,  create User, …. DROP 命令，如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql-day2">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/mysql-day2/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="SQL操作 SQL标准是针对关系型数据库管理系统的一套操作标准，全称是：Structure Query Language,它有多种不同的命令，主要有：   DDL 命令， Data Definition Language, 数据定义语句，主要包含的命令有： CREATE 命令， 如：create database,  create table,  create User, …. DROP 命令，如">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T09:13:07.723Z">
+<meta property="article:modified_time" content="2020-04-15T11:07:47.169Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mysql-day2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/mysql-day2/" class="article-date">
+  <time datetime="2020-07-14T09:13:07.723Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mysql-day2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SQL操作"><a href="#SQL操作" class="headerlink" title="SQL操作"></a>SQL操作</h1><blockquote>
+<p>SQL标准是针对关系型数据库管理系统的一套操作标准，全称是：Structure Query Language,它有多种不同的命令，主要有：</p>
+</blockquote>
+<ol>
+<li>DDL 命令， Data Definition Language, 数据定义语句，主要包含的命令有：<ol>
+<li>CREATE 命令， 如：create database,  create table,  create User, ….</li>
+<li>DROP 命令，如： drop database, drop table, drop user, …</li>
+<li>ALTER 命令， 如：alter database, alter table, alter user, …</li>
+<li>RENAME 命令</li>
+<li>COMMENT ON 命令</li>
+<li>。。。</li>
+</ol>
+</li>
+<li>DCL 命令， Data Control Language, 数据控制语句，主要包含的命令有：<ol>
+<li>grant 命令， 用来给用户授权</li>
+<li>revoke 命令， 用来收回权限的</li>
+</ol>
+</li>
+<li>DQL 命令， Data Query Language, 数据查询语句，主要的命令：<ol>
+<li>SELECT 命令 【*****】</li>
+</ol>
+</li>
+<li>DML 命令， Data Manipulate Language,  数据操作语句，主要的命令：<ol>
+<li>INSERT 命令</li>
+<li>UPDATE 命令</li>
+<li>DELETE 命令</li>
+</ol>
+</li>
+<li>DTL 命令， Data Transaction Language,  数据事务语句， 主要的命令：<ol>
+<li>COMMIT 命令</li>
+<li>ROLLBACK 命令</li>
+<li>SAVEPOINT 命令</li>
+</ol>
+</li>
+</ol>
+<h2 id="SELECT-语句"><a href="#SELECT-语句" class="headerlink" title="SELECT 语句"></a>SELECT 语句</h2><h3 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	[表别名.]列名 [<span class="keyword">as</span>] [列别名],</span><br><span class="line">	[表别名.]列名 [<span class="keyword">as</span>] [列别名],</span><br><span class="line">	...,</span><br><span class="line">	[表别名.]列名 [<span class="keyword">as</span>] [列别名]</span><br><span class="line"><span class="keyword">FROM</span> 表名 [表别名]</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> 子句;</span><br></pre></td></tr></table></figure>
+
+<h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3><blockquote>
+<p>针对数据记录有条件的过滤【检索】，通过 WHERE 子句，它可以支持各种运算符</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	[表别名.]列名 [<span class="keyword">as</span>] [列别名],</span><br><span class="line">	[表别名.]列名 [<span class="keyword">as</span>] [列别名],</span><br><span class="line">	...,</span><br><span class="line">	[表别名.]列名 [<span class="keyword">as</span>] [列别名]</span><br><span class="line"><span class="keyword">FROM</span> 表名 [表别名]</span><br><span class="line"><span class="keyword">WHERE</span> 子句</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> 子句;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>针对  where 子句，它里面可以支持各种运算符，如：</p>
+<ol>
+<li>比较运算符 ,  &gt;,  &lt;,  =,  &gt;=,  &lt;=,  !=, &lt;&gt;,</li>
+<li>逻辑运算符，有： &amp;&amp; (AND),  || (OR),  ! (NOT)</li>
+<li>算术运算，</li>
+<li>通配运算符，有： like 和  not like, 它支持的通配符如下：<ul>
+<li>_   通配任一单个字符</li>
+<li>%  通配任意多个字符</li>
+</ul>
+</li>
+<li>IN 运算符，  语法： IN(LIST)</li>
+<li>IS NULL 和   IS NOT NULL</li>
+<li>BETWEEN  start AND end</li>
+<li>REGEXP 采用正则表达式进行匹配</li>
+</ol>
+</blockquote>
+<p>案例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询出工资大于1450元的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">where</span> sal &gt; <span class="number">1450</span>;</span><br><span class="line"><span class="comment">-- 查询出工资大于1450元并且在30部门的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">where</span> sal &gt; <span class="number">1450</span> <span class="keyword">AND</span> deptno = <span class="number">30</span>;</span><br><span class="line"><span class="comment">-- 找出名字中含有字母A的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">where</span> ename <span class="keyword">LIKE</span> <span class="string">'%A%'</span>;</span><br><span class="line"><span class="comment">-- 找出名字中第2个字母是A的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">where</span> ename <span class="keyword">LIKE</span> <span class="string">'_A%'</span>;</span><br><span class="line"><span class="comment">-- 找出在10和20部门的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">where</span> deptno = <span class="number">10</span> <span class="keyword">OR</span> deptno = <span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 或</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">where</span> deptno <span class="keyword">in</span>(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line"><span class="comment">-- 找出没有提成的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">where</span> comm <span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 1. 找出工种是 CLERK 的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">where</span> job = <span class="string">'CLERK'</span>;</span><br><span class="line"><span class="comment">-- 2. 找出81年入职的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMP <span class="keyword">WHERE</span> hiredate <span class="keyword">like</span> <span class="string">'1981%'</span>;</span><br><span class="line"><span class="comment">-- 或</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMP <span class="keyword">WHERE</span> <span class="keyword">YEAR</span>(hiredate) = <span class="number">1981</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3. 找出所有上半年入职的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMP <span class="keyword">WHERE</span> <span class="keyword">MONTH</span>(hiredate) &lt;= <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 4. 找出年薪大于20000元的员工，不含提成</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMP <span class="keyword">WHERE</span> SAL * <span class="number">12</span> &gt; <span class="number">20000</span>;</span><br><span class="line"><span class="comment">-- 含工资提成：</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMP <span class="keyword">WHERE</span> SAL * <span class="number">12</span>*(<span class="number">1</span>+<span class="keyword">IFNULL</span>(comm,<span class="number">0</span>)/<span class="number">100</span>) &gt; <span class="number">20000</span>;</span><br><span class="line"><span class="comment">-- 5. 找出经理是7839的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMP <span class="keyword">WHERE</span> mgr = <span class="number">7839</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 6. 找出名字中倒数第二个字母是E的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> EMP <span class="keyword">WHERE</span> ename <span class="keyword">like</span> <span class="string">'%E_'</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="函数-function"><a href="#函数-function" class="headerlink" title="函数 function"></a>函数 function</h3><blockquote>
+<p>就是由RDBMS开发好的一组逻辑代码的整合，我们直接可以调用的。</p>
+</blockquote>
+<ol>
+<li><p><strong>字符函数</strong></p>
+<ul>
+<li>length(表达式|列|字面量 )    返回参数的字节长度</li>
+<li>char_length(表达式|列|字面量 )  返回参数的字符长度</li>
+<li>substring(参数)  求子串</li>
+<li>lpad(参数)   左填充</li>
+<li>rpad(参数)  右填 充</li>
+<li>ltrim(参数);</li>
+<li>rtrim(参数); </li>
+<li>instr(参数);   </li>
+<li>concat(参数); </li>
+<li>upper(参数);</li>
+<li>lower(参数)</li>
+<li>uuid()</li>
+<li>…</li>
+</ul>
+<p>特殊字符：</p>
+<p>‘ 代表字符</p>
+<p>我们要输出单 引号，一定是单数的，如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> (<span class="string">'hello'</span>),(<span class="string">'''hello'''</span>),(<span class="string">'''''hello'''''</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p><strong>日期函数</strong></p>
+<ul>
+<li>year(日期)</li>
+<li>month(日期)</li>
+<li>day(日期)</li>
+<li>minute(日期)</li>
+<li>hour(日期)</li>
+<li>second(日期)</li>
+<li>weekday(日期)</li>
+<li>week(日期)</li>
+<li>now();</li>
+<li>current_date();</li>
+<li>current_time();</li>
+<li>last_day(日期)</li>
+<li>datediff(日期1，日期2)</li>
+</ul>
+<p>案例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 找出每个月份倒数第3天入职的员工</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">datediff</span>(<span class="keyword">last_day</span>(hiredate), hiredate) == <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<p>在mysql中，日期的默认格式是：yyyy-MM-dd</p>
+<p>而且，mysql中，自动会免除Y2K问题。即使我们录入年份时，采用2位，MYSQL后台会自动转换4位。</p>
+<p>我们输入2位年份时的计算规则：</p>
+<ol>
+<li>大于69年，就以上个世纪来换算成4位年份</li>
+<li>小于69[含]，就以本世纪来换算成4位年份。</li>
+</ol>
+</li>
+<li><p><strong>数字函数</strong></p>
+<ul>
+<li><p>round(参数)</p>
+</li>
+<li><p>truncate(参数)</p>
+</li>
+<li><p>rand()  </p>
+</li>
+<li><p>ceil()  向上取整</p>
+</li>
+<li><p>floor() 向下取整</p>
+<p>…</p>
+</li>
+</ul>
+</li>
+<li><p><strong>加密函数</strong></p>
+<p>md5()</p>
+<p>sha1()</p>
+</li>
+</ol>
+<h2 id="DML-语句"><a href="#DML-语句" class="headerlink" title="DML 语句"></a>DML 语句</h2><h3 id="INSERT-命令"><a href="#INSERT-命令" class="headerlink" title="INSERT 命令"></a>INSERT 命令</h3><blockquote>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> [<span class="keyword">INTO</span>] 表名(列名[,列名][,...][,列名]) <span class="keyword">VALUES</span> (值<span class="number">1</span>[,值<span class="number">2</span>][,...][,值]]);</span><br><span class="line">或者可以一次性插入多行</span><br><span class="line"><span class="keyword">INSERT</span> [<span class="keyword">INTO</span>] 表名(列名[,列名][,...][,列名]) <span class="keyword">VALUES</span> </span><br><span class="line">	(值<span class="number">1</span>[,值<span class="number">2</span>][,...][,值]]),</span><br><span class="line">	(值<span class="number">1</span>[,值<span class="number">2</span>][,...][,值]]),</span><br><span class="line">	(值<span class="number">1</span>[,值<span class="number">2</span>][,...][,值]]),</span><br><span class="line">	(值<span class="number">1</span>[,值<span class="number">2</span>][,...][,值]]),</span><br><span class="line">	(值<span class="number">1</span>[,值<span class="number">2</span>][,...][,值]]);</span><br><span class="line">或：</span><br><span class="line"><span class="keyword">INSERT</span> [<span class="keyword">INTO</span>] 表名 <span class="keyword">VALUES</span> (值<span class="number">1</span>[,值<span class="number">2</span>][,...][,值]]);  <span class="comment">-- 要求值与创建表时的列顺序和个数保持一致,并且列的默认值是不起作用的。</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>案例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 插入多个学员</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t_student(<span class="keyword">name</span>,age,gender,birth) <span class="keyword">values</span></span><br><span class="line">(<span class="string">'陈聪'</span>,<span class="number">21</span>,<span class="string">'女'</span>,<span class="string">'1998-03-19'</span>),</span><br><span class="line">(<span class="string">'钟磊'</span>,<span class="number">20</span>,<span class="string">'男'</span>,<span class="string">'1999-06-12'</span>),</span><br><span class="line">(<span class="string">'叶健雄'</span>,<span class="number">19</span>,<span class="string">'男'</span>,<span class="string">'2000-07-18'</span>),</span><br><span class="line">(<span class="string">'张少维'</span>,<span class="number">20</span>,<span class="string">'男'</span>,<span class="string">'1999-11-02'</span>),</span><br><span class="line">(<span class="string">'杨万仁'</span>,<span class="number">21</span>,<span class="string">'男'</span>,<span class="string">'1998-05-09'</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="利用子查询来插入"><a href="#利用子查询来插入" class="headerlink" title="利用子查询来插入"></a>利用子查询来插入</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名(列名[,列名][,...][,列名])</span><br><span class="line">	<span class="keyword">SELECT</span> 语句;   <span class="comment">-- 查询出来的列个数和类型 都要与 被插入的表中的列保持一致。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="更新命令-UPDATE"><a href="#更新命令-UPDATE" class="headerlink" title="更新命令 UPDATE"></a>更新命令 UPDATE</h3><blockquote>
+<p>语法:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名 [表别名] <span class="keyword">SET</span> 列<span class="number">1</span>=值<span class="number">1</span>[,列<span class="number">2</span>=值<span class="number">2</span>][,...][,列N=值N]</span><br><span class="line">[<span class="keyword">WHERE</span> 子句];</span><br><span class="line"><span class="comment">-- 如果不使用WHERE 子句，则表示更新所有行记录。如果使用了WHERE子句，则只更新满足条件的行记录。</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>案例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把所有学员的年龄增加1岁</span></span><br><span class="line"><span class="keyword">UPDATE</span> t_student <span class="keyword">SET</span> age=age+<span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 把所有男同学的年龄增加2岁</span></span><br><span class="line"><span class="keyword">UPDATE</span> t_student <span class="keyword">SET</span> age=age+<span class="number">2</span> <span class="keyword">WHERE</span> gender=<span class="string">'男'</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>案例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 把学员的性别进行随机更新</span></span><br><span class="line"><span class="keyword">update</span> t_student <span class="keyword">set</span> gender=<span class="keyword">if</span>(<span class="keyword">ceil</span>(<span class="keyword">rand</span>()*<span class="number">100</span>) % <span class="number">2</span> = <span class="number">0</span>, <span class="string">'男'</span>,<span class="string">'女'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除命令-DELETE"><a href="#删除命令-DELETE" class="headerlink" title="删除命令 DELETE"></a>删除命令 DELETE</h3><blockquote>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> [<span class="keyword">FROM</span>] 表名 [表别名]</span><br><span class="line">[<span class="keyword">WHERE</span> 子句];</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h2 id="关联查询-join"><a href="#关联查询-join" class="headerlink" title="关联查询 join"></a>关联查询 join</h2><blockquote>
+<p>从多个表中查询数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 语法</span></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	[表别名.]列名 [<span class="keyword">as</span>] [列别名],</span><br><span class="line">	[表别名.]列名 [<span class="keyword">as</span>] [列别名],</span><br><span class="line">	...,</span><br><span class="line">	[表别名.]列名 [<span class="keyword">as</span>] [列别名]</span><br><span class="line"><span class="keyword">FROM</span> 表名 [表别名] [<span class="keyword">inner</span>|<span class="keyword">left</span> <span class="keyword">outer</span>|<span class="keyword">right</span> <span class="keyword">out</span>]<span class="keyword">JOIN</span> 表名 [表别名] <span class="keyword">ON</span> 关联条件</span><br><span class="line"><span class="keyword">WHERE</span> 子句</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> 子句;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p>从上面可以看出，关联可以分为：</p>
+<ol>
+<li><p>内联接，使用 inner join, 其中， inner 可以省略</p>
+<blockquote>
+<p>只有当关联条件在左右两边都满足的情况，才会进入到结果集</p>
+</blockquote>
+</li>
+<li><p>外联接</p>
+<ul>
+<li><p>左外联, 使用 left outer join, 其中,outer可以省略</p>
+<blockquote>
+<p>以关联的左边为准，即使右边没有与之匹配的记录，那左边的记录也要进入结果集</p>
+</blockquote>
+</li>
+<li><p>右外联, 使用 right outer join, 其中,outer可以省略</p>
+<blockquote>
+<p>以关联的右边为准，即使左边没有与之匹配的记录，那右边的记录也要进入结果集</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 案例1：</span></span><br><span class="line"><span class="comment">-- 找出所有在 CHICAGO 工作的员工</span></span><br><span class="line"><span class="keyword">SELECT</span> e.ename,e.job,e.sal,d.loc</span><br><span class="line"><span class="keyword">FROM</span> emp e <span class="keyword">JOIN</span> dept d <span class="keyword">ON</span> e.deptno = d.deptno</span><br><span class="line"><span class="keyword">WHERE</span> d.loc = <span class="string">'CHICAGO'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 找出工资大于1300元，并且在 CHICAGO工作的员工</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 找出所有属于 RESEARCH 部门的员工</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="自身关联"><a href="#自身关联" class="headerlink" title="自身关联"></a>自身关联</h4><blockquote>
+<p>同一个表，自已和自己产生关联。</p>
+</blockquote>
+<p>如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 找到上司是 King 的员工</span></span><br><span class="line"><span class="keyword">select</span> e.ename,m.ename</span><br><span class="line"><span class="keyword">from</span> emp e <span class="keyword">join</span> emp m <span class="keyword">ON</span> e.mgr = m.empno</span><br><span class="line"><span class="keyword">WHERE</span> m.ename = <span class="string">'KING'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 找出没有上司的员工</span></span><br><span class="line"><span class="keyword">select</span> e.ename <span class="keyword">from</span> emp e <span class="keyword">where</span> e.mgr <span class="keyword">is</span> <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="左外关联"><a href="#左外关联" class="headerlink" title="左外关联"></a>左外关联</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename <span class="string">"员工名"</span>, <span class="keyword">ifnull</span>(m.ename,<span class="string">"董事会"</span>) <span class="string">"上司名"</span></span><br><span class="line"><span class="keyword">from</span> emp e <span class="keyword">LEFT</span> <span class="keyword">join</span> emp m <span class="keyword">on</span> e.mgr = m.empno;</span><br></pre></td></tr></table></figure>
+
+<h4 id="右外关联"><a href="#右外关联" class="headerlink" title="右外关联"></a>右外关联</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename <span class="string">"员工名"</span>, <span class="keyword">ifnull</span>(m.ename,<span class="string">"董事会"</span>) <span class="string">"上司名"</span></span><br><span class="line"><span class="keyword">from</span> emp e <span class="keyword">RIGHT</span> <span class="keyword">join</span> emp m <span class="keyword">on</span> e.mgr = m.empno;</span><br></pre></td></tr></table></figure>
+
+<h4 id="多表关联"><a href="#多表关联" class="headerlink" title="多表关联"></a>多表关联</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询出用户 jack 的角色信息</span></span><br><span class="line"><span class="keyword">select</span> u.username,r.*</span><br><span class="line"><span class="keyword">from</span> sys_user u <span class="keyword">join</span> sys_user_role ur <span class="keyword">on</span> u.id = ur.user_id</span><br><span class="line"><span class="keyword">join</span> sys_role r <span class="keyword">on</span> ur.role_id = r.id</span><br><span class="line"><span class="keyword">where</span> u.username = <span class="string">'jack'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询出用户 admin 的所有权限信息</span></span><br><span class="line"><span class="keyword">select</span> u.username,r.*,p.*</span><br><span class="line"><span class="keyword">from</span> sys_user u </span><br><span class="line"><span class="keyword">join</span> sys_user_role ur <span class="keyword">on</span> u.id = ur.user_id</span><br><span class="line"><span class="keyword">join</span> sys_role r <span class="keyword">on</span> ur.role_id = r.id</span><br><span class="line"><span class="keyword">JOIN</span> sys_role_permission rp <span class="keyword">ON</span> r.id = rp.role_id</span><br><span class="line"><span class="keyword">JOIN</span> sys_permission p <span class="keyword">ON</span> rp.perm_id = p.id</span><br><span class="line"><span class="keyword">where</span> u.username = <span class="string">'admin'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 作业：</span></span><br><span class="line"><span class="comment">-- 1. 找出 超级管理员 角色的所有权限</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/mysql-day2/" data-id="ckcmov60n001ey0hc9f1h8wks" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/mysql-day3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          mysql-day3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/SpringSecurity%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SpringSecurity入门使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

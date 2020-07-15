@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>day10-核心API | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="核心API类之间的关系横向关系 组合关系 【关系较强】 是关联的一种，两个类之间的关系较强，属于整体与局部关系。 局部不能脱离整体单独存在，在创建整体对象时，局部被一起创建出来。 也是HAS A 关系 如： 123456789101112131415161718public class Person &amp;#123;    private String name;    private Date bi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day10-核心API">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/day10-%E6%A0%B8%E5%BF%83API/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="核心API类之间的关系横向关系 组合关系 【关系较强】 是关联的一种，两个类之间的关系较强，属于整体与局部关系。 局部不能脱离整体单独存在，在创建整体对象时，局部被一起创建出来。 也是HAS A 关系 如： 123456789101112131415161718public class Person &amp;#123;    private String name;    private Date bi">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:16:02.447Z">
+<meta property="article:modified_time" content="2020-03-21T10:32:20.706Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-day10-核心API" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day10-%E6%A0%B8%E5%BF%83API/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.447Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      day10-核心API
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h1><h2 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h2><h3 id="横向关系"><a href="#横向关系" class="headerlink" title="横向关系"></a>横向关系</h3><ol>
+<li><p>组合关系 【关系较强】</p>
+<p>是关联的一种，两个类之间的关系较强，属于整体与局部关系。 局部不能脱离整体单独存在，在创建整体对象时，局部被一起创建出来。</p>
+<p>也是<code>HAS A</code> 关系</p>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">private</span> Heart heart; <span class="comment">//</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;<span class="comment">//</span></span><br><span class="line">        <span class="keyword">this</span>.birth = <span class="keyword">new</span> Date(); <span class="comment">//也是组合</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">this</span>.heart = <span class="keyword">new</span> Heart(); <span class="comment">//这个Heart不是由外部传入的，而是在创建整体对象时，它自己来创建局部对象。</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Heart</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<p><strong>组合关系的ＵＭＬ图形是：实线+实心菱形</strong></p>
+</li>
+<li><p>聚合关系 【关系比组合关系略弱】</p>
+<p>也是关联关系的一种，两个类之间的关系稍弱，两个类在语义上是”平等”。 两个对象可以单独存在，在创建主对象时，辅助对象不需要被创建，而是由外部传入。</p>
+<p>也是<code>HAS A</code> 关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">private</span> Heart heart; <span class="comment">//</span></span><br><span class="line">    <span class="keyword">private</span> Address homeAddress; <span class="comment">//家庭住址</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, Address homeAddress)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;<span class="comment">// 聚合</span></span><br><span class="line">        <span class="keyword">this</span>.birth = <span class="keyword">new</span> Date(); <span class="comment">//也是组合</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">this</span>.heart = <span class="keyword">new</span> Heart(); <span class="comment">//这个Heart不是由外部传入的，而是在创建整体对象时，它自己来创建局部对象。</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">this</span>.homeAddress = homeAddress; <span class="comment">//聚合，对象由外界传入。</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Heart</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<p><strong>聚合关系的UML图形是：实心线+空心菱形</strong></p>
+</li>
+<li><p>依赖关系 【关系最弱】</p>
+<p>它是一种“USE A” 关系，表示一个类使用了另一个类，这种方法往往以局部变量的方式出现在代码中，如：我们在程序经常使用一些工具类或辅助类，都是这种关系。</p>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IAFactory</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IA <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IA</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// IAFactory与IA 的关系就是 依赖关系，IAFactory依赖于 IA</span></span><br></pre></td></tr></table></figure>
+
+<p>以上三种关系由强到弱分别是： 组合，聚合，依赖</p>
+<p>注：</p>
+<p><strong>依赖的UML图形是：虚线+箭头</strong></p>
+</li>
+</ol>
+<h3 id="纵向关系"><a href="#纵向关系" class="headerlink" title="纵向关系"></a>纵向关系</h3><ol>
+<li><p>继承关系</p>
+<p>它是 “IS A” 的关系。</p>
+<p><strong>它的UML图形是：实线+空心三角形</strong></p>
+</li>
+<li><p>实现关系</p>
+<p>它也是”IS A “ 的关系。</p>
+<p><strong>它的UML图形是： 虚线+空心三角形</strong></p>
+</li>
+</ol>
+<h2 id="三大类型的操作"><a href="#三大类型的操作" class="headerlink" title="三大类型的操作"></a>三大类型的操作</h2><h3 id="数字型"><a href="#数字型" class="headerlink" title="数字型"></a>数字型</h3><ol>
+<li>8大基本类型的包装类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span>    --&gt;		Byte</span><br><span class="line"><span class="keyword">short</span>	--&gt;		Short</span><br><span class="line"><span class="keyword">int</span>		--&gt; 	Integer</span><br><span class="line"><span class="keyword">long</span>	--&gt;		Long</span><br><span class="line"><span class="keyword">double</span>	--&gt; 	Double</span><br><span class="line"><span class="keyword">float</span>	--&gt;		Float</span><br><span class="line"><span class="keyword">char</span>	--&gt;		Character</span><br><span class="line"><span class="keyword">boolean</span>	--&gt;		Boolean</span><br></pre></td></tr></table></figure>
+
+<p>以上8种基本类型与对应的对象类型之间可以实现自动解封箱[auto boxing/unboxing]。</p>
+<p> 如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">9</span>;</span><br><span class="line">Integer j = i; <span class="comment">//ok, 自动封箱</span></span><br><span class="line">Integer k = <span class="keyword">new</span> Integer(i); <span class="comment">//ok, 手动封箱</span></span><br><span class="line"><span class="keyword">int</span> m = k; <span class="comment">//ok, 自动解箱</span></span><br><span class="line"><span class="comment">//注：虽然可以自动解封箱，但是，它们还是有区别的，如：</span></span><br><span class="line">j = <span class="keyword">null</span>; <span class="comment">//ok</span></span><br><span class="line">i = <span class="keyword">null</span>; <span class="comment">//compile error</span></span><br></pre></td></tr></table></figure>
+
+<p>这8种基本类型与对象类型以及字符串形式如何转换？</p>
+<p>以 Integer 为例</p>
+<ul>
+<li>把 int 转换成字符串  </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">9</span>;</span><br><span class="line">String istr = String.valueOf(i);</span><br><span class="line">或：</span><br><span class="line">String istr = i.toString(); <span class="comment">//Compile Error</span></span><br><span class="line">String istr = Integer.valueOf(i).toString(); <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>把字符串转换成整数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String istr = <span class="string">"19"</span>;</span><br><span class="line">String jstr = <span class="string">"0xff3"</span>;</span><br><span class="line"><span class="keyword">int</span> i = Integer.parseInt(istr); <span class="comment">//ok</span></span><br><span class="line"><span class="keyword">int</span> j = Integer.parseInt(jstr, <span class="number">16</span>); <span class="comment">//	</span></span><br><span class="line"><span class="comment">//或1</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="keyword">new</span> Integer(istr).intValue(); <span class="comment">//ok</span></span><br><span class="line"><span class="comment">//或2</span></span><br><span class="line"><span class="keyword">int</span> i = Integer.valueOf(istr).intValue(); <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>抽象父类 Number</strong> </p>
+<blockquote>
+<p>是为了以统一的方式来使用各种不同的数字类型而准备的。</p>
+<p>为了扩展而存在的。</p>
+</blockquote>
+<p><strong>相关的包</strong></p>
+<ul>
+<li>java.lang包</li>
+<li>java.text包</li>
+<li>java.math包</li>
+</ul>
+<p><strong>数字的格式化</strong></p>
+<h3 id="日期型"><a href="#日期型" class="headerlink" title="日期型"></a>日期型</h3><blockquote>
+<p>在JDK8之前，日期相关的API分布：</p>
+<ul>
+<li>java.util.Date, TimeZone</li>
+<li>java.sql.Date, TimeStamp, Time, Calendar ,  GregorianCalendar</li>
+<li>java.text.DateFormat , SimpleDateFormat</li>
+</ul>
+</blockquote>
+<p><strong>java.util.Date</strong></p>
+<p>常用方法：</p>
+<ul>
+<li>public Date()     以当前的系统时间来构造日期对象</li>
+<li>public Date(long t)   以指定毫秒数来构建日期对象</li>
+</ul>
+<p><strong>java.util.Calendar 和  GregorianCalendar</strong></p>
+<p>常用方法：</p>
+<ul>
+<li>getInstance()   获取Calendar的实例，是一个工厂方法  </li>
+<li>set(int type)     设置日历对象中的指定成员，这个成员由 type指定，这个type是Calendar定义的常量，如：YEAR, MONTH, DAY_OF_MONTH, ….</li>
+<li>get(int type)    获取日历对象中的指定成员，这个type同上。</li>
+<li>getTime()     获取此日历对象中的日期，返回一个 Date</li>
+<li>setTime(Date d)   给此日历对象设计一个新的日期。</li>
+</ul>
+<p><strong>DateFormat和SimpleDateFormat</strong></p>
+<p>常用方法：</p>
+<ul>
+<li><p>public SimpleDateFormat(String pattern)   构造方法，根据指定 的模式来创建SimpleDateFormat对象</p>
+</li>
+<li><p>format() 方法，格式化日期对象，返回字符串</p>
+</li>
+<li><p>parse() 方法， 解析方法，把字符串解析成日期对象，并返回</p>
+</li>
+</ul>
+<h4 id="JDK8中的全新日期处理API"><a href="#JDK8中的全新日期处理API" class="headerlink" title="JDK8中的全新日期处理API"></a>JDK8中的全新日期处理API</h4><p>所在的包：</p>
+<p><strong>java.time</strong> </p>
+<p>java.time.format</p>
+<p>java.time.temporal</p>
+<p>…</p>
+<p>主要的类型 【这些类型都是不可变的，线程安全的】</p>
+<ul>
+<li>LocalDate   处理年月日的类型</li>
+<li>LocalTime   处理时、分、秒</li>
+<li>LocalDateTime  年月日，时分秒</li>
+<li>Duration   计算时间分和差距</li>
+<li>Period        计算年月日 的差距</li>
+<li>Clock          可选类</li>
+<li>…</li>
+</ul>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day10-%E6%A0%B8%E5%BF%83API/" data-id="ckcmov605000vy0hcd2wicp8l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/day10-%E4%BD%9C%E4%B8%9A/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          day10-作业
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/day09-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%80%BB%E7%BB%93%E3%80%81%E5%B8%B8%E7%94%A8%E6%A8%A1%E5%BC%8F%E3%80%81Object%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">day09-抽象类和接口的总结、常用模式、Object类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>day19-NIO、Lambda表达式 | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="NIOChannel [java.nio.channels]1234567891011121314Channel    \- ReadableByteChannel               可读的通道    		\- ScatteringByteChannel     把同一个通道中的字节读到多个字节缓存中，这个过程叫分散    \- WriteableByteChannel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day19-NIO、Lambda表达式">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/day19-NIO%E3%80%81Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="NIOChannel [java.nio.channels]1234567891011121314Channel    \- ReadableByteChannel               可读的通道    		\- ScatteringByteChannel     把同一个通道中的字节读到多个字节缓存中，这个过程叫分散    \- WriteableByteChannel">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T08:16:02.608Z">
+<meta property="article:modified_time" content="2020-04-02T10:54:40.524Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-day19-NIO、Lambda表达式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day19-NIO%E3%80%81Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.608Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      day19-NIO、Lambda表达式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h1><h2 id="Channel-java-nio-channels"><a href="#Channel-java-nio-channels" class="headerlink" title="Channel [java.nio.channels]"></a>Channel [java.nio.channels]</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Channel</span><br><span class="line">    \- ReadableByteChannel               可读的通道</span><br><span class="line">    		\- ScatteringByteChannel     把同一个通道中的字节读到多个字节缓存中，这个过程叫分散</span><br><span class="line">    \- WriteableByteChannel              可写的通道</span><br><span class="line">    		\- GatheringByteChannel      把多个缓存中的字节写入到同一个通道中，这个过程叫聚集</span><br><span class="line">    		\- ByteChannel</span><br><span class="line">    				\- SeekableByteChannel    可以保持并调节位置的通道</span><br><span class="line">    					\- FileChannel         针对文件的通道，不支持配置为非阻塞模式</span><br><span class="line">    </span><br><span class="line">    \- SelectableChannel                  可通过Selector复用的通道,提供了配置非阻塞的方法</span><br><span class="line">    		\- AbstractSelectableChannel</span><br><span class="line">                    \- DatagramChannel     针对网络的UDP协议,支持 非阻塞模式</span><br><span class="line">                    \- SocketChannel	   针对网络的TCP协议，这个类是做客户端，支持 非阻塞模式	</span><br><span class="line">                    \- ServerSocketChannel 针对网络的TCP协议，这个类是做服务端的，支持 非阻塞模式</span><br></pre></td></tr></table></figure>
+
+<h3 id="Channel的核心方法"><a href="#Channel的核心方法" class="headerlink" title="Channel的核心方法"></a>Channel的核心方法</h3><ol>
+<li><p><strong>从通道中读取数据到缓存中</strong></p>
+<p>int read(ByteBuffer buffer)     把通道中的字节数据存储到缓冲中，并返回实际读到的字节数。</p>
+<p>long read(ByteBuffer[] bufArr)   把通道中的字节数据分散读到多个缓冲中，并返回实际读到的字节数。</p>
+<p>long position()                    获取通道中当前文件指定的位置</p>
+<p>FileChannel position(long pos)   设置通道中文件指针的位置，这个值可以大于文件大小，但是，只是读的话，并不改变文件大小，如果 写入，则文件会生长，以适应新的大小。</p>
+<p>long size()     返回此通道的大小，其实就是文件通道所指向的文件的大小。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p><strong>把缓存中的数据写入到通道</strong></p>
+<p>int write(ByteBuffer buffer);</p>
+<p>long write(ByteBuffer[] bufArray);</p>
+</li>
+</ol>
+<h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><blockquote>
+<p>一组固定大小的连续空间，用来存储从通道中读到的数据。</p>
+<p>它的操作主要就是：</p>
+<ol>
+<li>缓存中数据的读写</li>
+<li>缓存中各种标记位置的控制</li>
+</ol>
+</blockquote>
+<p>类的结构</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Buffer</span><br><span class="line">   \- ByteBuffer</span><br><span class="line">   		\- HeapByteBuffer      非直接缓存</span><br><span class="line">   		\- MappedByteBuffer</span><br><span class="line">   			\- DirectByteBuffer    直接缓存</span><br><span class="line">   \- CharBuffer</span><br><span class="line">   \- ShortBuffer</span><br><span class="line">   \- IntBuffer</span><br><span class="line">   \- LongBuffer</span><br><span class="line">   \- DoubleBuffer</span><br><span class="line">   \- FloatBuffer</span><br></pre></td></tr></table></figure>
+
+<p>注：默认情况下，都会分配非直接缓存，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ByteBuffer buffer = ByteBuffer.allocate(<span class="number">1024</span>); <span class="comment">//非直接缓存</span></span><br><span class="line"></span><br><span class="line">ByteBuffer buffer2 = ByteBuffer.allocateDirect(<span class="number">1024</span>); <span class="comment">//直接缓存</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>常用方法</strong></p>
+<ul>
+<li>int position()                 返回缓存中当前位置</li>
+<li>int limit();                       返回缓存中限制的位置</li>
+<li>int capacity();                返回缓存的容量</li>
+<li>mark()                          在当前位置进行标记</li>
+<li>flip()    反转，用来读写转换中。</li>
+<li>clear()   清空缓存，并没有清空数据，只是重置了 mark, position, limit的值</li>
+<li>compact()   是一个可选方法，压缩</li>
+<li>wrap(byte[] buf)    以指定的字节数组来填充这个缓存，缓存的大小capacity就是 buf.length</li>
+</ul>
+<p>有关这4个属性，满足：</p>
+<p><strong>0 &lt;= mark &lt;= position &lt;= limit &lt;= capacity</strong></p>
+<h2 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h2><blockquote>
+<p>后面再讲</p>
+</blockquote>
+<h2 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h2><blockquote>
+<p>它本质是JDK提供给程序员在编写代码语法上的一种便捷方式，也叫语法糖。</p>
+<p>JAVA的语法规范上，方法的参数是不能以代码块[函数] 进行传递的。不像 javascript, 那我们如何才能写出传 递代码块的方法呢？</p>
+<p>JDK8中，引入了Lambda表达式以及函数式接口，就是为解决这个问题而存在的。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ma</span><span class="params">(只有<span class="number">1</span>个方法的接口 identifier)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    System.out.println(<span class="string">"ma的功能操作...."</span>);</span><br><span class="line">    <span class="comment">//中间这此代码，此时，做为ma方法编写者，我不知道这个地方要写什么，将来谁调用这个方法，谁知道，那就要求，调用者要把这个代块给 传进来给我。</span></span><br><span class="line">    identifier.xxx(); <span class="comment">//相当于完成了 代码块 的传递</span></span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">"ma的功能操作.... "</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<p>上面的方法中的参数 “只有1个方法的接口” 是JVM为了达到代码传递的目的，而准备的一个特殊的接口，这个接口在JDK8中，叫函数式接口，使用一个注解来标注 <code>@FunctionalInterface</code></p>
+<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><blockquote>
+<p>在JDK8中规定，某个接口上面打上了 <code>@FunctionalInterface</code>，就表示这个接口就是函数式接口，通过它就可以来接收代码块的传递，而且为了语法的方便性，才推出了 Lambda 表达式。</p>
+<p>另外，由于在JDK中，有很多接口都是单一方法的，所以，JVM还规定，只有接口中只有唯一的抽象方法时【除继承于Object中的方法外】，即使你没有显示地使用 <code>@FunctionalInterface</code> 注解，JVM也认为它就是 函数式接口。</p>
+</blockquote>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Ia</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ma</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestIa</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mb</span><span class="params">(Ia identifer)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"before invoke ia ... "</span>);</span><br><span class="line">        <span class="comment">//回调 Ia 接口的方法</span></span><br><span class="line">        identifer.ma();</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">"after invoke ia ..."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        TestIa ti = <span class="keyword">new</span> TestIa();</span><br><span class="line">        ti.mb(() -&gt; &#123;System.out.println(<span class="string">"in method ma()...."</span>);&#125; );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Lambda-的语法规范"><a href="#Lambda-的语法规范" class="headerlink" title="Lambda 的语法规范"></a>Lambda 的语法规范</h3><blockquote>
+<p>(Type param1, Type param2, …., Type paramN) -&gt; {</p>
+<p>​               //代码块</p>
+<p>}</p>
+</blockquote>
+<p>这个语法可以简化如下：</p>
+<ol>
+<li>参数的类型可以省略，就变成了</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(param1,param2,...,paramN) -&gt; &#123;   &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>如果参数的个数只有1个时，小括号也可以省略</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">param -&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>如果代码块中只有1条语句，大括号也可以省略</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">param -&gt; one_statement;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>注：所有使用匿名内部类的地方，都可以使用<strong>Lambda表达式</strong>来改写</p>
+<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><blockquote>
+<p>它是Lambda表达式的另一种特殊写法，本质上还是 Lambda表达式， 改写条件</p>
+<ol>
+<li>Lambda表达式当中只有单一一条语句</li>
+<li>这条语句是调用已有的方法</li>
+</ol>
+</blockquote>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list &#x3D; Arrays.asList(&quot;jack&quot;,&quot;ann&quot;,&quot;solo&quot;);</span><br><span class="line">&#x2F;&#x2F; Lambda表达式</span><br><span class="line">list.forEach((element) -&gt; System.out.println(element));</span><br><span class="line">&#x2F;&#x2F;方法引用</span><br><span class="line">list.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="在Lambda表达式中访问局部变量的限制"><a href="#在Lambda表达式中访问局部变量的限制" class="headerlink" title="在Lambda表达式中访问局部变量的限制"></a>在Lambda表达式中访问局部变量的限制</h3><blockquote>
+<p>在JDK7之前，匿名内部类中可以访问它所在方法的局部变量，但是，要求这个局部变量要使用 final 修饰，在JDK7之后，这个final可以不写，但是，在匿名内部类当中，不能去修改这个局部变量。</p>
+<p>同理，LAMBDA表达式本身就是 匿名内部类的语法优化，所以，在Lambda表达式内部，同样不能修饰所在方法的局部变量。</p>
+</blockquote>
+<p>Lambda表达式的操作包</p>
+<p>java.util.function</p>
+<p>java.util.stream</p>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><p>复习Lambda知识点</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day19-NIO%E3%80%81Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckcmov60j0017y0hc1r61dnw8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/day20-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          day20-多线程、网络编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/day18-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E6%9E%90%E3%80%81%E4%BB%A3%E7%90%86%E3%80%81NIO/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">day18-注解解析、代理、NIO</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatis%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86/">MyBatis过程和原理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MyBatisExecutorType/">MyBatisExecutorType</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/mysql-day1/">mysql-day1</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/14/MySQL%E5%9F%BA%E7%A1%80/">MySQL基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
