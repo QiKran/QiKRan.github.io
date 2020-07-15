@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kran">
+<meta property="og:url" content="http://yoursite.com/page/7/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="blog">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Redis_Lists" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis_Lists/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.267Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis_Lists/">Redis_Lists</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis-Lists命令"><a href="#Redis-Lists命令" class="headerlink" title="Redis_Lists命令"></a>Redis_Lists命令</h1><h4 id="BLPOP-key-key-…-timeout"><a href="#BLPOP-key-key-…-timeout" class="headerlink" title="BLPOP key [key …] timeout"></a>BLPOP key [key …] timeout</h4><p>BLPOP 是阻塞式列表的弹出原语。 它是命令 <a href="http://www.redis.cn/commands/lpop.html" target="_blank" rel="noopener">LPOP</a> 的阻塞版本，这是因为当给定列表内没有任何元素可供弹出的时候， 连接将被 <a href="http://www.redis.cn/commands/blpop.html" target="_blank" rel="noopener">BLPOP</a> 命令阻塞。 当给定多个 key 参数时，按参数 key 的先后顺序依次检查各个列表，弹出第一个非空列表的头元素。<strong>timeout 参数表示的是一个指定阻塞的最大秒数的整型值。</strong>当 timeout 为 0 是表示阻塞时间无限制。</p>
+<h4 id="BRPOP-key-key-…-timeout"><a href="#BRPOP-key-key-…-timeout" class="headerlink" title="BRPOP key [key …] timeout"></a>BRPOP key [key …] timeout</h4><p><code>BRPOP</code> 是一个阻塞的列表弹出原语。 它是 <a href="http://www.redis.cn/commands/commands/rpop.html" target="_blank" rel="noopener">RPOP</a> 的阻塞版本，因为这个命令会在给定list无法弹出任何元素的时候阻塞连接。 该命令会按照给出的 key 顺序查看 list，并在找到的第一个非空 list 的尾部弹出一个元素。</p>
+<p>请在 <a href="http://www.redis.cn/commands/commands/blpop.html" target="_blank" rel="noopener">BLPOP</a> 文档 中查看该命令的准确语义，因为 <code>BRPOP</code> 和 <a href="http://www.redis.cn/commands/commands/blpop.html" target="_blank" rel="noopener">BLPOP</a> 基本是完全一样的，除了它们一个是从尾部弹出元素，而另一个是从头部弹出元素。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; DEL list1 list2</span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line">redis&gt; RPUSH list1 a b c</span><br><span class="line">(integer) <span class="number">3</span></span><br><span class="line">redis&gt; BRPOP list1 list2 <span class="number">0</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"list1"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"c"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="BRPOPLPUSH-source-destination-timeout"><a href="#BRPOPLPUSH-source-destination-timeout" class="headerlink" title="BRPOPLPUSH source destination timeout"></a>BRPOPLPUSH source destination timeout</h4><p><code>BRPOPLPUSH</code> 是 <a href="http://www.redis.cn/commands/rpoplpush.html" target="_blank" rel="noopener">RPOPLPUSH</a> 的阻塞版本。 当 source 包含元素的时候，这个命令表现得跟 <a href="http://www.redis.cn/commands/rpoplpush.html" target="_blank" rel="noopener">RPOPLPUSH</a> 一模一样。 当 source 是空的时候，Redis将会阻塞这个连接，直到另一个客户端 push 元素进入或者达到 timeout 时限。 timeout 为 0 能用于无限期阻塞客户端。</p>
+<h4 id="LINDEX-key-index"><a href="#LINDEX-key-index" class="headerlink" title="LINDEX key index"></a>LINDEX key index</h4><p>返回列表里的元素的索引 index 存储在 key 里面。 下标是从0开始索引的，所以 0 是表示第一个元素， 1 表示第二个元素，并以此类推。 负数索引用于指定从列表尾部开始索引的元素。在这种方法下，-1 表示最后一个元素，-2 表示倒数第二个元素，并以此往前推。</p>
+<p>当 key 位置的值不是一个列表的时候，会返回一个error。</p>
+<h4 id="LINSERT-key-BEFORE-AFTER-pivot-value"><a href="#LINSERT-key-BEFORE-AFTER-pivot-value" class="headerlink" title="LINSERT key BEFORE|AFTER pivot value"></a>LINSERT key BEFORE|AFTER pivot value</h4><p>把 value 插入存于 key 的列表中在基准值 pivot 的前面或后面。</p>
+<p>当 key 不存在时，这个list会被看作是空list，任何操作都不会发生。</p>
+<p>当 key 存在，但保存的不是一个list的时候，会返回error。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; RPUSH mylist <span class="string">"Hello"</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line">redis&gt; RPUSH mylist <span class="string">"World"</span></span><br><span class="line">(integer) <span class="number">2</span></span><br><span class="line">redis&gt; LINSERT mylist BEFORE <span class="string">"World"</span> <span class="string">"There"</span></span><br><span class="line">(integer) <span class="number">3</span></span><br><span class="line">redis&gt; LRANGE mylist <span class="number">0</span> <span class="number">-1</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"Hello"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"There"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"World"</span></span><br><span class="line">redis&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="LLEN-key"><a href="#LLEN-key" class="headerlink" title="LLEN key"></a>LLEN key</h4><p>返回存储在 key 里的list的长度。 如果 key 不存在，那么就被看作是空list，并且返回长度为 0。 当存储在 key 里的值不是一个list的话，会返回error。</p>
+<h4 id="LPOP-key"><a href="#LPOP-key" class="headerlink" title="LPOP key"></a>LPOP key</h4><p>移除并且返回 key 对应的 list 的第一个元素。</p>
+<h4 id="LPUSH-key-value-value-…"><a href="#LPUSH-key-value-value-…" class="headerlink" title="LPUSH key value [value …]"></a>LPUSH key value [value …]</h4><p>将值插入到key列表的头部，如果key不存在，它会自动创建一个列表</p>
+<h4 id="LPUSHX-key-value"><a href="#LPUSHX-key-value" class="headerlink" title="LPUSHX key value"></a>LPUSHX key value</h4><p>只有当 key 已经存在并且存着一个 list 的时候，在这个 key 下面的 list 的头部插入 value。 与 LPUSH 相反，当 key 不存在的时候不会进行任何操作。</p>
+<h4 id="LRANGE-key-start-stop"><a href="#LRANGE-key-start-stop" class="headerlink" title="LRANGE key start stop"></a>LRANGE key start stop</h4><p>返回存储在 key 的列表里指定范围内的元素。 start 和 end 偏移量都是基于0的下标，即list的第一个元素下标是0（list的表头），第二个元素下标是1，以此类推。</p>
+<p>偏移量也可以是负数，表示偏移量是从list尾部开始计数。 例如， -1 表示列表的最后一个元素，-2 是倒数第二个，以此类推。</p>
+<h4 id="LREM-key-count-value"><a href="#LREM-key-count-value" class="headerlink" title="LREM key count value"></a>LREM key count value</h4><p>从存于 key 的列表里移除前 count 次出现的值为 value 的元素。 这个 count 参数通过下面几种方式影响这个操作：</p>
+<ul>
+<li>count &gt; 0: 从头往尾移除值为 value 的元素。</li>
+<li>count &lt; 0: 从尾往头移除值为 value 的元素。</li>
+<li>count = 0: 移除所有值为 value 的元素。</li>
+</ul>
+<h4 id="LSET-key-index-value"><a href="#LSET-key-index-value" class="headerlink" title="LSET key index value"></a>LSET key index value</h4><p>设置 index 位置的list元素的值为 value。 更多关于 index 参数的信息，详见 LINDEX</p>
+<h4 id="LTRIM-key-start-stop"><a href="#LTRIM-key-start-stop" class="headerlink" title="LTRIM key start stop"></a>LTRIM key start stop</h4><p>修剪(trim)一个已存在的 list，这样 list 就会只包含指定范围的指定元素。start 和 stop 都是由0开始计数的， 这里的 0 是列表里的第一个元素（表头），1 是第二个元素，以此类推。</p>
+<p>例如： <code>LTRIM foobar 0 2</code> 将会对存储在 foobar 的列表进行修剪，只保留列表里的前3个元素。</p>
+<p>start 和 end 也可以用负数来表示与表尾的偏移量，比如 -1 表示列表里的最后一个元素， -2 表示倒数第二个，等等。</p>
+<h4 id="RPOP-key"><a href="#RPOP-key" class="headerlink" title="RPOP key"></a>RPOP key</h4><p>移除并返回存于 key 的 list 的最后一个元素</p>
+<h4 id="RPOPLPUSH-source-destination"><a href="#RPOPLPUSH-source-destination" class="headerlink" title="RPOPLPUSH source destination"></a>RPOPLPUSH source destination</h4><p>原子性地返回并移除存储在 source 的列表的最后一个元素（列表尾部元素）， 并把该元素放入存储在 destination 的列表的第一个元素位置（列表头部）。</p>
+<p>例如：假设 source 存储着列表 a,b,c， destination存储着列表 x,y,z。 执行 RPOPLPUSH 得到的结果是 source 保存着列表 a,b ，而 destination 保存着列表 c,x,y,z。</p>
+<p>如果 source 不存在，那么会返回 nil 值，并且不会执行任何操作。 如果 source 和 destination 是同样的，那么这个操作等同于移除列表最后一个元素并且把该元素放在列表头部， 所以这个命令也可以当作是一个旋转列表的命令</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; lrange keyList <span class="number">0</span> <span class="number">-1</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"5"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"4"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"3"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"2"</span></span><br><span class="line"><span class="number">5</span>) <span class="string">"1"</span></span><br><span class="line"><span class="number">6</span>) <span class="string">"4"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; rpoplpush keyList lsit2</span><br><span class="line"><span class="string">"4"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; lrange keyList <span class="number">0</span> <span class="number">-1</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"5"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"4"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"3"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"2"</span></span><br><span class="line"><span class="number">5</span>) <span class="string">"1"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; lrange lsit2 <span class="number">0</span> <span class="number">-1</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"4"</span></span><br><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span>&gt; </span><br><span class="line">[root@iZpr9szc3qx6h7Z ~]#</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="RPUSH-key-value-value-…"><a href="#RPUSH-key-value-value-…" class="headerlink" title="RPUSH key value [value …]"></a>RPUSH key value [value …]</h4><p>向存于 key 的列表的尾部插入所有指定的值。如果 key 不存在，那么会创建一个空的列表然后再进行 push 操作。 当 key 保存的不是一个列表，那么会返回一个错误。</p>
+<p>可以使用一个命令把多个元素打入队列，只需要在命令后面指定多个参数。元素是从左到右一个接一个从列表尾部插入。 比如命令 RPUSH mylist a b c 会返回一个列表，其第一个元素是 a ，第二个元素是 b ，第三个元素是 c</p>
+<h4 id="RPUSHX-key-value"><a href="#RPUSHX-key-value" class="headerlink" title="RPUSHX key value"></a>RPUSHX key value</h4><p>将值 value 插入到列表 key 的表尾, 当且仅当 key 存在并且是一个列表。 和 <a href="http://www.redis.cn/commands/rpush.html" target="_blank" rel="noopener">RPUSH</a> 命令相反, 当 key 不存在时，RPUSHX 命令什么也不做</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis_Lists/" data-id="ckcmp627z000aq4hc81ld7f4v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Redis_HyperLogLog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis_HyperLogLog/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.253Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis_HyperLogLog/">Redis_HyperLogLog</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis-HyperLogLog命令"><a href="#Redis-HyperLogLog命令" class="headerlink" title="Redis_HyperLogLog命令"></a>Redis_HyperLogLog命令</h1><h4 id="PFADD-key-element-element-…"><a href="#PFADD-key-element-element-…" class="headerlink" title="PFADD key element [element …]"></a>PFADD key element [element …]</h4><p>将除了第一个参数以外的参数存储到以第一个参数为变量名的HyperLogLog结构中.</p>
+<p>这个命令的一个副作用是它可能会更改这个HyperLogLog的内部来反映在每添加一个唯一的对象时估计的基数(集合的基数).</p>
+<p>如果一个HyperLogLog的估计的近似基数在执行命令过程中发了变化， <a href="http://www.redis.cn/commands/pfadd.html" target="_blank" rel="noopener">PFADD</a> 返回1，否则返回0，如果指定的key不存在，这个命令会自动创建一个空的HyperLogLog结构（指定长度和编码的字符串）.</p>
+<p>如果在调用该命令时仅提供变量名而不指定元素也是可以的，如果这个变量名存在，则不会有任何操作，如果不存在，则会创建一个数据结构（返回1）.</p>
+<h4 id="PFCOUNT-key-key-…"><a href="#PFCOUNT-key-key-…" class="headerlink" title="PFCOUNT key [key …]"></a>PFCOUNT key [key …]</h4><p>当参数为一个key时,返回存储在HyperLogLog结构体的该变量的近似基数，如果该变量不存在,则返回0.</p>
+<p>当参数为多个key时，返回这些HyperLogLog并集的近似基数，这个值是将所给定的所有key的HyperLoglog结构合并到一个临时的HyperLogLog结构中计算而得到的.</p>
+<p>HyperLogLog可以使用固定且很少的内存（每个HyperLogLog结构需要12K字节再加上key本身的几个字节）来存储集合的唯一元素.</p>
+<p>返回的可见集合基数并不是精确值， 而是一个带有 0.81% 标准错误（standard error）的近似值.</p>
+<p>例如为了记录一天会执行多少次各不相同的搜索查询， 一个程序可以在每次执行搜索查询时调用一次<a href="http://www.redis.cn/commands/pfadd.html" target="_blank" rel="noopener">PFADD</a>， 并通过调用<a href="http://www.redis.cn/commands/pfcount.html" target="_blank" rel="noopener">PFCOUNT</a>命令来获取这个记录的近似结果.</p>
+<p>注意: 这个命令的一个副作用是可能会导致HyperLogLog内部被更改，出于缓存的目的,它会用8字节的来记录最近一次计算得到基数,所以<a href="http://www.redis.cn/commands/pfcount.html" target="_blank" rel="noopener">PFCOUNT</a>命令在技术上是个写命令.</p>
+<h5 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h5><p><a href="http://www.redis.cn/topics/protocol.html#integer-reply" target="_blank" rel="noopener">integer-reply</a>:</p>
+<p><a href="http://www.redis.cn/commands/pfadd.html" target="_blank" rel="noopener">PFADD</a>添加的唯一元素的近似数量.</p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; PFADD hll foo bar zap</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line">redis&gt; PFADD hll zap zap zap</span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line">redis&gt; PFADD hll foo bar</span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line">redis&gt; PFCOUNT hll</span><br><span class="line">(integer) <span class="number">3</span></span><br><span class="line">redis&gt; PFADD some-other-hll <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line">redis&gt; PFCOUNT hll some-other-hll</span><br><span class="line">(integer) <span class="number">6</span></span><br><span class="line">redis&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h5><p>当调用<a href="http://www.redis.cn/commands/pfcount.html" target="_blank" rel="noopener">PFCOUNT</a>命令时指定一个key为参数,性能表现很好，甚至和处理一个HyperLogLog所需要的时间一样短.这可能和<a href="http://www.redis.cn/commands/pfcount.html" target="_blank" rel="noopener">PFCOUNT</a>命令能够直接使用缓存的的估计基数有关，大多数的<a href="http://www.redis.cn/commands/pfadd.html" target="_blank" rel="noopener">PFADD</a>也不会更新任何寄存器，所以这个值也很少被更改.理论上能达到每秒几百次操作.</p>
+<p>当调用<a href="http://www.redis.cn/commands/pfcount.html" target="_blank" rel="noopener">PFCOUNT</a>命令时指定多个key,由于要在多个HperLogLog结构中执行一比较慢合并操作,而且这个通过并集计算得到的基数是不能够被缓存, <a href="http://www.redis.cn/commands/pfcount.html" target="_blank" rel="noopener">PFCOUNT</a>命令还要消耗毫秒量级的时间来进行多个key的并集操作，消耗的时间会比较长一些，所以不要滥用这种多个key的方式.</p>
+<p>使用者需要明白这个命令来处理1个key和多个key执行的语义是不同的，并且执行的性能也不相同.</p>
+<h4 id="PFMERGE-destkey-sourcekey-sourcekey-…"><a href="#PFMERGE-destkey-sourcekey-sourcekey-…" class="headerlink" title="PFMERGE destkey sourcekey [sourcekey …]"></a>PFMERGE destkey sourcekey [sourcekey …]</h4><p>将多个 HyperLogLog 合并（merge）为一个 HyperLogLog ， 合并后的 HyperLogLog 的基数接近于所有输入 HyperLogLog 的可见集合（observed set）的并集.</p>
+<p>合并得出的 HyperLogLog 会被储存在目标变量（第一个参数）里面， 如果该键并不存在， 那么命令在执行之前， 会先为该键创建一个空的.</p>
+<p>这个命令只会返回 OK.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; PFADD hll1 foo bar zap a</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line">redis&gt; PFADD hll2 a b c foo</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line">redis&gt; PFMERGE hll3 hll1 hll2</span><br><span class="line">OK</span><br><span class="line">redis&gt; PFCOUNT hll3</span><br><span class="line">(integer) <span class="number">6</span></span><br><span class="line">redis&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis_HyperLogLog/" data-id="ckcmp6282000dq4hca3cbarp8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Redis_Hashs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis_Hashs/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.244Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis_Hashs/">Redis_Hashs</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis-Hashes命令"><a href="#Redis-Hashes命令" class="headerlink" title="Redis_Hashes命令"></a>Redis_Hashes命令</h1><h4 id="HDEL-key-field-field-…"><a href="#HDEL-key-field-field-…" class="headerlink" title="HDEL key field [field …]"></a>HDEL key field [field …]</h4><p>从 key 指定的哈希集中移除指定的域。在哈希集中不存在的域将被忽略。</p>
+<p>如果 key 指定的哈希集不存在，它将被认为是一个空的哈希集，该命令将返回0。</p>
+<h4 id="HSET-key-field-value"><a href="#HSET-key-field-value" class="headerlink" title="HSET key field value"></a>HSET key field value</h4><p>设置 key 指定的哈希集中指定字段的值。</p>
+<p>如果 key 指定的哈希集不存在，会创建一个新的哈希集并与 key 关联。</p>
+<p>如果字段在哈希集中存在，它将被重写。</p>
+<h4 id="HEXISTS-key-field"><a href="#HEXISTS-key-field" class="headerlink" title="HEXISTS key field"></a>HEXISTS key field</h4><p>判断key中是否存在该field，1表示存在，0不存在</p>
+<h4 id="HGET-key-field"><a href="#HGET-key-field" class="headerlink" title="HGET key field"></a>HGET key field</h4><p>获取key中的field；返回field的value，如若不存在则返回nil。</p>
+<h4 id="HGETALL-key"><a href="#HGETALL-key" class="headerlink" title="HGETALL key"></a>HGETALL key</h4><p>获取key中的所有 field-value</p>
+<h4 id="HINCRBY-key-field-increment"><a href="#HINCRBY-key-field-increment" class="headerlink" title="HINCRBY key field increment"></a>HINCRBY key field increment</h4><p>增加 <code>key</code> 指定的哈希集中指定字段的数值。如果 <code>key</code> 不存在，会创建一个新的哈希集并与 <code>key</code> 关联。如果字段不存在，则字段的值在该操作执行前被设置为 0；<code>HINCRBY</code> 支持的值的范围限定在 64位 有符号整数</p>
+<p>说白了就是 field的value 根据increment 进行自增 返回是自增后的结果。</p>
+<h4 id="HINCRBYFLOAT-key-field-increment"><a href="#HINCRBYFLOAT-key-field-increment" class="headerlink" title="HINCRBYFLOAT key field increment"></a>HINCRBYFLOAT key field increment</h4><p>与上面一样 只不过 increment是float类型的</p>
+<h4 id="HKEYS-key"><a href="#HKEYS-key" class="headerlink" title="HKEYS key"></a>HKEYS key</h4><p>查看该哈希key下的所有属性即filed</p>
+<h4 id="HLEN-key"><a href="#HLEN-key" class="headerlink" title="HLEN key"></a>HLEN key</h4><p>返回key中的属性长度。</p>
+<h4 id="HMGET-key-field-field-…"><a href="#HMGET-key-field-field-…" class="headerlink" title="HMGET key field [field …]"></a>HMGET key field [field …]</h4><p>返回 <code>key</code> 指定的哈希集中指定字段的值。</p>
+<p>对于哈希集中不存在的每个字段，返回 <code>nil</code> 值。因为不存在的keys被认为是一个空的哈希集，对一个不存在的 <code>key</code> 执行 <a href="http://www.redis.cn/commands/hmget.html" target="_blank" rel="noopener">HMGET</a> 将返回一个只含有 <code>nil</code> 值的列表</p>
+<h4 id="HMSET-key-field-value-field-value-…"><a href="#HMSET-key-field-value-field-value-…" class="headerlink" title="HMSET key field value [field value …]"></a>HMSET key field value [field value …]</h4><p>设置 <code>key</code> 指定的哈希集中指定字段的值。该命令将重写所有在哈希集中存在的字段。如果 <code>key</code> 指定的哈希集不存在，会创建一个新的哈希集并与 <code>key</code> 关联；与hset的区别就是 该命令可以指定多个值。</p>
+<h4 id="HSCAN-key-cursor-MATCH-pattern-COUNT-count"><a href="#HSCAN-key-cursor-MATCH-pattern-COUNT-count" class="headerlink" title="HSCAN key cursor [MATCH pattern] [COUNT count]"></a>HSCAN key cursor [MATCH pattern] [COUNT count]</h4><p>遍历，详情参考基本命令中的scan</p>
+<h4 id="HSETNX-key-field-value"><a href="#HSETNX-key-field-value" class="headerlink" title="HSETNX key field value"></a>HSETNX key field value</h4><p>只在 <code>key</code> 指定的哈希集中不存在指定的字段时，设置字段的值。如果 <code>key</code> 指定的哈希集不存在，会创建一个新的哈希集并与 <code>key</code> 关联。<strong>如果字段已存在，该操作无效果</strong></p>
+<h4 id="HSTRLEN-key-field"><a href="#HSTRLEN-key-field" class="headerlink" title="HSTRLEN key field"></a>HSTRLEN key field</h4><p>返回hash指定field的value的字符串长度，如果hash或者field不存在，返回0.</p>
+<h4 id="HVALS-key"><a href="#HVALS-key" class="headerlink" title="HVALS key"></a>HVALS key</h4><p>返回哈希key中所有属性的的value。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis_Hashs/" data-id="ckcmp6281000cq4hc7l73cypc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Redis_Connection" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Redis_Connection/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.226Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Redis_Connection/">Redis_Connection</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis-Connection命令"><a href="#Redis-Connection命令" class="headerlink" title="Redis_Connection命令"></a>Redis_Connection命令</h1><h4 id="AUTH-password"><a href="#AUTH-password" class="headerlink" title="AUTH password"></a>AUTH password</h4><p>为redis服务请求设置一个密码。redis可以设置在客户端执行commands请求前需要通过密码验证。通过修改配置文件的requirepass就可以设置密码。 如果密码与配置文件里面设置的密码一致，服务端就会发会一个OK的状态码，接受客户端发送其他的请求命令，否则服务端会返回一个错误码，客户端需要尝试使用新的密码来进行连接。</p>
+<p><strong>注意:</strong> 因为redis的高性能能在短时间接受非常多的尝试性密码，所以请务必设置一个足够复杂的密码以防止可能的攻击</p>
+<h4 id="ECHO-message"><a href="#ECHO-message" class="headerlink" title="ECHO message"></a>ECHO message</h4><p>返回消息</p>
+<h4 id="PING"><a href="#PING" class="headerlink" title="PING"></a>PING</h4><p>如果后面没有参数时返回<code>PONG</code>，否则会返回后面带的参数。</p>
+<p>这个命令经常用来测试一个连接是否还是可用的，或者用来测试一个连接的延时。</p>
+<p>如果客户端处于频道订阅模式下，它将是一个multi-bulk返回，第一次时返回”pong”，之后返回空（empty bulk），除非命令后面更随了参数</p>
+<h4 id="QUIT"><a href="#QUIT" class="headerlink" title="QUIT"></a>QUIT</h4><p>请求服务器关闭连接。连接将会尽可能快的将未完成的客户端请求完成处理。</p>
+<h4 id="SELECT-index"><a href="#SELECT-index" class="headerlink" title="SELECT index"></a>SELECT index</h4><p>选择一个数据库，下标值从0开始，一个新连接默认连接的数据库是DB0</p>
+<h4 id="SWAPDB-index-index"><a href="#SWAPDB-index-index" class="headerlink" title="SWAPDB index index"></a>SWAPDB index index</h4><p>该命令可以交换同一Redis服务器上的两个DATABASE，可以实现连接某一数据库的连接立即访问到其他DATABASE的数据。访问交换前其他database的连接也可以访问到该DATABASE的数据。 如：swpap 0 1</p>
+<p>交换DATABASE 0，1。所有访问0号数据库的连接立刻可以访问到1号数据库的数据，同样的，访问1号数据库的连接立即可以访问0号数据库的数据</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Redis_Connection/" data-id="ckcmp627y0009q4hcd6j8cas3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Linux/" class="article-date">
+  <time datetime="2020-07-14T08:13:48.192Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Linux/">Linux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h4 id="运行-springboot-Jar或者War包"><a href="#运行-springboot-Jar或者War包" class="headerlink" title="运行 springboot Jar或者War包"></a>运行 springboot Jar或者War包</h4><p>使用该命令的化 进程一旦终止，程序也就马上挂断运行。所有一般使用nohup</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar yourapp.jar</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar springboot.jar &gt; springboot.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<h4 id="列出后台的JAVA进程并将其杀死"><a href="#列出后台的JAVA进程并将其杀死" class="headerlink" title="列出后台的JAVA进程并将其杀死"></a>列出后台的JAVA进程并将其杀死</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep java</span><br><span class="line">kill -9 xxxx</span><br></pre></td></tr></table></figure>
+
+<h4 id="编写脚本Shell"><a href="#编写脚本Shell" class="headerlink" title="编写脚本Shell"></a>编写脚本Shell</h4><p>1.start.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">PID&#x3D;$(ps -ef | grep yourapp.jar | grep -v grep | awk &#39;&#123; print $2 &#125;&#39;)</span><br><span class="line">if [ $&#123;PID&#125; ]; </span><br><span class="line">then</span><br><span class="line"> echo &#39;Application is stpping...&#39;</span><br><span class="line"> echo kill $PID DONE</span><br><span class="line"> kill $PID</span><br><span class="line">else</span><br><span class="line"> echo &#39;Application is already stopped...&#39;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p> 2.stop.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">PID&#x3D;$(ps -ef | grep yourapp.jar | grep -v grep | awk &#39;&#123; print $2 &#125;&#39;)</span><br><span class="line">if [ $&#123;PID&#125; ]; </span><br><span class="line">then</span><br><span class="line"> echo &#39;Application is stpping...&#39;</span><br><span class="line"> echo kill $PID DONE</span><br><span class="line"> kill $PID</span><br><span class="line">else</span><br><span class="line"> echo &#39;Application is already stopped...&#39;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>3.整合启动和停止的脚本，编写run.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &#39;Application is stpping...&#39;</span><br><span class="line">source stop.sh</span><br><span class="line">echo &#39;Application is running...&#39;</span><br><span class="line">source start.sh</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置Web环境"><a href="#配置Web环境" class="headerlink" title="配置Web环境"></a>配置Web环境</h4><p>vi  /etc/profile</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin:&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;lib:$PATH</span><br><span class="line">export PATH</span><br><span class="line">export JAVA_HOME&#x3D;&#x2F;home&#x2F;jdk8</span><br><span class="line">export CLASSPATH&#x3D;.:$JAVA_HOME&#x2F;lib&#x2F;dt.jar:$JAVA_HOME&#x2F;lib&#x2F;tools.jar</span><br><span class="line">export JRE_HOME&#x3D;&#x2F;home&#x2F;jdk8&#x2F;jre</span><br><span class="line">export PATH&#x3D;$JAVA_HOME&#x2F;bin:$JRE_HOME&#x2F;bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<p>vi /etc/my.cnf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">port&#x3D;3306</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">datadir&#x3D;&#x2F;data&#x2F;mysql</span><br><span class="line">basedir&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line"></span><br><span class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</span><br><span class="line">symbolic-links&#x3D;0</span><br><span class="line"># Settings user and group are ignored when systemd is used.</span><br><span class="line"># If you need to run mysqld under a different user or group,</span><br><span class="line"># customize your systemd unit file for mariadb according to the</span><br><span class="line"># instructions in http:&#x2F;&#x2F;fedoraproject.org&#x2F;wiki&#x2F;Systemd</span><br><span class="line"></span><br><span class="line">log-error&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;mysqld.log</span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error&#x3D;&#x2F;var&#x2F;log&#x2F;mysqld&#x2F;mysqld.log</span><br><span class="line">pid-file&#x3D;&#x2F;var&#x2F;run&#x2F;mysqld&#x2F;mysqldb.pid</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">character_set_server&#x3D;utf8mb4</span><br><span class="line">collation-server&#x3D;utf8mb4_general_ci</span><br><span class="line">init_connect&#x3D;&#39;SET NAMES utf8&#39;</span><br><span class="line">#</span><br><span class="line"># include all files from the config directory</span><br></pre></td></tr></table></figure>
+
+<p>创建mysql用户</p>
+<p>useradd -g mysql mysql</p>
+<p>创建mysql组</p>
+<p>groupadd mysql</p>
+<p>初始化</p>
+<p>/usr/local/mysql/bin/mysqld –initialize –user=mysql –basedir=/usr/local/mysql8/ –datadir=/usr/local/mysql8/data/</p>
+<p>将mysql目录和相关目录调配到mysql用户中</p>
+<p>chown -R mysql:mysql mysql8(mysqld)</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p>mv 文件名  文件名 （重命名）</p>
+<p>rm -rf移除文件夹</p>
+<p>rm-f 移除文件</p>
+<p>mkdir 新建文件夹</p>
+<p>touch 新建文件</p>
+<p>mv 文件名 路径 剪切</p>
+<p>tar -zxvf解压tar.gz</p>
+<p>tar -xvf解压tar.xz</p>
+<p>vim 文件名 编辑文件</p>
+<p>./文件名 运行文件</p>
+<p>:q!退出编辑 且不保存</p>
+<p>shift ZZ  保存且退出</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Linux/" data-id="ckcmp627s0002q4hcdg8e4t77" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/15/SpringSecurity%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8(1)/">SpringSecurity入门使用(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/SpringMVC-%E6%8E%A7%E5%88%B6%E5%99%A8%E6%B5%8B%E8%AF%95/">SpringMVC-控制器测试</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/Spring+mybatis%E6%95%B4%E5%90%88/">Spring+mybatis整合</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/Spring%20MVC-3(1)/">Spring MVC-3(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/spring%20MVC-2/">spring MVC-2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

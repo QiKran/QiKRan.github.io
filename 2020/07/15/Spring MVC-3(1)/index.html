@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Spring MVC-3(1) | Kran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spring MVC请求参数的值以集合来封装 针对前台表单页面中的复选框或多行选择框，我们希望以集合的类型来接收这些数据。 如： 123456&lt;form method&#x3D;&quot;get|post&quot; action&#x3D;&quot;&#x2F;user&#x2F;update.do&quot;&gt;   &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;hobby&quot; value&#x3D;&quot;1&quot;&gt;Movie    &lt;input">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring MVC-3(1)">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/Spring%20MVC-3(1)/index.html">
+<meta property="og:site_name" content="Kran">
+<meta property="og:description" content="Spring MVC请求参数的值以集合来封装 针对前台表单页面中的复选框或多行选择框，我们希望以集合的类型来接收这些数据。 如： 123456&lt;form method&#x3D;&quot;get|post&quot; action&#x3D;&quot;&#x2F;user&#x2F;update.do&quot;&gt;   &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;hobby&quot; value&#x3D;&quot;1&quot;&gt;Movie    &lt;input">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-15T01:39:42.559Z">
+<meta property="article:modified_time" content="2020-06-07T08:11:30.332Z">
+<meta property="article:author" content="QiKran">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Kran" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kran</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Spring MVC-3(1)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/15/Spring%20MVC-3(1)/" class="article-date">
+  <time datetime="2020-07-15T01:39:42.559Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring MVC-3(1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h1><h2 id="请求参数的值以集合来封装"><a href="#请求参数的值以集合来封装" class="headerlink" title="请求参数的值以集合来封装"></a>请求参数的值以集合来封装</h2><ol>
+<li><p>针对前台表单页面中的复选框或多行选择框，我们希望以集合的类型来接收这些数据。</p>
+<p>如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"get|post"</span> <span class="attr">action</span>=<span class="string">"/user/update.do"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"hobby"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span>Movie</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"hobby"</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span>Code</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"hobby"</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span>Game</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">假设上面三个复选框都被选中，那么传递到后台，我们可以通过一个 List 来接收这个请求参数 hobby</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user/update.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">(@RequestParam(<span class="string">"hobby"</span>)</span> List&lt;Integer&gt; hobby) </span>&#123;</span><br><span class="line">    <span class="comment">//注：此处由我们写的是接口，所以，要使用 @RequestParam 注解。</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//注：如果前面采用AJAX 异步发送请求，并且数据是以 json格式发送，那么，后台我们的参数上面要打上另一个注解：@RequestBody</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>针对所有的请求参数，我们不想通过实体类/Bean 来接收，而想以Map来接收</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"get|post"</span> <span class="attr">action</span>=<span class="string">"add.do"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">""</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">value</span>=<span class="string">""</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"stuno"</span> <span class="attr">value</span>=<span class="string">""</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以单个参数来接收</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/add.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">add</span><span class="params">(String name, <span class="keyword">int</span> age, String stuno)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//以map来接收</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/add.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">add</span><span class="params">(Map&lt;String, Object&gt; map)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//还可以使用JAVABEAN来接收</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/add.do"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">add</span><span class="params">(Student student)</span> </span>&#123; <span class="comment">//很显然,Student实体类中包含以上3个属性</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h2 id="AJAX请求的处理"><a href="#AJAX请求的处理" class="headerlink" title="AJAX请求的处理"></a>AJAX请求的处理</h2><blockquote>
+<p>针对服务端来讲，我们的控制器中的方法就不能返回一个逻辑视图名或真正视图路径。它要求当前方法要以返回值做为响应客户端的内容。这时就需要使用 <strong>@ResponseBody</strong> 注解</p>
+<p>此注解一般要配合 @RequestMapping(value=””, produces=”响应给客户端的内容MIME格式”)</p>
+<p>比如：我们想给客户端返回一个json，则 produces=”application/json”</p>
+</blockquote>
+<h3 id="GET或POST方式请求数据的获取"><a href="#GET或POST方式请求数据的获取" class="headerlink" title="GET或POST方式请求数据的获取"></a>GET或POST方式请求数据的获取</h3><blockquote>
+<p>我们通过AJAX发送请求给服务端，可以通过 GET方式也可以通过POST方式，其中：</p>
+<ol>
+<li>通过 GET 方式，采用请求头来传递数据，这种方式传递的数据不能太大，否则会被截取。</li>
+<li>通过 POST 方式，采用请求体来传递数据，对数据大小没有限制。</li>
+</ol>
+<p>对于后端代码来说，不管你是采用GET还是POST，它的处理方式是一样的。不同在于前端的代码不同，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// GET 方式：</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">     url: <span class="string">"$&#123;pageContext.request.contextPath&#125;/book/deleteSelect.do?"</span>+queryData,</span><br><span class="line">     method: <span class="string">"GET"</span>,</span><br><span class="line">     <span class="keyword">async</span>: <span class="literal">true</span>,</span><br><span class="line">     dataType: <span class="string">"text"</span>,   <span class="comment">//表示期望服务端返回给我们的数据格式</span></span><br><span class="line">     success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">               <span class="comment">//成功</span></span><br><span class="line">               alert(data);</span><br><span class="line">               <span class="comment">//重新加载本页面</span></span><br><span class="line">               <span class="built_in">window</span>.location.reload();</span><br><span class="line">     &#125;,</span><br><span class="line">     error: <span class="function"><span class="keyword">function</span> (<span class="params">jqXHR</span>) </span>&#123;</span><br><span class="line">                <span class="comment">// 失败</span></span><br><span class="line">                alert(<span class="string">"删除失败了"</span>);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果是 POST，则：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// POST 方式：</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">     url: <span class="string">"$&#123;pageContext.request.contextPath&#125;/book/deleteSelect.do"</span>,</span><br><span class="line">     method: <span class="string">"POST"</span>,</span><br><span class="line">     data: queryDaa,  </span><br><span class="line">     <span class="keyword">async</span>: <span class="literal">true</span>,</span><br><span class="line">     dataType: <span class="string">"text"</span>,   <span class="comment">//表示期望服务端返回给我们的数据格式</span></span><br><span class="line">     success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">               <span class="comment">//成功</span></span><br><span class="line">               alert(data);</span><br><span class="line">               <span class="comment">//重新加载本页面</span></span><br><span class="line">               <span class="built_in">window</span>.location.reload();</span><br><span class="line">     &#125;,</span><br><span class="line">     error: <span class="function"><span class="keyword">function</span> (<span class="params">jqXHR</span>) </span>&#123;</span><br><span class="line">                <span class="comment">// 失败</span></span><br><span class="line">                alert(<span class="string">"删除失败了"</span>);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h3 id="如果前端采用JSON数据传递到后台，后台该如何获取这个数据？"><a href="#如果前端采用JSON数据传递到后台，后台该如何获取这个数据？" class="headerlink" title="如果前端采用JSON数据传递到后台，后台该如何获取这个数据？"></a>如果前端采用JSON数据传递到后台，后台该如何获取这个数据？</h3><blockquote>
+<p>与上面采用请求参数或表单参数不同的时，前端如果采用json来传递数据到后台，则后台的Controller中的方法参数应该使用 <code>@RequestBody</code> 来修饰，而不是 <code>@RequestParam</code> . 如下：</p>
+<ol>
+<li>前端</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// POST 方式：</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">     url: <span class="string">"$&#123;pageContext.request.contextPath&#125;/book/deleteSelect.do"</span>,</span><br><span class="line">     method: <span class="string">"POST"</span>,</span><br><span class="line">     data: josnData,   <span class="comment">//必需是 json字符串  </span></span><br><span class="line">     <span class="keyword">async</span>: <span class="literal">true</span>,</span><br><span class="line">     dataType: <span class="string">"text"</span>,   <span class="comment">//表示期望服务端返回给我们的数据格式</span></span><br><span class="line">     contentType: <span class="string">"application/json"</span>,</span><br><span class="line">     success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">               <span class="comment">//成功</span></span><br><span class="line">               alert(data);</span><br><span class="line">               <span class="comment">//重新加载本页面</span></span><br><span class="line">               <span class="built_in">window</span>.location.reload();</span><br><span class="line">     &#125;,</span><br><span class="line">     error: <span class="function"><span class="keyword">function</span> (<span class="params">jqXHR</span>) </span>&#123;</span><br><span class="line">                <span class="comment">// 失败</span></span><br><span class="line">                alert(<span class="string">"删除失败了"</span>);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>后端</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/deleteSelect.do"</span>, produces = <span class="string">"text/html;charset=utf-8"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span>  <span class="comment">//以内容来响应客户端</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">deleteSelected</span><span class="params">(@RequestBody List&lt;Integer&gt; idList)</span> </span>&#123;</span><br><span class="line">       log.debug(<span class="string">"Spring MVC帮助封装了请求参数 idList："</span>+idList);</span><br><span class="line">       <span class="comment">//调用业务方法</span></span><br><span class="line">       <span class="keyword">if</span>(<span class="keyword">this</span>.bookService.deleteSelected(idList) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="string">"删除成功"</span>;  <span class="comment">//这个返回值 会写回到 客户端</span></span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="string">"删除失败"</span>;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="文件上传和下载"><a href="#文件上传和下载" class="headerlink" title="文件上传和下载"></a>文件上传和下载</h2><h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><blockquote>
+<p>首先，需要在 配置类中定义 <code>MultipartResolver</code>, 这个是接口，我们在代码要生成它的实现类的对象，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MultipartResolver <span class="title">multipartResolver</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个 CommonsMultipartResolver</span></span><br><span class="line">        CommonsMultipartResolver multipartResolver =</span><br><span class="line">                                <span class="keyword">new</span> CommonsMultipartResolver();</span><br><span class="line">        <span class="comment">//配置属性</span></span><br><span class="line">        multipartResolver.setMaxUploadSize(<span class="number">2</span>*<span class="number">1024</span>*<span class="number">1025</span>); <span class="comment">//最大2M</span></span><br><span class="line">        multipartResolver.setMaxUploadSizePerFile(<span class="number">2</span>*<span class="number">1024</span>*<span class="number">1024</span>); <span class="comment">//每个文件大小</span></span><br><span class="line">        <span class="comment">//返回</span></span><br><span class="line">        <span class="keyword">return</span> multipartResolver;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其次，文件上传需要引入第三方的依赖，如下：【这里我们选用了 commons-fileupload】</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第三， 在前端页面的表单中，必需指定 enctype属性的值为：<code>multipart/form-data</code></p>
+<p>第四，在后端的控制器方法中，必需使用 MultipartFile 参数来接收 文件上传域，其中，文件上传域的name与此参数名一样，如果不一样，则需要使用 <code>@RequestParam</code> 来指定。</p>
+<p>第五， 在方法体中，使用 MultipartFile 的方法来完成 上传操作。</p>
+</blockquote>
+<h3 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h3><blockquote>
+<p>要点：</p>
+<ol>
+<li><p>必需指定自确的 contentType 类型，不同的文件格式，需要指定不同的 contentType,如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    response.setContentType(<span class="string">"images/png;charset=utf-8"</span>);</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定另一个头，告诉浏览器，如果你能在线打开，就打开，否则生成下载弹出框。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不缓存数据时，要设置的响应头</span></span><br><span class="line">response.setHeader(<span class="string">"Pragma"</span>, <span class="string">"No-cache"</span>);</span><br><span class="line">response.setHeader(<span class="string">"Cache-Control"</span>, <span class="string">"No-cache"</span>);</span><br><span class="line">response.setDateHeader(<span class="string">"Expires"</span>, -<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">response.setHeader(<span class="string">"content-disposition"</span>, <span class="string">"attachment;filename="</span> + fileName);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用 输入和输出流完成下载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用Spring提代的工具类：</span></span><br><span class="line">FileCopyUtils.copy(本地要被下载的文件的输入流， response.getOutputStream());</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="Bean的验证"><a href="#Bean的验证" class="headerlink" title="Bean的验证"></a>Bean的验证</h2><blockquote>
+<p>也就是针对表单域中的输入项进行后台的有效验证。</p>
+<p>因为纯前端的JS验证很容易被“跳过”，所以，完全依赖于前端的验证是不能防止数据风险的。</p>
+<p>Spring MVC 的Bean验证需要依赖 Hibernate Validator 组件。</p>
+</blockquote>
+<h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h3><ol>
+<li><p>导入 Hibernate Validator 组件</p>
+<blockquote>
+<p>Hibernate Validator 是 JAVAEE 的Bean Validation规范的实现者。</p>
+</blockquote>
+</li>
+<li><p>在 Spring MVC的配置类中，重写父类的 验证器方法</p>
+</li>
+<li><p>编写验证属性文件，这个属性文件的文件名由三部份组成：</p>
+<ul>
+<li>baseName</li>
+<li>国家和语言的代号</li>
+<li>扩展名</li>
+</ul>
+<p>如：beanValidation_ZH_CN.properties, beanValidation_EN.properties</p>
+</li>
+<li><p>把你需要做验证的JAVABEAN，打开  Bean Validation的注解。</p>
+</li>
+</ol>
+<h3 id="Spring-MVC的控制器方法返回json对象"><a href="#Spring-MVC的控制器方法返回json对象" class="headerlink" title="Spring MVC的控制器方法返回json对象"></a>Spring MVC的控制器方法返回json对象</h3><p>支持两种方式</p>
+<ol>
+<li><p>自己把对象解析成 json 字符串，并返回 【不建议使用】</p>
+<blockquote>
+<p>比如我们可以导入 fastjson 依赖，并利用它的API 把任意JAVA对象转解成 JSON 字符串。</p>
+<p>然后，在方法的@RequestMapping注解中，指定 produces=”application/json”  或 produces=”text/json”</p>
+</blockquote>
+</li>
+<li><p>利用Spring 自带的功能，自动转换 【推荐】</p>
+<blockquote>
+<p>要求：</p>
+<ul>
+<li><p>导入 jackson 相关依赖，如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 使用spring自带的json处理依赖包 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jackson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jackson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-annotations<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jackson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>在你的控制器方法中，需要在  @RequestMapping中指定 produces=”application/json” 。</strong></p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h2 id="拦截器-Interceptor"><a href="#拦截器-Interceptor" class="headerlink" title="拦截器 Interceptor"></a>拦截器 Interceptor</h2><blockquote>
+<ol>
+<li>写一个类实现 HandlerIntercepter 接口或者继承 HandlerIntercepterAdapter 类。</li>
+<li>重写相关的方法，主要有如下三个方法：<ul>
+<li>preHandle()    表示在目标控制器的方法调用之前被调用</li>
+<li>postHandle()   表示在目标控制器的方法调用之后被调用【此时响应并没有到达客户端】</li>
+<li>afterCompletion()  表示当响应结束后再调用此方法</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p>XML的配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">"/**"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.pxxy.springmvc.interceptor.PerformanceLogInterceptor"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注： 这个文件需要在 配置类中去读取。</p>
+<p><strong>代码的配置：</strong></p>
+<p>在 <code>WebMvcConfig</code>配置类中，重写父类的 <code>addInterceptors</code> 方法，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> PerformanceLogInterceptor()).addPathPatterns(<span class="string">"/**"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><ol>
+<li><p>单个控制器中的异常处理</p>
+<ul>
+<li><p>在你想做异常处理的控制器里面，添加一个方法来处理异常，并且使用 @ExceptionHandler 来修饰，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler</span>(value = RuntimeException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">void</span> <span class="title">handlerException</span>(<span class="title">Exception</span> <span class="title">ex</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//此Controller中，任一个打上了 @RequestMapping的方法出现 RuntimeException 异常时，就会回调此方法</span></span><br><span class="line">        System.out.println(<span class="string">"-- BookContorller的handlerException方法被调用了..."</span>);</span><br><span class="line">        System.out.println(<span class="string">"ex = "</span> + ex);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//上面应该做好异常日志</span></span><br><span class="line">        <span class="comment">//下面就是跳转到一个指定 的友好页面 [500.jsp]</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在此类中，无论哪个被请求执行的方法在运行过程中出现了 <code>RuntimeException</code> 异常，Spring MVC框架都会去执行 上面的方法。</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><p>全局的异常处理</p>
+<ul>
+<li><p>写一个类实现<code>HandlerExceptionResolver</code> 接口，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.pxxy.springmvc.handlers;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerExceptionResolver;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="comment">/********************</span></span><br><span class="line"><span class="comment"> * 处理异常的第二种方式：</span></span><br><span class="line"><span class="comment"> * 可以实现全局的异常处理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> <span class="keyword">implements</span> <span class="title">HandlerExceptionResolver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">resolveException</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                                         HttpServletResponse response, Object handler, Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">final</span> String requestURI = request.getRequestURI();</span><br><span class="line">        <span class="keyword">final</span> Object login_user = request.getSession().getAttribute(<span class="string">"LOGIN_USER"</span>);</span><br><span class="line">        <span class="comment">// 当前时间</span></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"造成异常的处理类："</span>+handler.getClass());</span><br><span class="line">        System.out.println(<span class="string">"异常信息："</span>+e.getClass()+<span class="string">" =&gt; "</span>+ e.getMessage());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        ModelAndView mv = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        mv.addObject(<span class="string">"EX_MSG"</span>, e.getMessage());</span><br><span class="line">        mv.setViewName(<span class="string">"forward:/static/500.jsp"</span>);</span><br><span class="line">        <span class="keyword">return</span> mv;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>在 配置类中，要扫描这个类所在的包。</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="有关Restful-风格的URL"><a href="#有关Restful-风格的URL" class="headerlink" title="有关Restful 风格的URL"></a>有关Restful 风格的URL</h2><blockquote>
+<p>Restful 是采用了请求的Method来表达请求的意图，实际上，所有的请求，对于数据来说，无非就是4种，也就是增、删、 改、查，或者说：CRUD 操作。</p>
+<p>而请求的method刚好可以满足这些操作，我们分别以：</p>
+<ul>
+<li>GET 请求代表 获取，也就是查</li>
+<li>POST 请求代表 给予，也就是 增</li>
+<li>PUT 请求代表 放，也就是 更新</li>
+<li>DELETE 请示代表 删除，也就是删除</li>
+</ul>
+<p>所以，我们在URI的设计中，完全可以利用这个动词来表示用户的意愿，如：</p>
+<p>GET  /book/1      代表 获取id为1的 图书</p>
+<p>DELETE /book/1   代表 删除id为1 的图书</p>
+<p>…</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/15/Spring%20MVC-3(1)/" data-id="ckcmp628b000lq4hchtzh6f1j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/15/Spring+mybatis%E6%95%B4%E5%90%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Spring+mybatis整合
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/15/spring%20MVC-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">spring MVC-2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/15/SpringSecurity%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8(1)/">SpringSecurity入门使用(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/SpringMVC-%E6%8E%A7%E5%88%B6%E5%99%A8%E6%B5%8B%E8%AF%95/">SpringMVC-控制器测试</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/Spring+mybatis%E6%95%B4%E5%90%88/">Spring+mybatis整合</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/Spring%20MVC-3(1)/">Spring MVC-3(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/spring%20MVC-2/">spring MVC-2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 QiKran<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
