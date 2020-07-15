@@ -66,47 +66,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-代理模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/14/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time datetime="2020-07-14T08:16:02.682Z" itemprop="datePublished">2020-07-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/14/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">代理模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a><strong>代理模式</strong></h2><h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><p>由程序员创建或特定工具自动生成源代码，也就是在编译时就已经将接口，被代理类，代理类等确定下来。在程序运行之前，代理类的.class文件就已经生成。</p>
-<p>代理最主要一个特点就是：有一个<strong>共同接口</strong>（Person，该接口中有个方法）</p>
-<p><strong>一个具体的的类</strong>，<strong>一个代理类</strong>，具体类和代理类都实现了该接口。具体类实现了该接口中的方法。代理类的构造方法是传入一个实现了该接口的类，并且帮该类调用其里面的方法。</p>
-<p><strong>优点</strong>：代理类持有具体类的实例，代为执行具体类实例方法。代理模式就是在访问实际对象时引入一定程度的间接性，因为这种间接性，可以附加多种用途。这里的间接性就是指不直接调用实际对象的方法，那么我们在代理过程中就可以加上一些其他用途。比如在代理该类调用其类里面的方法之前，我们可以做一些其他的逻辑操作，比如打印日志啊等等。其中Spring的面向切面编程（AOP）就是利用了该特点。</p>
-<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><p>代理类在程序运行时创建的代理方式被成为动态代理。 代理类是自己定义好的，在程序运行之前就已经编译完成。然而动态代理，代理类并不是在Java代码中定义的，而是在运行时根据我们在Java代码中的“指示”动态生成的。相比于静态代理， 动态代理的优势在于可以很方便的对代理类的函数进行统一的处理，而不用修改每个代理类中的方法。 所有被代理执行的方法，都是通过在InvocationHandler中的invoke方法调用的，所以我们只要在invoke方法中统一处理，就可以对所有被代理的方法进行相同的操作了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" data-id="ckcmp6296001oq4hcb3tqcia2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-xml知识点" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/14/xml%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
@@ -252,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/xml%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="ckcmp6294001lq4hc3tkre0cz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/xml%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="ckcmpx87l001mcghcd3q692vr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -299,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/Servlet/" data-id="ckcmp6289000jq4hcfwwm4fda" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/Servlet/" data-id="ckcmpx861000kcghcg3pk0zoe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -338,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/LocalDateTimes%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%A7%A3%E6%9E%90/" data-id="ckcmp627u0004q4hc7n8reult" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/LocalDateTimes%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%A7%A3%E6%9E%90/" data-id="ckcmpx85k0004cghc5w4odryp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -377,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/IO%E5%BA%95%E5%B1%82%E4%BA%A4%E4%BA%92%E7%9B%B8%E5%85%B3%E6%9D%82%E8%AE%B0/" data-id="ckcmp627i0000q4hccn6ugh6i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/IO%E5%BA%95%E5%B1%82%E4%BA%A4%E4%BA%92%E7%9B%B8%E5%85%B3%E6%9D%82%E8%AE%B0/" data-id="ckcmpx85h0002cghce6rl28ab" class="article-share-link">Share</a>
       
       
     </footer>
@@ -416,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/HTML%E6%9D%82%E8%AE%B0%20Emmet%E8%AF%AD%E6%B3%95/" data-id="ckcmp627q0001q4hchjgw7dbh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/HTML%E6%9D%82%E8%AE%B0%20Emmet%E8%AF%AD%E6%B3%95/" data-id="ckcmpx85g0001cghceyshe0n6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -496,7 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/execution(%20transfer(..))java/" data-id="ckcmp6291001eq4hc4swobnv7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/execution(%20transfer(..))java/" data-id="ckcmpx87f001ecghchdvhh9zk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -651,7 +610,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day20-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" data-id="ckcmp628x001cq4hc4isi00ck" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day20-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" data-id="ckcmpx877001bcghc4f235syt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -795,7 +754,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day19-NIO%E3%80%81Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckcmp628x001dq4hcayt5860q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day19-NIO%E3%80%81Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckcmpx876001acghc1avo007o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -978,7 +937,198 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day18-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E6%9E%90%E3%80%81%E4%BB%A3%E7%90%86%E3%80%81NIO/" data-id="ckcmp628w001bq4hcct0o9eei" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day18-%E6%B3%A8%E8%A7%A3%E8%A7%A3%E6%9E%90%E3%80%81%E4%BB%A3%E7%90%86%E3%80%81NIO/" data-id="ckcmpx87a001ccghc93sgfsgv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-day17-反射、注解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.575Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/">day17-反射、注解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java反射和注解"><a href="#Java反射和注解" class="headerlink" title="Java反射和注解"></a>Java反射和注解</h1><h2 id="反射-Reflection"><a href="#反射-Reflection" class="headerlink" title="反射 Reflection"></a>反射 Reflection</h2><blockquote>
+<p>提供了一套给程序员用来窥探字节码内部结构的机制。在JDK5开始引入的。</p>
+<p>通过反射，我们可以把字节码反编译成源文件。</p>
+</blockquote>
+<p>所以，反射的程序都是从 字节码开始的。</p>
+<h3 id="字节码"><a href="#字节码" class="headerlink" title="字节码"></a>字节码</h3><blockquote>
+<p>就 是由  javac 编译 .java源文件后形成的文件， 以 .class 为扩展名。</p>
+<p>那么 JVM 是如何去管理这个 字节码文件的。</p>
+</blockquote>
+<p>当.class文件被JVM加载进入内存后，这个字节码就会由JVM进行管理，而JVM中，需要一个类型来表达字节码，这个类型就是 <code>java.lang.Class</code></p>
+<h3 id="java-lang-Class"><a href="#java-lang-Class" class="headerlink" title="java.lang.Class"></a>java.lang.Class</h3><blockquote>
+<p>它就是一种JAVA数据类型，同 Scanner, LocalDate 等一样。</p>
+<p>它的实例是用来表达字节码本身的一种对象。每个JAVA类型在被JVM加载进入内存后，JVM都会创建此类唯一的 Class实例。</p>
+</blockquote>
+<p>比如：JVM加载了Computer类进来，则JVM中就会创建一个 Computer的Class 实例。以此类推，加载了 LocalDate, Scanner, System, String等等，则在JVM就会对应创建 LocalDate的Class实例、Scanner的Class实例、System的Class实例、String的Class实例。</p>
+<h3 id="如何获取-Class-实例？"><a href="#如何获取-Class-实例？" class="headerlink" title="如何获取 Class 实例？"></a>如何获取 Class 实例？</h3><p><strong>有三种方式可以获取</strong>:</p>
+<ol>
+<li>通过 <strong>Class.forName(String qualifiedName)</strong> 来获取， 程序员需要指定目标类型的全限定名【包名. 类名】</li>
+<li>通过 <strong>类名.class</strong>  来获取</li>
+<li>通过 <strong>对象.getClass()</strong> 来获取</li>
+</ol>
+<p>以上三种方式，对于同一个类型来说，得到的结果是一样的【JVM中，同一个类的Class实例是唯一的】</p>
+<h3 id="通过类的Class实例，我们可以获取什么？"><a href="#通过类的Class实例，我们可以获取什么？" class="headerlink" title="通过类的Class实例，我们可以获取什么？"></a>通过类的Class实例，我们可以获取什么？</h3><ul>
+<li>获取此类的包结构      —&gt;   getPackage  =&gt;  java.lang.Package </li>
+<li>获取此类导入的类型     –&gt;  </li>
+<li>类的修饰符                   –&gt;  getModifiers()   =&gt;  int</li>
+<li>实现了哪些接口           –&gt;   getInterfaces()   =&gt;   Class&lt;?&gt;[]<ul>
+<li>本身又是 Class 实例</li>
+</ul>
+</li>
+<li>继承的父类                   –&gt;   getSuperclass()    =&gt;  Class&lt;? super T&gt;<ul>
+<li>本身又是 Class 实例</li>
+</ul>
+</li>
+<li>泛型信息                        –&gt;   getTypeParameters()    =&gt;  TypeVariable[]<ul>
+<li>。。。</li>
+</ul>
+</li>
+<li>属性信息                       –&gt;  getFields()   =&gt;   Field[]<ul>
+<li>属性修饰符            –&gt;  getDeclaredFields()   =&gt; Field[]</li>
+<li>属性类型               –&gt;  getField(String fieldName)    =&gt;  Field</li>
+<li>属性名</li>
+</ul>
+</li>
+<li>构造方法信息                 –&gt;  getConstructors()     =&gt;  Constructor[]<ul>
+<li>修饰符                     –&gt;  getDeclaredConstructors()  =&gt; Constructor[]</li>
+<li>参数列表                  </li>
+</ul>
+</li>
+<li>方法信息                           –&gt;  getMethods()     =&gt;  Method[]<ul>
+<li>方法修饰符                 –&gt;  getDeclaredMethods()   =&gt;  Method[]</li>
+<li>方法的返回类型        –&gt;   getDeclaredMethod(String mName, Class… params)   =&gt; Method</li>
+<li>方法名</li>
+<li>方法的参数列表</li>
+<li>方法申明抛出的异常列表</li>
+</ul>
+</li>
+</ul>
+<h3 id="反射API"><a href="#反射API" class="headerlink" title="反射API"></a>反射API</h3><blockquote>
+<p>java.lang.reflect 包</p>
+</blockquote>
+<h3 id="为什么要用反射？"><a href="#为什么要用反射？" class="headerlink" title="为什么要用反射？"></a>为什么要用反射？</h3><blockquote>
+<p>希望写出更通用的代码。</p>
+<p>动态地给目标类添加新的功能，而不需要改变源码【代理 Proxy】</p>
+</blockquote>
+<h2 id="注解-Annotation-也叫标注"><a href="#注解-Annotation-也叫标注" class="headerlink" title="注解 Annotation [也叫标注]"></a>注解 Annotation [也叫标注]</h2><blockquote>
+<p>用来提供代码的辅助信息，比如配置信息，以及一些需要编译器进行检查的信息</p>
+<p>语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> 注解名 &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="JDK内置的注解"><a href="#JDK内置的注解" class="headerlink" title="JDK内置的注解"></a>JDK内置的注解</h3><ul>
+<li><p>在 java.lang中有3个</p>
+<ul>
+<li>@Override    用来告诉JVM的编译器去检查方法是否符合重写的规范</li>
+<li>@Deprecated   用来告诉JVM的编译器，这个类或方法已经过时了</li>
+<li>@SuppressWarnings  用来告诉JVM的编译器，对所指定的一些警告信息保持静默. 它包含：<ul>
+<li>“serial”   针对实现了Serializable接口的类型，没有给出versionUID时的警告 保持静默</li>
+<li>“unused”  针对定义了变量，但是这个变量从未使用过的警告保持静默</li>
+<li>“unchecked” 针对一些未检查的警告保持静默</li>
+<li>…</li>
+<li>“all”   所有警告保持静默</li>
+</ul>
+</li>
+</ul>
+<p>JDK7和8中，又添加了2个</p>
+<ul>
+<li>@SafeVarargs</li>
+<li>@FunctionalInterface  把某个接口标注为函数式接口。</li>
+</ul>
+</li>
+<li><p>在java.lang.annotation中有4个, 这4个也叫 元注解[meta annotation, 就是用来标注其它注解的注解]</p>
+<ul>
+<li><p>@Documented     – 表示被此元注解修饰的注解可以进入到 javadoc的文档中</p>
+</li>
+<li><p>@Inherited    – 被此注解修饰过的注解使用类，如果这个类有子类的话，则子类将可以继承父类中的注解</p>
+</li>
+<li><p>@Retention    – 表示规定注解可以保留在什么层面上，有3个层面可以选择：</p>
+<ul>
+<li>SOURCE  – 表示注解只保留在编译期间，在字节码层面看不到这个注解。</li>
+<li>CLASS  – 表示注解不止在编译期间，在字节码层面也存在，但是，JVM不能读取。</li>
+<li>RUNTIME  – 表示注解不止在编译期间，在字节码层面也存在，而且JVM可以读取。</li>
+</ul>
+<p>注：如果我们开发注解，没有指定 @Retention 的话，则默认是 CLASS</p>
+</li>
+<li><p>@Target  – 表示注解可以修饰的类型是什么， 它同样有一个枚举来指定，包含如下值：</p>
+<ul>
+<li>TYPE</li>
+<li>ANNOTATION_TYPE</li>
+<li>METHOD</li>
+<li>CONSTRUCTOR</li>
+<li>FIELD</li>
+<li>…</li>
+</ul>
+<p>注：如果我们开发注解，没有指定@Target的话，则默认是 所有地方都可以使有。</p>
+<p><strong>一般来说，我们开发注解的话，最少应该要使用 @Retention 和  @Target</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="注解的特点"><a href="#注解的特点" class="headerlink" title="注解的特点"></a>注解的特点</h3><blockquote>
+<p><strong>与枚举一样，它也是一种类型，而且所有的注解都会自动实现 java.lang.annotation.Annotation 接口</strong></p>
+<p>所以，可以这么说，我们开发的每一个注解，都是 <strong>Annotation</strong> 接口的实现类。</p>
+</blockquote>
+<h3 id="Annotation-接口"><a href="#Annotation-接口" class="headerlink" title="Annotation 接口"></a>Annotation 接口</h3><blockquote>
+<p>详见API</p>
+</blockquote>
+<h3 id="使用注解的语法"><a href="#使用注解的语法" class="headerlink" title="使用注解的语法"></a>使用注解的语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@注解名</span><br><span class="line">如果这个注解有参数的话，则给相应的参数</span><br><span class="line">@注解名(参数名=值,参数名=值)</span><br><span class="line">    </span><br><span class="line"><span class="comment">//如：</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(value=&#123;<span class="string">"serial"</span>,<span class="string">"unused"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ma</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="注解有什么用？"><a href="#注解有什么用？" class="headerlink" title="注解有什么用？"></a>注解有什么用？</h3><ol>
+<li>JDK自带的注解，JVM会对它进行解析，并给出相应的意义。</li>
+<li>我们自已开发的注解，就需要程序员自己编写 解析代码，并指定相应的意义。</li>
+</ol>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li><p>设计一个产品类[Product]，包含如下属性：id, 产品名，产品分类，单价，上架时间 ，其中，产品分类是一个枚举。</p>
+</li>
+<li><p>设计 产品分类 枚举，包含如下常量： 家用电器，办公用品，运动户外，食品饮料，母婴玩具，服装鞋子</p>
+</li>
+<li><p>写一个程序，随机模拟1000个产品，利用List进行存储，然后写一个方法来完成如下任务</p>
+<ol>
+<li>统计出每种产品分类下的产品数量</li>
+<li>按产品分类进归整，按价格高低列出每个产品分类下面的所有产品名称和单价。 大概的显示如下：</li>
+</ol>
+<p>家用电器分类</p>
+<p>​    海尔冰箱          ￥10089.5</p>
+<p>​    西门子洗衣机   ￥9988.5</p>
+<p>​    。。。</p>
+<p>运动户外分类</p>
+<p>​    xxxx        $1145.5</p>
+<p>​    …</p>
+<p>….</p>
+<p>​        …</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/" data-id="ckcmpx8730019cghc4ir82mf9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1024,10 +1174,6 @@
       <ul>
         
           <li>
-            <a href="/2020/07/15/SpringSecurity%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8(1)/">SpringSecurity入门使用(1)</a>
-          </li>
-        
-          <li>
             <a href="/2020/07/15/SpringMVC-%E6%8E%A7%E5%88%B6%E5%99%A8%E6%B5%8B%E8%AF%95/">SpringMVC-控制器测试</a>
           </li>
         
@@ -1036,11 +1182,15 @@
           </li>
         
           <li>
-            <a href="/2020/07/15/Spring%20MVC-3(1)/">Spring MVC-3(1)</a>
+            <a href="/2020/07/15/Spring%20MVC-3/">Spring MVC-3</a>
           </li>
         
           <li>
             <a href="/2020/07/15/spring%20MVC-2/">spring MVC-2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/Spring%20MVC-1/">Spring MVC-1</a>
           </li>
         
       </ul>

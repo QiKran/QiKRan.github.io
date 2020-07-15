@@ -66,197 +66,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-day17-反射、注解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/" class="article-date">
-  <time datetime="2020-07-14T08:16:02.575Z" itemprop="datePublished">2020-07-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/">day17-反射、注解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java反射和注解"><a href="#Java反射和注解" class="headerlink" title="Java反射和注解"></a>Java反射和注解</h1><h2 id="反射-Reflection"><a href="#反射-Reflection" class="headerlink" title="反射 Reflection"></a>反射 Reflection</h2><blockquote>
-<p>提供了一套给程序员用来窥探字节码内部结构的机制。在JDK5开始引入的。</p>
-<p>通过反射，我们可以把字节码反编译成源文件。</p>
-</blockquote>
-<p>所以，反射的程序都是从 字节码开始的。</p>
-<h3 id="字节码"><a href="#字节码" class="headerlink" title="字节码"></a>字节码</h3><blockquote>
-<p>就 是由  javac 编译 .java源文件后形成的文件， 以 .class 为扩展名。</p>
-<p>那么 JVM 是如何去管理这个 字节码文件的。</p>
-</blockquote>
-<p>当.class文件被JVM加载进入内存后，这个字节码就会由JVM进行管理，而JVM中，需要一个类型来表达字节码，这个类型就是 <code>java.lang.Class</code></p>
-<h3 id="java-lang-Class"><a href="#java-lang-Class" class="headerlink" title="java.lang.Class"></a>java.lang.Class</h3><blockquote>
-<p>它就是一种JAVA数据类型，同 Scanner, LocalDate 等一样。</p>
-<p>它的实例是用来表达字节码本身的一种对象。每个JAVA类型在被JVM加载进入内存后，JVM都会创建此类唯一的 Class实例。</p>
-</blockquote>
-<p>比如：JVM加载了Computer类进来，则JVM中就会创建一个 Computer的Class 实例。以此类推，加载了 LocalDate, Scanner, System, String等等，则在JVM就会对应创建 LocalDate的Class实例、Scanner的Class实例、System的Class实例、String的Class实例。</p>
-<h3 id="如何获取-Class-实例？"><a href="#如何获取-Class-实例？" class="headerlink" title="如何获取 Class 实例？"></a>如何获取 Class 实例？</h3><p><strong>有三种方式可以获取</strong>:</p>
-<ol>
-<li>通过 <strong>Class.forName(String qualifiedName)</strong> 来获取， 程序员需要指定目标类型的全限定名【包名. 类名】</li>
-<li>通过 <strong>类名.class</strong>  来获取</li>
-<li>通过 <strong>对象.getClass()</strong> 来获取</li>
-</ol>
-<p>以上三种方式，对于同一个类型来说，得到的结果是一样的【JVM中，同一个类的Class实例是唯一的】</p>
-<h3 id="通过类的Class实例，我们可以获取什么？"><a href="#通过类的Class实例，我们可以获取什么？" class="headerlink" title="通过类的Class实例，我们可以获取什么？"></a>通过类的Class实例，我们可以获取什么？</h3><ul>
-<li>获取此类的包结构      —&gt;   getPackage  =&gt;  java.lang.Package </li>
-<li>获取此类导入的类型     –&gt;  </li>
-<li>类的修饰符                   –&gt;  getModifiers()   =&gt;  int</li>
-<li>实现了哪些接口           –&gt;   getInterfaces()   =&gt;   Class&lt;?&gt;[]<ul>
-<li>本身又是 Class 实例</li>
-</ul>
-</li>
-<li>继承的父类                   –&gt;   getSuperclass()    =&gt;  Class&lt;? super T&gt;<ul>
-<li>本身又是 Class 实例</li>
-</ul>
-</li>
-<li>泛型信息                        –&gt;   getTypeParameters()    =&gt;  TypeVariable[]<ul>
-<li>。。。</li>
-</ul>
-</li>
-<li>属性信息                       –&gt;  getFields()   =&gt;   Field[]<ul>
-<li>属性修饰符            –&gt;  getDeclaredFields()   =&gt; Field[]</li>
-<li>属性类型               –&gt;  getField(String fieldName)    =&gt;  Field</li>
-<li>属性名</li>
-</ul>
-</li>
-<li>构造方法信息                 –&gt;  getConstructors()     =&gt;  Constructor[]<ul>
-<li>修饰符                     –&gt;  getDeclaredConstructors()  =&gt; Constructor[]</li>
-<li>参数列表                  </li>
-</ul>
-</li>
-<li>方法信息                           –&gt;  getMethods()     =&gt;  Method[]<ul>
-<li>方法修饰符                 –&gt;  getDeclaredMethods()   =&gt;  Method[]</li>
-<li>方法的返回类型        –&gt;   getDeclaredMethod(String mName, Class… params)   =&gt; Method</li>
-<li>方法名</li>
-<li>方法的参数列表</li>
-<li>方法申明抛出的异常列表</li>
-</ul>
-</li>
-</ul>
-<h3 id="反射API"><a href="#反射API" class="headerlink" title="反射API"></a>反射API</h3><blockquote>
-<p>java.lang.reflect 包</p>
-</blockquote>
-<h3 id="为什么要用反射？"><a href="#为什么要用反射？" class="headerlink" title="为什么要用反射？"></a>为什么要用反射？</h3><blockquote>
-<p>希望写出更通用的代码。</p>
-<p>动态地给目标类添加新的功能，而不需要改变源码【代理 Proxy】</p>
-</blockquote>
-<h2 id="注解-Annotation-也叫标注"><a href="#注解-Annotation-也叫标注" class="headerlink" title="注解 Annotation [也叫标注]"></a>注解 Annotation [也叫标注]</h2><blockquote>
-<p>用来提供代码的辅助信息，比如配置信息，以及一些需要编译器进行检查的信息</p>
-<p>语法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> 注解名 &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="JDK内置的注解"><a href="#JDK内置的注解" class="headerlink" title="JDK内置的注解"></a>JDK内置的注解</h3><ul>
-<li><p>在 java.lang中有3个</p>
-<ul>
-<li>@Override    用来告诉JVM的编译器去检查方法是否符合重写的规范</li>
-<li>@Deprecated   用来告诉JVM的编译器，这个类或方法已经过时了</li>
-<li>@SuppressWarnings  用来告诉JVM的编译器，对所指定的一些警告信息保持静默. 它包含：<ul>
-<li>“serial”   针对实现了Serializable接口的类型，没有给出versionUID时的警告 保持静默</li>
-<li>“unused”  针对定义了变量，但是这个变量从未使用过的警告保持静默</li>
-<li>“unchecked” 针对一些未检查的警告保持静默</li>
-<li>…</li>
-<li>“all”   所有警告保持静默</li>
-</ul>
-</li>
-</ul>
-<p>JDK7和8中，又添加了2个</p>
-<ul>
-<li>@SafeVarargs</li>
-<li>@FunctionalInterface  把某个接口标注为函数式接口。</li>
-</ul>
-</li>
-<li><p>在java.lang.annotation中有4个, 这4个也叫 元注解[meta annotation, 就是用来标注其它注解的注解]</p>
-<ul>
-<li><p>@Documented     – 表示被此元注解修饰的注解可以进入到 javadoc的文档中</p>
-</li>
-<li><p>@Inherited    – 被此注解修饰过的注解使用类，如果这个类有子类的话，则子类将可以继承父类中的注解</p>
-</li>
-<li><p>@Retention    – 表示规定注解可以保留在什么层面上，有3个层面可以选择：</p>
-<ul>
-<li>SOURCE  – 表示注解只保留在编译期间，在字节码层面看不到这个注解。</li>
-<li>CLASS  – 表示注解不止在编译期间，在字节码层面也存在，但是，JVM不能读取。</li>
-<li>RUNTIME  – 表示注解不止在编译期间，在字节码层面也存在，而且JVM可以读取。</li>
-</ul>
-<p>注：如果我们开发注解，没有指定 @Retention 的话，则默认是 CLASS</p>
-</li>
-<li><p>@Target  – 表示注解可以修饰的类型是什么， 它同样有一个枚举来指定，包含如下值：</p>
-<ul>
-<li>TYPE</li>
-<li>ANNOTATION_TYPE</li>
-<li>METHOD</li>
-<li>CONSTRUCTOR</li>
-<li>FIELD</li>
-<li>…</li>
-</ul>
-<p>注：如果我们开发注解，没有指定@Target的话，则默认是 所有地方都可以使有。</p>
-<p><strong>一般来说，我们开发注解的话，最少应该要使用 @Retention 和  @Target</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="注解的特点"><a href="#注解的特点" class="headerlink" title="注解的特点"></a>注解的特点</h3><blockquote>
-<p><strong>与枚举一样，它也是一种类型，而且所有的注解都会自动实现 java.lang.annotation.Annotation 接口</strong></p>
-<p>所以，可以这么说，我们开发的每一个注解，都是 <strong>Annotation</strong> 接口的实现类。</p>
-</blockquote>
-<h3 id="Annotation-接口"><a href="#Annotation-接口" class="headerlink" title="Annotation 接口"></a>Annotation 接口</h3><blockquote>
-<p>详见API</p>
-</blockquote>
-<h3 id="使用注解的语法"><a href="#使用注解的语法" class="headerlink" title="使用注解的语法"></a>使用注解的语法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@注解名</span><br><span class="line">如果这个注解有参数的话，则给相应的参数</span><br><span class="line">@注解名(参数名=值,参数名=值)</span><br><span class="line">    </span><br><span class="line"><span class="comment">//如：</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(value=&#123;<span class="string">"serial"</span>,<span class="string">"unused"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ma</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="注解有什么用？"><a href="#注解有什么用？" class="headerlink" title="注解有什么用？"></a>注解有什么用？</h3><ol>
-<li>JDK自带的注解，JVM会对它进行解析，并给出相应的意义。</li>
-<li>我们自已开发的注解，就需要程序员自己编写 解析代码，并指定相应的意义。</li>
-</ol>
-<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
-<li><p>设计一个产品类[Product]，包含如下属性：id, 产品名，产品分类，单价，上架时间 ，其中，产品分类是一个枚举。</p>
-</li>
-<li><p>设计 产品分类 枚举，包含如下常量： 家用电器，办公用品，运动户外，食品饮料，母婴玩具，服装鞋子</p>
-</li>
-<li><p>写一个程序，随机模拟1000个产品，利用List进行存储，然后写一个方法来完成如下任务</p>
-<ol>
-<li>统计出每种产品分类下的产品数量</li>
-<li>按产品分类进归整，按价格高低列出每个产品分类下面的所有产品名称和单价。 大概的显示如下：</li>
-</ol>
-<p>家用电器分类</p>
-<p>​    海尔冰箱          ￥10089.5</p>
-<p>​    西门子洗衣机   ￥9988.5</p>
-<p>​    。。。</p>
-<p>运动户外分类</p>
-<p>​    xxxx        $1145.5</p>
-<p>​    …</p>
-<p>….</p>
-<p>​        …</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day17-%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/" data-id="ckcmp628w001aq4hc3js2djaj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-day16-集合2、泛型、枚举" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/14/day16-%E9%9B%86%E5%90%882%E3%80%81%E6%B3%9B%E5%9E%8B%E3%80%81%E6%9E%9A%E4%B8%BE/" class="article-date">
@@ -487,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day16-%E9%9B%86%E5%90%882%E3%80%81%E6%B3%9B%E5%9E%8B%E3%80%81%E6%9E%9A%E4%B8%BE/" data-id="ckcmp628u0017q4hcbedab73o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day16-%E9%9B%86%E5%90%882%E3%80%81%E6%B3%9B%E5%9E%8B%E3%80%81%E6%9E%9A%E4%B8%BE/" data-id="ckcmpx8710018cghc27bd6y2t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -630,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day15-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" data-id="ckcmp628u0016q4hc699afmwm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day15-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" data-id="ckcmpx8700017cghc7jjfg91d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -679,7 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day14-%E4%BD%9C%E4%B8%9A/" data-id="ckcmp628v0019q4hc6w707zn0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day14-%E4%BD%9C%E4%B8%9A/" data-id="ckcmpx86y0016cghch8fa57ov" class="article-share-link">Share</a>
       
       
     </footer>
@@ -797,7 +606,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day14-IO%E6%B5%81-2/" data-id="ckcmp628v0018q4hcgsnz57tm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day14-IO%E6%B5%81-2/" data-id="ckcmpx86x0015cghc8f8afwgd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -904,7 +713,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day13-IO%E6%B5%81/" data-id="ckcmp628t0015q4hc50qec17h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day13-IO%E6%B5%81/" data-id="ckcmpx86c0013cghc4z2l1p48" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1036,7 +845,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day12-%E5%86%85%E9%83%A8%E7%B1%BB%E3%80%81File/" data-id="ckcmp628t0014q4hc6nuoajh2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day12-%E5%86%85%E9%83%A8%E7%B1%BB%E3%80%81File/" data-id="ckcmpx86v0014cghc423o00k2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1084,7 +893,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day11-%E4%BD%9C%E4%B8%9A/" data-id="ckcmp628s0013q4hcdnb2d0j4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day11-%E4%BD%9C%E4%B8%9A/" data-id="ckcmpx86c0012cghcamuuhd1g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1304,7 +1113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/DAY11-%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E6%AD%A3%E5%88%99/" data-id="ckcmp627t0003q4hcbj1mdfrd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/DAY11-%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E6%AD%A3%E5%88%99/" data-id="ckcmpx8580000cghca00e7yzy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1367,7 +1176,164 @@ Book[] getAllBooks(); //获取所有图书</code></pre><p>}</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/day10-%E4%BD%9C%E4%B8%9A/" data-id="ckcmp628r0011q4hcaf1jcmy9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/14/day10-%E4%BD%9C%E4%B8%9A/" data-id="ckcmpx86b0010cghc22nch53n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-day10-核心API" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/day10-%E6%A0%B8%E5%BF%83API/" class="article-date">
+  <time datetime="2020-07-14T08:16:02.447Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/day10-%E6%A0%B8%E5%BF%83API/">day10-核心API</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h1><h2 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h2><h3 id="横向关系"><a href="#横向关系" class="headerlink" title="横向关系"></a>横向关系</h3><ol>
+<li><p>组合关系 【关系较强】</p>
+<p>是关联的一种，两个类之间的关系较强，属于整体与局部关系。 局部不能脱离整体单独存在，在创建整体对象时，局部被一起创建出来。</p>
+<p>也是<code>HAS A</code> 关系</p>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">private</span> Heart heart; <span class="comment">//</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;<span class="comment">//</span></span><br><span class="line">        <span class="keyword">this</span>.birth = <span class="keyword">new</span> Date(); <span class="comment">//也是组合</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">this</span>.heart = <span class="keyword">new</span> Heart(); <span class="comment">//这个Heart不是由外部传入的，而是在创建整体对象时，它自己来创建局部对象。</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Heart</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<p><strong>组合关系的ＵＭＬ图形是：实线+实心菱形</strong></p>
+</li>
+<li><p>聚合关系 【关系比组合关系略弱】</p>
+<p>也是关联关系的一种，两个类之间的关系稍弱，两个类在语义上是”平等”。 两个对象可以单独存在，在创建主对象时，辅助对象不需要被创建，而是由外部传入。</p>
+<p>也是<code>HAS A</code> 关系</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Date birth;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">private</span> Heart heart; <span class="comment">//</span></span><br><span class="line">    <span class="keyword">private</span> Address homeAddress; <span class="comment">//家庭住址</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, Address homeAddress)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;<span class="comment">// 聚合</span></span><br><span class="line">        <span class="keyword">this</span>.birth = <span class="keyword">new</span> Date(); <span class="comment">//也是组合</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">this</span>.heart = <span class="keyword">new</span> Heart(); <span class="comment">//这个Heart不是由外部传入的，而是在创建整体对象时，它自己来创建局部对象。</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">this</span>.homeAddress = homeAddress; <span class="comment">//聚合，对象由外界传入。</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Heart</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<p><strong>聚合关系的UML图形是：实心线+空心菱形</strong></p>
+</li>
+<li><p>依赖关系 【关系最弱】</p>
+<p>它是一种“USE A” 关系，表示一个类使用了另一个类，这种方法往往以局部变量的方式出现在代码中，如：我们在程序经常使用一些工具类或辅助类，都是这种关系。</p>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IAFactory</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IA <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IA</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// IAFactory与IA 的关系就是 依赖关系，IAFactory依赖于 IA</span></span><br></pre></td></tr></table></figure>
+
+<p>以上三种关系由强到弱分别是： 组合，聚合，依赖</p>
+<p>注：</p>
+<p><strong>依赖的UML图形是：虚线+箭头</strong></p>
+</li>
+</ol>
+<h3 id="纵向关系"><a href="#纵向关系" class="headerlink" title="纵向关系"></a>纵向关系</h3><ol>
+<li><p>继承关系</p>
+<p>它是 “IS A” 的关系。</p>
+<p><strong>它的UML图形是：实线+空心三角形</strong></p>
+</li>
+<li><p>实现关系</p>
+<p>它也是”IS A “ 的关系。</p>
+<p><strong>它的UML图形是： 虚线+空心三角形</strong></p>
+</li>
+</ol>
+<h2 id="三大类型的操作"><a href="#三大类型的操作" class="headerlink" title="三大类型的操作"></a>三大类型的操作</h2><h3 id="数字型"><a href="#数字型" class="headerlink" title="数字型"></a>数字型</h3><ol>
+<li>8大基本类型的包装类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span>    --&gt;		Byte</span><br><span class="line"><span class="keyword">short</span>	--&gt;		Short</span><br><span class="line"><span class="keyword">int</span>		--&gt; 	Integer</span><br><span class="line"><span class="keyword">long</span>	--&gt;		Long</span><br><span class="line"><span class="keyword">double</span>	--&gt; 	Double</span><br><span class="line"><span class="keyword">float</span>	--&gt;		Float</span><br><span class="line"><span class="keyword">char</span>	--&gt;		Character</span><br><span class="line"><span class="keyword">boolean</span>	--&gt;		Boolean</span><br></pre></td></tr></table></figure>
+
+<p>以上8种基本类型与对应的对象类型之间可以实现自动解封箱[auto boxing/unboxing]。</p>
+<p> 如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">9</span>;</span><br><span class="line">Integer j = i; <span class="comment">//ok, 自动封箱</span></span><br><span class="line">Integer k = <span class="keyword">new</span> Integer(i); <span class="comment">//ok, 手动封箱</span></span><br><span class="line"><span class="keyword">int</span> m = k; <span class="comment">//ok, 自动解箱</span></span><br><span class="line"><span class="comment">//注：虽然可以自动解封箱，但是，它们还是有区别的，如：</span></span><br><span class="line">j = <span class="keyword">null</span>; <span class="comment">//ok</span></span><br><span class="line">i = <span class="keyword">null</span>; <span class="comment">//compile error</span></span><br></pre></td></tr></table></figure>
+
+<p>这8种基本类型与对象类型以及字符串形式如何转换？</p>
+<p>以 Integer 为例</p>
+<ul>
+<li>把 int 转换成字符串  </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">9</span>;</span><br><span class="line">String istr = String.valueOf(i);</span><br><span class="line">或：</span><br><span class="line">String istr = i.toString(); <span class="comment">//Compile Error</span></span><br><span class="line">String istr = Integer.valueOf(i).toString(); <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>把字符串转换成整数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String istr = <span class="string">"19"</span>;</span><br><span class="line">String jstr = <span class="string">"0xff3"</span>;</span><br><span class="line"><span class="keyword">int</span> i = Integer.parseInt(istr); <span class="comment">//ok</span></span><br><span class="line"><span class="keyword">int</span> j = Integer.parseInt(jstr, <span class="number">16</span>); <span class="comment">//	</span></span><br><span class="line"><span class="comment">//或1</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="keyword">new</span> Integer(istr).intValue(); <span class="comment">//ok</span></span><br><span class="line"><span class="comment">//或2</span></span><br><span class="line"><span class="keyword">int</span> i = Integer.valueOf(istr).intValue(); <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>抽象父类 Number</strong> </p>
+<blockquote>
+<p>是为了以统一的方式来使用各种不同的数字类型而准备的。</p>
+<p>为了扩展而存在的。</p>
+</blockquote>
+<p><strong>相关的包</strong></p>
+<ul>
+<li>java.lang包</li>
+<li>java.text包</li>
+<li>java.math包</li>
+</ul>
+<p><strong>数字的格式化</strong></p>
+<h3 id="日期型"><a href="#日期型" class="headerlink" title="日期型"></a>日期型</h3><blockquote>
+<p>在JDK8之前，日期相关的API分布：</p>
+<ul>
+<li>java.util.Date, TimeZone</li>
+<li>java.sql.Date, TimeStamp, Time, Calendar ,  GregorianCalendar</li>
+<li>java.text.DateFormat , SimpleDateFormat</li>
+</ul>
+</blockquote>
+<p><strong>java.util.Date</strong></p>
+<p>常用方法：</p>
+<ul>
+<li>public Date()     以当前的系统时间来构造日期对象</li>
+<li>public Date(long t)   以指定毫秒数来构建日期对象</li>
+</ul>
+<p><strong>java.util.Calendar 和  GregorianCalendar</strong></p>
+<p>常用方法：</p>
+<ul>
+<li>getInstance()   获取Calendar的实例，是一个工厂方法  </li>
+<li>set(int type)     设置日历对象中的指定成员，这个成员由 type指定，这个type是Calendar定义的常量，如：YEAR, MONTH, DAY_OF_MONTH, ….</li>
+<li>get(int type)    获取日历对象中的指定成员，这个type同上。</li>
+<li>getTime()     获取此日历对象中的日期，返回一个 Date</li>
+<li>setTime(Date d)   给此日历对象设计一个新的日期。</li>
+</ul>
+<p><strong>DateFormat和SimpleDateFormat</strong></p>
+<p>常用方法：</p>
+<ul>
+<li><p>public SimpleDateFormat(String pattern)   构造方法，根据指定 的模式来创建SimpleDateFormat对象</p>
+</li>
+<li><p>format() 方法，格式化日期对象，返回字符串</p>
+</li>
+<li><p>parse() 方法， 解析方法，把字符串解析成日期对象，并返回</p>
+</li>
+</ul>
+<h4 id="JDK8中的全新日期处理API"><a href="#JDK8中的全新日期处理API" class="headerlink" title="JDK8中的全新日期处理API"></a>JDK8中的全新日期处理API</h4><p>所在的包：</p>
+<p><strong>java.time</strong> </p>
+<p>java.time.format</p>
+<p>java.time.temporal</p>
+<p>…</p>
+<p>主要的类型 【这些类型都是不可变的，线程安全的】</p>
+<ul>
+<li>LocalDate   处理年月日的类型</li>
+<li>LocalTime   处理时、分、秒</li>
+<li>LocalDateTime  年月日，时分秒</li>
+<li>Duration   计算时间分和差距</li>
+<li>Period        计算年月日 的差距</li>
+<li>Clock          可选类</li>
+<li>…</li>
+</ul>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/day10-%E6%A0%B8%E5%BF%83API/" data-id="ckcmpx86b0011cghcfdli1onp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1413,10 +1379,6 @@ Book[] getAllBooks(); //获取所有图书</code></pre><p>}</p>
       <ul>
         
           <li>
-            <a href="/2020/07/15/SpringSecurity%E5%85%A5%E9%97%A8%E4%BD%BF%E7%94%A8(1)/">SpringSecurity入门使用(1)</a>
-          </li>
-        
-          <li>
             <a href="/2020/07/15/SpringMVC-%E6%8E%A7%E5%88%B6%E5%99%A8%E6%B5%8B%E8%AF%95/">SpringMVC-控制器测试</a>
           </li>
         
@@ -1425,11 +1387,15 @@ Book[] getAllBooks(); //获取所有图书</code></pre><p>}</p>
           </li>
         
           <li>
-            <a href="/2020/07/15/Spring%20MVC-3(1)/">Spring MVC-3(1)</a>
+            <a href="/2020/07/15/Spring%20MVC-3/">Spring MVC-3</a>
           </li>
         
           <li>
             <a href="/2020/07/15/spring%20MVC-2/">spring MVC-2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/Spring%20MVC-1/">Spring MVC-1</a>
           </li>
         
       </ul>
